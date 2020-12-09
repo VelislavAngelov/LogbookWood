@@ -86,6 +86,7 @@
             }
         }
 
+
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)
             where T : class, IDeletableEntity
         {

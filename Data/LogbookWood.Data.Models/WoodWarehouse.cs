@@ -14,7 +14,7 @@
             this.Vehicles = new HashSet<Vehicle>();
         }
 
-        public int Id { get; set; }
+        public int WoodWarehouseId { get; set; }
 
         public string Wood { get; set; }
 
@@ -34,9 +34,9 @@
 
         public double Count { get; set; }
 
-        public int UserId { get; set; }
+        public string ApplicationUserId { get; set; }
 
-        public ApplicationUser User { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
 
         public ICollection<Tickets> Tickets { get; set; }
 

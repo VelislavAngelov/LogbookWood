@@ -124,9 +124,6 @@ namespace LogbookWood.Data.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<int>("WoodWarehouseId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("IsDeleted");
@@ -138,9 +135,6 @@ namespace LogbookWood.Data.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.HasIndex("WoodWarehouseId")
-                        .IsUnique();
 
                     b.ToTable("AspNetUsers");
                 });
@@ -301,10 +295,13 @@ namespace LogbookWood.Data.Migrations
 
             modelBuilder.Entity("LogbookWood.Data.Models.WoodWarehouse", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("WoodWarehouseId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Category")
                         .HasColumnType("nvarchar(max)");
@@ -327,16 +324,17 @@ namespace LogbookWood.Data.Migrations
                     b.Property<double>("Unit")
                         .HasColumnType("float");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.Property<double>("Width")
                         .HasColumnType("float");
 
                     b.Property<string>("Wood")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("WoodWarehouseId");
+
+                    b.HasIndex("ApplicationUserId")
+                        .IsUnique()
+                        .HasFilter("[ApplicationUserId] IS NOT NULL");
 
                     b.ToTable("WoodWarehouses");
                 });
@@ -468,17 +466,6 @@ namespace LogbookWood.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("LogbookWood.Data.Models.ApplicationUser", b =>
-                {
-                    b.HasOne("LogbookWood.Data.Models.WoodWarehouse", "WoodWarehouse")
-                        .WithOne("User")
-                        .HasForeignKey("LogbookWood.Data.Models.ApplicationUser", "WoodWarehouseId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("WoodWarehouse");
-                });
-
             modelBuilder.Entity("LogbookWood.Data.Models.Assortment", b =>
                 {
                     b.HasOne("LogbookWood.Data.Models.Tickets", null)
@@ -528,6 +515,15 @@ namespace LogbookWood.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("WoodWarehouse");
+                });
+
+            modelBuilder.Entity("LogbookWood.Data.Models.WoodWarehouse", b =>
+                {
+                    b.HasOne("LogbookWood.Data.Models.ApplicationUser", "ApplicationUser")
+                        .WithOne("WoodWarehouse")
+                        .HasForeignKey("LogbookWood.Data.Models.WoodWarehouse", "ApplicationUserId");
+
+                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("LogbookWood.Data.Models.Woods", b =>
@@ -599,6 +595,8 @@ namespace LogbookWood.Data.Migrations
                     b.Navigation("Logins");
 
                     b.Navigation("Roles");
+
+                    b.Navigation("WoodWarehouse");
                 });
 
             modelBuilder.Entity("LogbookWood.Data.Models.Tickets", b =>
@@ -615,8 +613,6 @@ namespace LogbookWood.Data.Migrations
                     b.Navigation("Employees");
 
                     b.Navigation("Tickets");
-
-                    b.Navigation("User");
 
                     b.Navigation("Vehicles");
                 });

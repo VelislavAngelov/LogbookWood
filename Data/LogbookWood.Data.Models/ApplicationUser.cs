@@ -34,8 +34,6 @@ namespace LogbookWood.Data.Models
 
         public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }
 
-        public int WoodWarehouseId { get; set; }
-
         public WoodWarehouse WoodWarehouse { get; set; }
     }
 }
