@@ -124,6 +124,9 @@ namespace LogbookWood.Data.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
+                    b.Property<int>("WoodWarehouseId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("IsDeleted");
@@ -136,39 +139,229 @@ namespace LogbookWood.Data.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
+                    b.HasIndex("WoodWarehouseId")
+                        .IsUnique();
+
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("LogbookWood.Data.Models.Setting", b =>
+            modelBuilder.Entity("LogbookWood.Data.Models.Assortment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("Category")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Value")
+                    b.Property<int?>("TicketsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TicketsId");
+
+                    b.ToTable("Assortments");
+                });
+
+            modelBuilder.Entity("LogbookWood.Data.Models.Counterparties", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BUSTAT")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClientName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("WoodWarehouseId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("WoodWarehouseId");
+
+                    b.ToTable("Counterparties");
+                });
+
+            modelBuilder.Entity("LogbookWood.Data.Models.Employee", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("MiddleName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Position")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Surname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("WoodWarehouseId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("WoodWarehouseId");
+
+                    b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("LogbookWood.Data.Models.Tickets", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Category")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Coefficient")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Count")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Length")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Thickness")
+                        .HasColumnType("float");
+
+                    b.Property<double>("TotalVolume")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Unit")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Width")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Wood")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("WoodWarehouseId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("WoodWarehouseId");
+
+                    b.ToTable("Tickets");
+                });
+
+            modelBuilder.Entity("LogbookWood.Data.Models.Vehicle", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Brand")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Model")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RegistrationNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("WoodWarehouseId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("WoodWarehouseId");
+
+                    b.ToTable("Vehicles");
+                });
+
+            modelBuilder.Entity("LogbookWood.Data.Models.WoodWarehouse", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Category")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Coefficient")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Count")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Length")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Thickness")
+                        .HasColumnType("float");
+
+                    b.Property<double>("TotalVolume")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Unit")
+                        .HasColumnType("float");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Width")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Wood")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IsDeleted");
+                    b.ToTable("WoodWarehouses");
+                });
 
-                    b.ToTable("Settings");
+            modelBuilder.Entity("LogbookWood.Data.Models.Woods", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TicketsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TicketsId");
+
+                    b.ToTable("Woods");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -275,6 +468,79 @@ namespace LogbookWood.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("LogbookWood.Data.Models.ApplicationUser", b =>
+                {
+                    b.HasOne("LogbookWood.Data.Models.WoodWarehouse", "WoodWarehouse")
+                        .WithOne("User")
+                        .HasForeignKey("LogbookWood.Data.Models.ApplicationUser", "WoodWarehouseId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("WoodWarehouse");
+                });
+
+            modelBuilder.Entity("LogbookWood.Data.Models.Assortment", b =>
+                {
+                    b.HasOne("LogbookWood.Data.Models.Tickets", null)
+                        .WithMany("Assortments")
+                        .HasForeignKey("TicketsId");
+                });
+
+            modelBuilder.Entity("LogbookWood.Data.Models.Counterparties", b =>
+                {
+                    b.HasOne("LogbookWood.Data.Models.WoodWarehouse", "WoodWarehouse")
+                        .WithMany("Counterparties")
+                        .HasForeignKey("WoodWarehouseId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("WoodWarehouse");
+                });
+
+            modelBuilder.Entity("LogbookWood.Data.Models.Employee", b =>
+                {
+                    b.HasOne("LogbookWood.Data.Models.WoodWarehouse", "WoodWarehouse")
+                        .WithMany("Employees")
+                        .HasForeignKey("WoodWarehouseId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("WoodWarehouse");
+                });
+
+            modelBuilder.Entity("LogbookWood.Data.Models.Tickets", b =>
+                {
+                    b.HasOne("LogbookWood.Data.Models.WoodWarehouse", "WoodWarehouse")
+                        .WithMany("Tickets")
+                        .HasForeignKey("WoodWarehouseId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("WoodWarehouse");
+                });
+
+            modelBuilder.Entity("LogbookWood.Data.Models.Vehicle", b =>
+                {
+                    b.HasOne("LogbookWood.Data.Models.WoodWarehouse", "WoodWarehouse")
+                        .WithMany("Vehicles")
+                        .HasForeignKey("WoodWarehouseId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("WoodWarehouse");
+                });
+
+            modelBuilder.Entity("LogbookWood.Data.Models.Woods", b =>
+                {
+                    b.HasOne("LogbookWood.Data.Models.Tickets", "Tickets")
+                        .WithMany("Woods")
+                        .HasForeignKey("TicketsId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Tickets");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("LogbookWood.Data.Models.ApplicationRole", null)
@@ -333,6 +599,26 @@ namespace LogbookWood.Data.Migrations
                     b.Navigation("Logins");
 
                     b.Navigation("Roles");
+                });
+
+            modelBuilder.Entity("LogbookWood.Data.Models.Tickets", b =>
+                {
+                    b.Navigation("Assortments");
+
+                    b.Navigation("Woods");
+                });
+
+            modelBuilder.Entity("LogbookWood.Data.Models.WoodWarehouse", b =>
+                {
+                    b.Navigation("Counterparties");
+
+                    b.Navigation("Employees");
+
+                    b.Navigation("Tickets");
+
+                    b.Navigation("User");
+
+                    b.Navigation("Vehicles");
                 });
 #pragma warning restore 612, 618
         }

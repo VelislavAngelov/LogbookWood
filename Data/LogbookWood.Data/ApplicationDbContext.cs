@@ -24,7 +24,19 @@
         {
         }
 
-        public DbSet<Setting> Settings { get; set; }
+        public DbSet<WoodWarehouse> WoodWarehouses { get; set; }
+
+        public DbSet<Assortment> Assortments { get; set; }
+
+        public DbSet<Counterparties> Counterparties { get; set; }
+
+        public DbSet<Employee> Employees { get; set; }
+
+        public DbSet<Tickets> Tickets { get; set; }
+
+        public DbSet<Vehicle> Vehicles { get; set; }
+
+        public DbSet<Woods> Woods { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 
