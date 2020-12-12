@@ -8,11 +8,8 @@
     using LogbookWood.Data.Common.Repositories;
     using LogbookWood.Data.Models;
     using LogbookWood.Data.Repositories;
-
     using Microsoft.EntityFrameworkCore;
-
     using Moq;
-
     using Xunit;
 
     public class SettingsServiceTests

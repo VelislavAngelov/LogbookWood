@@ -1,18 +1,16 @@
 ﻿namespace LogbookWood.Data.Models
 {
-    using System;
     using System.Collections.Generic;
-    using System.Text;
 
-    public class Tickets
+    using LogbookWood.Data.Common.Models;
+
+    public class Ticket : BaseModel<int>
     {
-        public Tickets()
+        public Ticket()
         {
-            this.Woods = new HashSet<Woods>();
-            this.Assortments = new HashSet<Assortment>();
+            this.Woods = new HashSet<TicketWood>();
+            this.Assortments = new HashSet<TicketAssortment>();
         }
-
-        public int Id { get; set; }
 
         public string Wood { get; set; }
 
@@ -32,12 +30,12 @@
 
         public double Count { get; set; }
 
-        public virtual ICollection<Woods> Woods { get; set; }
-
-        public virtual ICollection<Assortment> Assortments { get; set; }
-
         public int WoodWarehouseId { get; set; }
 
         public WoodWarehouse WoodWarehouse { get; set; }
+
+        public virtual ICollection<TicketWood> Woods { get; set; }
+
+        public virtual ICollection<TicketAssortment> Assortments { get; set; }
     }
 }

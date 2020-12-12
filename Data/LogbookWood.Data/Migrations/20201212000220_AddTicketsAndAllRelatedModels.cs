@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LogbookWood.Data.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class AddTicketsAndAllRelatedModels : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -52,6 +52,36 @@ namespace LogbookWood.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Assortments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Category = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Assortments", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Woods",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Type = table.Column<int>(type: "int", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Woods", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -164,25 +194,23 @@ namespace LogbookWood.Data.Migrations
                 name: "WoodWarehouses",
                 columns: table => new
                 {
-                    WoodWarehouseId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Wood = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Category = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Unit = table.Column<double>(type: "float", nullable: false),
-                    Length = table.Column<double>(type: "float", nullable: false),
-                    Width = table.Column<double>(type: "float", nullable: false),
-                    Thickness = table.Column<double>(type: "float", nullable: false),
                     Coefficient = table.Column<double>(type: "float", nullable: false),
                     TotalVolume = table.Column<double>(type: "float", nullable: false),
-                    Count = table.Column<double>(type: "float", nullable: false),
-                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_WoodWarehouses", x => x.WoodWarehouseId);
+                    table.PrimaryKey("PK_WoodWarehouses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_WoodWarehouses_AspNetUsers_ApplicationUserId",
-                        column: x => x.ApplicationUserId,
+                        name: "FK_WoodWarehouses_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -198,7 +226,9 @@ namespace LogbookWood.Data.Migrations
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BUSTAT = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    WoodWarehouseId = table.Column<int>(type: "int", nullable: false)
+                    WoodWarehouseId = table.Column<int>(type: "int", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -207,7 +237,7 @@ namespace LogbookWood.Data.Migrations
                         name: "FK_Counterparties_WoodWarehouses_WoodWarehouseId",
                         column: x => x.WoodWarehouseId,
                         principalTable: "WoodWarehouses",
-                        principalColumn: "WoodWarehouseId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -222,7 +252,9 @@ namespace LogbookWood.Data.Migrations
                     Surname = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Position = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    WoodWarehouseId = table.Column<int>(type: "int", nullable: false)
+                    WoodWarehouseId = table.Column<int>(type: "int", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -231,7 +263,7 @@ namespace LogbookWood.Data.Migrations
                         name: "FK_Employees_WoodWarehouses_WoodWarehouseId",
                         column: x => x.WoodWarehouseId,
                         principalTable: "WoodWarehouses",
-                        principalColumn: "WoodWarehouseId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -250,7 +282,9 @@ namespace LogbookWood.Data.Migrations
                     Coefficient = table.Column<double>(type: "float", nullable: false),
                     TotalVolume = table.Column<double>(type: "float", nullable: false),
                     Count = table.Column<double>(type: "float", nullable: false),
-                    WoodWarehouseId = table.Column<int>(type: "int", nullable: false)
+                    WoodWarehouseId = table.Column<int>(type: "int", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -259,7 +293,7 @@ namespace LogbookWood.Data.Migrations
                         name: "FK_Tickets_WoodWarehouses_WoodWarehouseId",
                         column: x => x.WoodWarehouseId,
                         principalTable: "WoodWarehouses",
-                        principalColumn: "WoodWarehouseId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -272,7 +306,9 @@ namespace LogbookWood.Data.Migrations
                     RegistrationNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Brand = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Model = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    WoodWarehouseId = table.Column<int>(type: "int", nullable: false)
+                    WoodWarehouseId = table.Column<int>(type: "int", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -281,48 +317,58 @@ namespace LogbookWood.Data.Migrations
                         name: "FK_Vehicles_WoodWarehouses_WoodWarehouseId",
                         column: x => x.WoodWarehouseId,
                         principalTable: "WoodWarehouses",
-                        principalColumn: "WoodWarehouseId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Assortments",
+                name: "TicketAssorments",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Category = table.Column<int>(type: "int", nullable: false),
-                    TicketsId = table.Column<int>(type: "int", nullable: true)
+                    TicketId = table.Column<int>(type: "int", nullable: false),
+                    AssortmentId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Assortments", x => x.Id);
+                    table.PrimaryKey("PK_TicketAssorments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Assortments_Tickets_TicketsId",
-                        column: x => x.TicketsId,
+                        name: "FK_TicketAssorments_Assortments_AssortmentId",
+                        column: x => x.AssortmentId,
+                        principalTable: "Assortments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_TicketAssorments_Tickets_TicketId",
+                        column: x => x.TicketId,
                         principalTable: "Tickets",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Woods",
+                name: "TicketWoods",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Type = table.Column<int>(type: "int", nullable: false),
-                    TicketsId = table.Column<int>(type: "int", nullable: false)
+                    TicketId = table.Column<int>(type: "int", nullable: false),
+                    WoodId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Woods", x => x.Id);
+                    table.PrimaryKey("PK_TicketWoods", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Woods_Tickets_TicketsId",
-                        column: x => x.TicketsId,
+                        name: "FK_TicketWoods_Tickets_TicketId",
+                        column: x => x.TicketId,
                         principalTable: "Tickets",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_TicketWoods_Woods_WoodId",
+                        column: x => x.WoodId,
+                        principalTable: "Woods",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -377,11 +423,6 @@ namespace LogbookWood.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Assortments_TicketsId",
-                table: "Assortments",
-                column: "TicketsId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Counterparties_WoodWarehouseId",
                 table: "Counterparties",
                 column: "WoodWarehouseId");
@@ -392,9 +433,29 @@ namespace LogbookWood.Data.Migrations
                 column: "WoodWarehouseId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_TicketAssorments_AssortmentId",
+                table: "TicketAssorments",
+                column: "AssortmentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TicketAssorments_TicketId",
+                table: "TicketAssorments",
+                column: "TicketId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Tickets_WoodWarehouseId",
                 table: "Tickets",
                 column: "WoodWarehouseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TicketWoods_TicketId",
+                table: "TicketWoods",
+                column: "TicketId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TicketWoods_WoodId",
+                table: "TicketWoods",
+                column: "WoodId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Vehicles_WoodWarehouseId",
@@ -402,16 +463,11 @@ namespace LogbookWood.Data.Migrations
                 column: "WoodWarehouseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Woods_TicketsId",
-                table: "Woods",
-                column: "TicketsId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_WoodWarehouses_ApplicationUserId",
+                name: "IX_WoodWarehouses_UserId",
                 table: "WoodWarehouses",
-                column: "ApplicationUserId",
+                column: "UserId",
                 unique: true,
-                filter: "[ApplicationUserId] IS NOT NULL");
+                filter: "[UserId] IS NOT NULL");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -432,25 +488,31 @@ namespace LogbookWood.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Assortments");
-
-            migrationBuilder.DropTable(
                 name: "Counterparties");
 
             migrationBuilder.DropTable(
                 name: "Employees");
 
             migrationBuilder.DropTable(
-                name: "Vehicles");
+                name: "TicketAssorments");
 
             migrationBuilder.DropTable(
-                name: "Woods");
+                name: "TicketWoods");
+
+            migrationBuilder.DropTable(
+                name: "Vehicles");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
+                name: "Assortments");
+
+            migrationBuilder.DropTable(
                 name: "Tickets");
+
+            migrationBuilder.DropTable(
+                name: "Woods");
 
             migrationBuilder.DropTable(
                 name: "WoodWarehouses");

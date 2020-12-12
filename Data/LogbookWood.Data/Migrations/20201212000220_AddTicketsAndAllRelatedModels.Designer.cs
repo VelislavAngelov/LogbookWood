@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LogbookWood.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201209195412_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20201212000220_AddTicketsAndAllRelatedModels")]
+    partial class AddTicketsAndAllRelatedModels
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -154,12 +154,7 @@ namespace LogbookWood.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TicketsId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("TicketsId");
 
                     b.ToTable("Assortments");
                 });
@@ -179,6 +174,12 @@ namespace LogbookWood.Data.Migrations
 
                     b.Property<string>("ClientName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
@@ -200,8 +201,14 @@ namespace LogbookWood.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("MiddleName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -225,7 +232,7 @@ namespace LogbookWood.Data.Migrations
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("LogbookWood.Data.Models.Tickets", b =>
+            modelBuilder.Entity("LogbookWood.Data.Models.Ticket", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -241,8 +248,14 @@ namespace LogbookWood.Data.Migrations
                     b.Property<double>("Count")
                         .HasColumnType("float");
 
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<double>("Length")
                         .HasColumnType("float");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<double>("Thickness")
                         .HasColumnType("float");
@@ -269,6 +282,50 @@ namespace LogbookWood.Data.Migrations
                     b.ToTable("Tickets");
                 });
 
+            modelBuilder.Entity("LogbookWood.Data.Models.TicketAssortment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("AssortmentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TicketId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AssortmentId");
+
+                    b.HasIndex("TicketId");
+
+                    b.ToTable("TicketAssorments");
+                });
+
+            modelBuilder.Entity("LogbookWood.Data.Models.TicketWood", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("TicketId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WoodId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TicketId");
+
+                    b.HasIndex("WoodId");
+
+                    b.ToTable("TicketWoods");
+                });
+
             modelBuilder.Entity("LogbookWood.Data.Models.Vehicle", b =>
                 {
                     b.Property<int>("Id")
@@ -279,8 +336,14 @@ namespace LogbookWood.Data.Migrations
                     b.Property<string>("Brand")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Model")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("RegistrationNumber")
                         .HasColumnType("nvarchar(max)");
@@ -295,15 +358,36 @@ namespace LogbookWood.Data.Migrations
                     b.ToTable("Vehicles");
                 });
 
-            modelBuilder.Entity("LogbookWood.Data.Models.WoodWarehouse", b =>
+            modelBuilder.Entity("LogbookWood.Data.Models.Wood", b =>
                 {
-                    b.Property<int>("WoodWarehouseId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Woods");
+                });
+
+            modelBuilder.Entity("LogbookWood.Data.Models.WoodWarehouse", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<string>("Category")
                         .HasColumnType("nvarchar(max)");
@@ -311,14 +395,11 @@ namespace LogbookWood.Data.Migrations
                     b.Property<double>("Coefficient")
                         .HasColumnType("float");
 
-                    b.Property<double>("Count")
-                        .HasColumnType("float");
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
 
-                    b.Property<double>("Length")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Thickness")
-                        .HasColumnType("float");
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<double>("TotalVolume")
                         .HasColumnType("float");
@@ -326,42 +407,19 @@ namespace LogbookWood.Data.Migrations
                     b.Property<double>("Unit")
                         .HasColumnType("float");
 
-                    b.Property<double>("Width")
-                        .HasColumnType("float");
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Wood")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("WoodWarehouseId");
-
-                    b.HasIndex("ApplicationUserId")
-                        .IsUnique()
-                        .HasFilter("[ApplicationUserId] IS NOT NULL");
-
-                    b.ToTable("WoodWarehouses");
-                });
-
-            modelBuilder.Entity("LogbookWood.Data.Models.Woods", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TicketsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("TicketsId");
+                    b.HasIndex("UserId")
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
 
-                    b.ToTable("Woods");
+                    b.ToTable("WoodWarehouses");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -468,13 +526,6 @@ namespace LogbookWood.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("LogbookWood.Data.Models.Assortment", b =>
-                {
-                    b.HasOne("LogbookWood.Data.Models.Tickets", null)
-                        .WithMany("Assortments")
-                        .HasForeignKey("TicketsId");
-                });
-
             modelBuilder.Entity("LogbookWood.Data.Models.Counterparties", b =>
                 {
                     b.HasOne("LogbookWood.Data.Models.WoodWarehouse", "WoodWarehouse")
@@ -497,7 +548,7 @@ namespace LogbookWood.Data.Migrations
                     b.Navigation("WoodWarehouse");
                 });
 
-            modelBuilder.Entity("LogbookWood.Data.Models.Tickets", b =>
+            modelBuilder.Entity("LogbookWood.Data.Models.Ticket", b =>
                 {
                     b.HasOne("LogbookWood.Data.Models.WoodWarehouse", "WoodWarehouse")
                         .WithMany("Tickets")
@@ -506,6 +557,44 @@ namespace LogbookWood.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("WoodWarehouse");
+                });
+
+            modelBuilder.Entity("LogbookWood.Data.Models.TicketAssortment", b =>
+                {
+                    b.HasOne("LogbookWood.Data.Models.Assortment", "Assortment")
+                        .WithMany("Ticket")
+                        .HasForeignKey("AssortmentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("LogbookWood.Data.Models.Ticket", "Ticket")
+                        .WithMany("Assorments")
+                        .HasForeignKey("TicketId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Assortment");
+
+                    b.Navigation("Ticket");
+                });
+
+            modelBuilder.Entity("LogbookWood.Data.Models.TicketWood", b =>
+                {
+                    b.HasOne("LogbookWood.Data.Models.Ticket", "Ticket")
+                        .WithMany("Woods")
+                        .HasForeignKey("TicketId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("LogbookWood.Data.Models.Wood", "Wood")
+                        .WithMany("Ticket")
+                        .HasForeignKey("WoodId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Ticket");
+
+                    b.Navigation("Wood");
                 });
 
             modelBuilder.Entity("LogbookWood.Data.Models.Vehicle", b =>
@@ -521,22 +610,11 @@ namespace LogbookWood.Data.Migrations
 
             modelBuilder.Entity("LogbookWood.Data.Models.WoodWarehouse", b =>
                 {
-                    b.HasOne("LogbookWood.Data.Models.ApplicationUser", "ApplicationUser")
+                    b.HasOne("LogbookWood.Data.Models.ApplicationUser", "User")
                         .WithOne("WoodWarehouse")
-                        .HasForeignKey("LogbookWood.Data.Models.WoodWarehouse", "ApplicationUserId");
+                        .HasForeignKey("LogbookWood.Data.Models.WoodWarehouse", "UserId");
 
-                    b.Navigation("ApplicationUser");
-                });
-
-            modelBuilder.Entity("LogbookWood.Data.Models.Woods", b =>
-                {
-                    b.HasOne("LogbookWood.Data.Models.Tickets", "Tickets")
-                        .WithMany("Woods")
-                        .HasForeignKey("TicketsId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Tickets");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -601,11 +679,21 @@ namespace LogbookWood.Data.Migrations
                     b.Navigation("WoodWarehouse");
                 });
 
-            modelBuilder.Entity("LogbookWood.Data.Models.Tickets", b =>
+            modelBuilder.Entity("LogbookWood.Data.Models.Assortment", b =>
                 {
-                    b.Navigation("Assortments");
+                    b.Navigation("Ticket");
+                });
+
+            modelBuilder.Entity("LogbookWood.Data.Models.Ticket", b =>
+                {
+                    b.Navigation("Assorments");
 
                     b.Navigation("Woods");
+                });
+
+            modelBuilder.Entity("LogbookWood.Data.Models.Wood", b =>
+                {
+                    b.Navigation("Ticket");
                 });
 
             modelBuilder.Entity("LogbookWood.Data.Models.WoodWarehouse", b =>

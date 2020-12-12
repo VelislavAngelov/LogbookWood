@@ -8,7 +8,6 @@
 
     using LogbookWood.Data.Common.Models;
     using LogbookWood.Data.Models;
-
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
 
@@ -24,19 +23,23 @@
         {
         }
 
-        public DbSet<WoodWarehouse> WoodWarehouses { get; set; }
-
         public DbSet<Assortment> Assortments { get; set; }
 
         public DbSet<Counterparties> Counterparties { get; set; }
 
         public DbSet<Employee> Employees { get; set; }
 
-        public DbSet<Tickets> Tickets { get; set; }
+        public DbSet<TicketAssortment> TicketAssorments { get; set; }
+
+        public DbSet<Ticket> Tickets { get; set; }
+
+        public DbSet<TicketWood> TicketWoods { get; set; }
 
         public DbSet<Vehicle> Vehicles { get; set; }
 
-        public DbSet<Woods> Woods { get; set; }
+        public DbSet<Wood> Woods { get; set; }
+
+        public DbSet<WoodWarehouse> WoodWarehouses { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 
@@ -85,7 +88,6 @@
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
         }
-
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)
             where T : class, IDeletableEntity

@@ -5,6 +5,7 @@
     using System.IO;
     using System.Threading.Tasks;
 
+    using CommandLine;
     using LogbookWood.Data;
     using LogbookWood.Data.Common;
     using LogbookWood.Data.Common.Repositories;
@@ -13,9 +14,6 @@
     using LogbookWood.Data.Seeding;
     using LogbookWood.Services.Data;
     using LogbookWood.Services.Messaging;
-
-    using CommandLine;
-
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;

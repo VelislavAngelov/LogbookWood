@@ -11,7 +11,6 @@
     using LogbookWood.Services.Mapping;
     using LogbookWood.Services.Messaging;
     using LogbookWood.Web.ViewModels;
-
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;

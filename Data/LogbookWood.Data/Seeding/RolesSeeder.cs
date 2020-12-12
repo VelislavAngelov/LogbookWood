@@ -6,7 +6,6 @@
 
     using LogbookWood.Common;
     using LogbookWood.Data.Models;
-
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
 

@@ -1,9 +1,9 @@
 ﻿namespace LogbookWood.Data.Models
 {
-    public class Counterparties
-    {
-        public int Id { get; set; }
+    using LogbookWood.Data.Common.Models;
 
+    public class Counterparties : BaseModel<int>
+    {
         public string ClientName { get; set; }
 
         public string Address { get; set; }

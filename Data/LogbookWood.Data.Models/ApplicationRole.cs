@@ -4,7 +4,6 @@ namespace LogbookWood.Data.Models
     using System;
 
     using LogbookWood.Data.Common.Models;
-
     using Microsoft.AspNetCore.Identity;
 
     public class ApplicationRole : IdentityRole, IAuditInfo, IDeletableEntity

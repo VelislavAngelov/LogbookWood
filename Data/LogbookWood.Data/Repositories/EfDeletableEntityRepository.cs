@@ -5,7 +5,6 @@
 
     using LogbookWood.Data.Common.Models;
     using LogbookWood.Data.Common.Repositories;
-
     using Microsoft.EntityFrameworkCore;
 
     public class EfDeletableEntityRepository<TEntity> : EfRepository<TEntity>, IDeletableEntityRepository<TEntity>

@@ -1,9 +1,9 @@
 ﻿namespace LogbookWood.Data.Models
 {
-    public class Employee
-    {
-        public int Id { get; set; }
+    using LogbookWood.Data.Common.Models;
 
+    public class Employee : BaseModel<int>
+    {
         public string Name { get; set; }
 
         public string MiddleName { get; set; }
