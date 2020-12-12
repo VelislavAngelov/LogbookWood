@@ -1,24 +1,24 @@
-﻿namespace Sandbox
+﻿using System;
+using System.Diagnostics;
+using System.IO;
+using System.Threading.Tasks;
+
+using CommandLine;
+using LogbookWood.Data;
+using LogbookWood.Data.Common;
+using LogbookWood.Data.Common.Repositories;
+using LogbookWood.Data.Models;
+using LogbookWood.Data.Repositories;
+using LogbookWood.Data.Seeding;
+using LogbookWood.Services.Data;
+using LogbookWood.Services.Messaging;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+
+namespace Sandbox
 {
-    using System;
-    using System.Diagnostics;
-    using System.IO;
-    using System.Threading.Tasks;
-
-    using CommandLine;
-    using LogbookWood.Data;
-    using LogbookWood.Data.Common;
-    using LogbookWood.Data.Common.Repositories;
-    using LogbookWood.Data.Models;
-    using LogbookWood.Data.Repositories;
-    using LogbookWood.Data.Seeding;
-    using LogbookWood.Services.Data;
-    using LogbookWood.Services.Messaging;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Logging;
-
     public static class Program
     {
         public static int Main(string[] args)

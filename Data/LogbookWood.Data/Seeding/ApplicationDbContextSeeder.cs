@@ -26,6 +26,8 @@
             var seeders = new List<ISeeder>
                           {
                               new RolesSeeder(),
+                              new WoodSeeder(),
+                              new AssortmentSeeder(),
                           };
 
             foreach (var seeder in seeders)

@@ -30,6 +30,8 @@
 
         public double Count { get; set; }
 
+        public string Comment { get; set; }
+
         public int WoodWarehouseId { get; set; }
 
         public WoodWarehouse WoodWarehouse { get; set; }

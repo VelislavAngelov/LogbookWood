@@ -1,11 +1,11 @@
-﻿namespace LogbookWood.Data
+﻿using System;
+using System.Threading.Tasks;
+
+using LogbookWood.Data.Common;
+using Microsoft.EntityFrameworkCore;
+
+namespace LogbookWood.Data
 {
-    using System;
-    using System.Threading.Tasks;
-
-    using LogbookWood.Data.Common;
-    using Microsoft.EntityFrameworkCore;
-
     public class DbQueryRunner : IDbQueryRunner
     {
         public DbQueryRunner(ApplicationDbContext context)

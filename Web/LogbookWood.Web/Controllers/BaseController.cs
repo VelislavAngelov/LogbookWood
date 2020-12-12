@@ -1,7 +1,7 @@
-﻿namespace LogbookWood.Web.Controllers
-{
-    using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
+namespace LogbookWood.Web.Controllers
+{
     public class BaseController : Controller
     {
     }

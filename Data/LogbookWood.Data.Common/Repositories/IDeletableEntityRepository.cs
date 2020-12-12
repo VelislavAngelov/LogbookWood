@@ -1,9 +1,9 @@
-﻿namespace LogbookWood.Data.Common.Repositories
+﻿using System.Linq;
+
+using LogbookWood.Data.Common.Models;
+
+namespace LogbookWood.Data.Common.Repositories
 {
-    using System.Linq;
-
-    using LogbookWood.Data.Common.Models;
-
     public interface IDeletableEntityRepository<TEntity> : IRepository<TEntity>
         where TEntity : class, IDeletableEntity
     {

@@ -1,7 +1,7 @@
-﻿namespace LogbookWood.Data.Models
-{
-    using LogbookWood.Data.Common.Models;
+﻿using LogbookWood.Data.Common.Models;
 
+namespace LogbookWood.Data.Models
+{
     public class Employee : BaseModel<int>
     {
         public string Name { get; set; }

@@ -1,25 +1,25 @@
-﻿namespace LogbookWood.Web
+﻿using System.Reflection;
+
+using LogbookWood.Data;
+using LogbookWood.Data.Common;
+using LogbookWood.Data.Common.Repositories;
+using LogbookWood.Data.Models;
+using LogbookWood.Data.Repositories;
+using LogbookWood.Data.Seeding;
+using LogbookWood.Services.Mapping;
+using LogbookWood.Services.Messaging;
+using LogbookWood.Web.ViewModels;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
+namespace LogbookWood.Web
 {
-    using System.Reflection;
-
-    using LogbookWood.Data;
-    using LogbookWood.Data.Common;
-    using LogbookWood.Data.Common.Repositories;
-    using LogbookWood.Data.Models;
-    using LogbookWood.Data.Repositories;
-    using LogbookWood.Data.Seeding;
-    using LogbookWood.Services.Mapping;
-    using LogbookWood.Services.Messaging;
-    using LogbookWood.Web.ViewModels;
-    using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Hosting;
-
     public class Startup
     {
         private readonly IConfiguration configuration;

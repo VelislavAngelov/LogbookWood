@@ -1,8 +1,8 @@
-﻿namespace LogbookWood.Services.Messaging
-{
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
+namespace LogbookWood.Services.Messaging
+{
     public interface IEmailSender
     {
         Task SendEmailAsync(

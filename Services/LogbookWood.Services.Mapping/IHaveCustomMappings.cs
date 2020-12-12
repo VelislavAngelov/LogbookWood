@@ -1,7 +1,7 @@
-﻿namespace LogbookWood.Services.Mapping
-{
-    using AutoMapper;
+﻿using AutoMapper;
 
+namespace LogbookWood.Services.Mapping
+{
     public interface IHaveCustomMappings
     {
         void CreateMappings(IProfileExpression configuration);

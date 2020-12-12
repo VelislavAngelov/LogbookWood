@@ -1,10 +1,10 @@
-﻿namespace LogbookWood.Web.Controllers
+﻿using System.Diagnostics;
+
+using LogbookWood.Web.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+
+namespace LogbookWood.Web.Controllers
 {
-    using System.Diagnostics;
-
-    using LogbookWood.Web.ViewModels;
-    using Microsoft.AspNetCore.Mvc;
-
     public class HomeController : BaseController
     {
         public IActionResult Index()

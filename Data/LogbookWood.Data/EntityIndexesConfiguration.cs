@@ -1,10 +1,10 @@
-﻿namespace LogbookWood.Data
+﻿using System.Linq;
+
+using LogbookWood.Data.Common.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace LogbookWood.Data
 {
-    using System.Linq;
-
-    using LogbookWood.Data.Common.Models;
-    using Microsoft.EntityFrameworkCore;
-
     internal static class EntityIndexesConfiguration
     {
         public static void Configure(ModelBuilder modelBuilder)

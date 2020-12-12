@@ -1,7 +1,7 @@
-﻿namespace LogbookWood.Data
-{
-    using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 
+namespace LogbookWood.Data
+{
     public static class IdentityOptionsProvider
     {
         public static void GetIdentityOptions(IdentityOptions options)
