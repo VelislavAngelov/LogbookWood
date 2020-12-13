@@ -10,6 +10,11 @@
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
+            if (dbContext.Woods.Any())
+            {
+                return;
+            }
+
             await dbContext.Woods.AddAsync(new Wood { Name = "Бук" });
             await dbContext.Woods.AddAsync(new Wood { Name = "Дъб", Type = 0, });
             await dbContext.Woods.AddAsync(new Wood { Name = "Цер", Type = 0, });

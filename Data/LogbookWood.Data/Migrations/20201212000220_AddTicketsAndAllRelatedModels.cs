@@ -1,9 +1,9 @@
-﻿using System;
-
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace LogbookWood.Data.Migrations
+﻿namespace LogbookWood.Data.Migrations
 {
+    using System;
+
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class AddTicketsAndAllRelatedModels : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

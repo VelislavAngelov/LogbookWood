@@ -1,17 +1,26 @@
-﻿using LogbookWood.Web.ViewModels.Tickets;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace LogbookWood.Web.Controllers
+﻿namespace LogbookWood.Web.Controllers
 {
+    using LogbookWood.Services.Data.Models;
+    using LogbookWood.Web.ViewModels.Tickets;
+    using Microsoft.AspNetCore.Mvc;
+
     public class TicketsController : BaseController
     {
+        private readonly IWoodService woodService;
+        private readonly IAssortmentService assortmentService;
+
+        public TicketsController(IWoodService woodService,IAssortmentService assortmentService)
+        {
+            this.woodService = woodService;
+            this.assortmentService = assortmentService;
+        }
+
         public IActionResult CreateReceipt()
         {
-            return this.View();
+            var viewModel = new CreateTicketModel();
+            viewModel.WoodItems = this.woodService.GetAllWoodsItem();
+            viewModel.AssortmentItems = this.assortmentService.GetAllAssortmentsItem();
+            return this.View(viewModel);
         }
 
         [HttpPost]
@@ -19,7 +28,10 @@ namespace LogbookWood.Web.Controllers
         {
             if (!this.ModelState.IsValid)
             {
-                return this.View();
+                input.WoodItems = this.woodService.GetAllWoodsItem();
+                input.AssortmentItems = this.assortmentService.GetAllAssortmentsItem();
+
+                return this.View(input);
             }
 
             // TODO: Redirect ListTickets

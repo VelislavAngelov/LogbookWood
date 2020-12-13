@@ -1,14 +1,30 @@
-﻿using System.Diagnostics;
-
-using LogbookWood.Web.ViewModels;
-using Microsoft.AspNetCore.Mvc;
-
-namespace LogbookWood.Web.Controllers
+﻿namespace LogbookWood.Web.Controllers
 {
+    using System.Diagnostics;
+    using System.Linq;
+    using LogbookWood.Data;
+    using LogbookWood.Web.ViewModels;
+    using LogbookWood.Web.ViewModels.Home;
+    using Microsoft.AspNetCore.Mvc;
+
     public class HomeController : BaseController
     {
+        private readonly ApplicationDbContext dbContext;
+
+        public HomeController(ApplicationDbContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
+
         public IActionResult Index()
         {
+            var viewModel = new IndexViewModel
+            {
+                AssortmmentCount = this.dbContext.Woods.Count(),
+                WoodCount = 0,
+                TicketCount = 0,
+            };
+
             return this.View();
         }
 

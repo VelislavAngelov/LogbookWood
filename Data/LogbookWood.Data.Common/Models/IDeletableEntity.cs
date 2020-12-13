@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace LogbookWood.Data.Common.Models
+﻿namespace LogbookWood.Data.Common.Models
 {
+    using System;
+
     public interface IDeletableEntity
     {
         bool IsDeleted { get; set; }

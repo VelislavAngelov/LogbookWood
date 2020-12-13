@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace LogbookWood.Data.Migrations
+﻿namespace LogbookWood.Data.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class AddTicketsComment : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

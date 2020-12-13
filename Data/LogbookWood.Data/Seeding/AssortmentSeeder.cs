@@ -10,6 +10,11 @@
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
+            if (dbContext.Assortments.Any())
+            {
+                return;
+            }
+
             await dbContext.Assortments.AddAsync(new Assortment { Name = "Едра", Category = (TreeCategory)1 });
             await dbContext.Assortments.AddAsync(new Assortment { Name = "Средна", Category = (TreeCategory)2 });
             await dbContext.Assortments.AddAsync(new Assortment { Name = "Дребна", Category = (TreeCategory)3 });

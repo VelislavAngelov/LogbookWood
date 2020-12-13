@@ -1,17 +1,17 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-using LogbookWood.Data;
-using LogbookWood.Data.Common.Repositories;
-using LogbookWood.Data.Models;
-using LogbookWood.Data.Repositories;
-using Microsoft.EntityFrameworkCore;
-using Moq;
-using Xunit;
-
-namespace LogbookWood.Services.Data.Tests
+﻿namespace LogbookWood.Services.Data.Tests
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using LogbookWood.Data;
+    using LogbookWood.Data.Common.Repositories;
+    using LogbookWood.Data.Models;
+    using LogbookWood.Data.Repositories;
+    using Microsoft.EntityFrameworkCore;
+    using Moq;
+    using Xunit;
+
     public class SettingsServiceTests
     {
         [Fact]

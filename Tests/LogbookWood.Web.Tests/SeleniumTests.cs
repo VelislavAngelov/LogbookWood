@@ -1,12 +1,12 @@
-﻿using System;
-using System.Linq;
-
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using Xunit;
-
-namespace LogbookWood.Web.Tests
+﻿namespace LogbookWood.Web.Tests
 {
+    using System;
+    using System.Linq;
+
+    using OpenQA.Selenium;
+    using OpenQA.Selenium.Chrome;
+    using Xunit;
+
     public class SeleniumTests : IClassFixture<SeleniumServerFactory<Startup>>, IDisposable
     {
         private readonly SeleniumServerFactory<Startup> server;

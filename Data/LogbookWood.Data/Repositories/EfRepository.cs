@@ -1,12 +1,12 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-
-using LogbookWood.Data.Common.Repositories;
-using Microsoft.EntityFrameworkCore;
-
-namespace LogbookWood.Data.Repositories
+﻿namespace LogbookWood.Data.Repositories
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using LogbookWood.Data.Common.Repositories;
+    using Microsoft.EntityFrameworkCore;
+
     public class EfRepository<TEntity> : IRepository<TEntity>
         where TEntity : class
     {

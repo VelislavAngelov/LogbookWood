@@ -1,12 +1,12 @@
-﻿using System;
-using System.Linq;
-
-using LogbookWood.Data.Common.Models;
-using LogbookWood.Data.Common.Repositories;
-using Microsoft.EntityFrameworkCore;
-
-namespace LogbookWood.Data.Repositories
+﻿namespace LogbookWood.Data.Repositories
 {
+    using System;
+    using System.Linq;
+
+    using LogbookWood.Data.Common.Models;
+    using LogbookWood.Data.Common.Repositories;
+    using Microsoft.EntityFrameworkCore;
+
     public class EfDeletableEntityRepository<TEntity> : EfRepository<TEntity>, IDeletableEntityRepository<TEntity>
         where TEntity : class, IDeletableEntity
     {

@@ -1,27 +1,28 @@
 ﻿@model LogbookWood.Web.ViewModels.Tickets.CreateTicketModel
+@using LogbookWood.Data.Models
 @{
     this.ViewData["Title"] = "Постъпление";
-    
+
 }
 <h2 class="text-center">Превозен билет</h2>
 <h4 class="text-center"> Постъпление</h4>
 <h5 class="text-center">Нов</h5>
 <div class="form-group row" >
     <label  for="example-date-input" class="col-2 col-form-label">Date</label>
-    <div class="col-12">
+    <div class="col-4">
         <input class="form-control" type="date" value="2020-06-22" id="example-date-input">
     </div>
 </div>
 <form method="post" class="form-inline">
 
-    <div class="from-group">
+    <div class="from-group" >
         <label asp-for="WoodId"></label>
-        <select asp-for="WoodId" class="form-control"> </select>
+        <select asp-for="WoodId" class="form-control" asp-items="Model.WoodItems"> </select>
         <span asp-validation-for="WoodId" class="text-danger"></span>
     </div>
     <div class="from-group">
         <label asp-for="AssortmentId"></label>
-        <select asp-for="AssortmentId" class="form-control"> </select>
+        <select asp-for="AssortmentId" class="form-control"asp-items="Model.AssortmentItems" ></select>
         <span asp-validation-for="AssortmentId" class="text-danger"></span>
     </div>
     <div class="from-group">

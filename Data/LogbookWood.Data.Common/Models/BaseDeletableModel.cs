@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace LogbookWood.Data.Common.Models
+﻿namespace LogbookWood.Data.Common.Models
 {
+    using System;
+
     public abstract class BaseDeletableModel<TKey> : BaseModel<TKey>, IDeletableEntity
     {
         public bool IsDeleted { get; set; }

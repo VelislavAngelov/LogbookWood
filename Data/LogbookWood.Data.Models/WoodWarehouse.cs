@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-
-using LogbookWood.Data.Common.Models;
-
-namespace LogbookWood.Data.Models
+﻿namespace LogbookWood.Data.Models
 {
+    using System.Collections.Generic;
+
+    using LogbookWood.Data.Common.Models;
+
     public class WoodWarehouse : BaseModel<int>
     {
         public WoodWarehouse()

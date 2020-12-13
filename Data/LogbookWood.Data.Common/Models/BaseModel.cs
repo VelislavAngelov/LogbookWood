@@ -1,8 +1,8 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace LogbookWood.Data.Common.Models
+﻿namespace LogbookWood.Data.Common.Models
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
     public abstract class BaseModel<TKey> : IAuditInfo
     {
         [Key]

@@ -1,8 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
-
-namespace LogbookWood.Data.Seeding
+﻿namespace LogbookWood.Data.Seeding
 {
+    using System;
+    using System.Threading.Tasks;
+
     public interface ISeeder
     {
         Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider);
