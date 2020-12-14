@@ -30,6 +30,7 @@
         {
             var ticket = new Ticket
             {
+                WoodWarehouseId = input.WoodWarehouseId,
                 Wood = input.WoodId.ToString(),
                 Category = input.Category,
                 Coefficient = input.Coefficient,
@@ -47,7 +48,7 @@
                 Unit = input.Unit,
                 Coefficient = input.Coefficient,
                 TotalVolume = input.TotalVolume,
-
+                TicketId = input.WoodWarehouseId,
             };
 
             await this.ticketRepository.AddAsync(ticket);
