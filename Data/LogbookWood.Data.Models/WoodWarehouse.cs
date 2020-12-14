@@ -1,14 +1,15 @@
 ﻿namespace LogbookWood.Data.Models
 {
+    using System;
     using System.Collections.Generic;
 
     using LogbookWood.Data.Common.Models;
 
-    public class WoodWarehouse : BaseModel<int>
+    public class WoodWarehouse : BaseModel<string>
     {
         public WoodWarehouse()
         {
-            this.Tickets = new HashSet<Ticket>();
+            this.Id = Guid.NewGuid().ToString();
             this.Counterparties = new HashSet<Counterparties>();
             this.Employees = new HashSet<Employee>();
             this.Vehicles = new HashSet<Vehicle>();
@@ -28,7 +29,9 @@
 
         public ApplicationUser User { get; set; }
 
-        public ICollection<Ticket> Tickets { get; set; }
+        public string TicketId { get; set; }
+
+        public Ticket Tickets { get; set; }
 
         public ICollection<Counterparties> Counterparties { get; set; }
 

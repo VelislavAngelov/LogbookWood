@@ -1,15 +1,17 @@
 ﻿namespace LogbookWood.Data.Models
 {
+    using System;
     using System.Collections.Generic;
 
-    public class Assortment
+    using LogbookWood.Data.Common.Models;
+
+    public class Assortment : BaseModel<string>
     {
         public Assortment()
         {
+            this.Id = Guid.NewGuid().ToString();
             this.Ticket = new HashSet<TicketAssortment>();
         }
-
-        public int Id { get; set; }
 
         public string Name { get; set; }
 

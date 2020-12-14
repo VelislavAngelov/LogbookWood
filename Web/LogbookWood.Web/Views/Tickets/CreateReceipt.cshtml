@@ -7,23 +7,23 @@
 <h2 class="text-center">Превозен билет</h2>
 <h4 class="text-center"> Постъпление</h4>
 <h5 class="text-center">Нов</h5>
-<div class="form-group row" >
-    <label  for="example-date-input" class="col-2 col-form-label">Date</label>
+<div class="form-group row">
+    <label for="example-date-input" class="col-2 col-form-label">Date</label>
     <div class="col-4">
         <input class="form-control" type="date" value="2020-06-22" id="example-date-input">
     </div>
 </div>
 <form method="post" class="form-inline">
 
-    <div class="from-group" >
-        <label asp-for="WoodId"></label>
-        <select asp-for="WoodId" class="form-control" asp-items="Model.WoodItems"> </select>
-        <span asp-validation-for="WoodId" class="text-danger"></span>
+    <div class="from-group">
+        <label asp-for="Wood"></label>
+        <select asp-for="Wood" class="form-control" asp-items="Model.WoodItems"> </select>
+        <span asp-validation-for="Wood" class="text-danger"></span>
     </div>
     <div class="from-group">
-        <label asp-for="AssortmentId"></label>
-        <select asp-for="AssortmentId" class="form-control"asp-items="Model.AssortmentItems" ></select>
-        <span asp-validation-for="AssortmentId" class="text-danger"></span>
+        <label asp-for="Category"></label>
+        <select asp-for="Category" class="form-control" asp-items="Model.AssortmentItems"></select>
+        <span asp-validation-for="Category" class="text-danger"></span>
     </div>
     <div class="from-group">
         <label asp-for="Unit"></label>
@@ -58,5 +58,6 @@
         <label asp-for="Comment"></label>
         <textarea asp-for="Comment" class=" form-control">  </textarea>
     </div>
-    <input type="submit" class="btn btn-success" />
+    <button type="submit" class="btn btn-success">Регистрирай</button>
 </form>
+

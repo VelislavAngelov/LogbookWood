@@ -1,9 +1,11 @@
 ﻿namespace LogbookWood.Web
 {
+    using System.Linq;
     using System.Reflection;
 
     using LogbookWood.Data;
     using LogbookWood.Data.Common;
+    using LogbookWood.Data.Common.Models;
     using LogbookWood.Data.Common.Repositories;
     using LogbookWood.Data.Models;
     using LogbookWood.Data.Repositories;
@@ -65,6 +67,7 @@
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<IWoodService, WoodService>();
             services.AddTransient<IAssortmentService, AssortmentService>();
+            services.AddTransient<ITicketService, TicketService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,14 +1,21 @@
 ﻿namespace LogbookWood.Data.Models
 {
-    public class TicketAssortment
-    {
-        public int Id { get; set; }
+    using System;
 
-        public int TicketId { get; set; }
+    using LogbookWood.Data.Common.Models;
+
+    public class TicketAssortment : BaseModel<string>
+    {
+        public TicketAssortment()
+        {
+            this.Id = Guid.NewGuid().ToString();
+        }
+
+        public string TicketId { get; set; }
 
         public Ticket Ticket { get; set; }
 
-        public int AssortmentId { get; set; }
+        public string AssortmentId { get; set; }
 
         public Assortment Assortment { get; set; }
     }

@@ -1,9 +1,16 @@
 ﻿namespace LogbookWood.Data.Models
 {
+    using System;
+
     using LogbookWood.Data.Common.Models;
 
-    public class Employee : BaseModel<int>
+    public class Employee : BaseModel<string>
     {
+        public Employee()
+        {
+            this.Id = Guid.NewGuid().ToString();
+        }
+
         public string Name { get; set; }
 
         public string MiddleName { get; set; }

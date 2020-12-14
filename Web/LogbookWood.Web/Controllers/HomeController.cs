@@ -2,6 +2,7 @@
 {
     using System.Diagnostics;
     using System.Linq;
+
     using LogbookWood.Data;
     using LogbookWood.Web.ViewModels;
     using LogbookWood.Web.ViewModels.Home;

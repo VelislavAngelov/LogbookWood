@@ -1,5 +1,7 @@
 ﻿namespace LogbookWood.Web.Controllers
 {
+    using System.Threading.Tasks;
+
     using LogbookWood.Services.Data.Models;
     using LogbookWood.Web.ViewModels.Tickets;
     using Microsoft.AspNetCore.Mvc;
@@ -8,11 +10,13 @@
     {
         private readonly IWoodService woodService;
         private readonly IAssortmentService assortmentService;
+        private readonly ITicketService ticketService;
 
-        public TicketsController(IWoodService woodService,IAssortmentService assortmentService)
+        public TicketsController(IWoodService woodService, IAssortmentService assortmentService, ITicketService ticketService)
         {
             this.woodService = woodService;
             this.assortmentService = assortmentService;
+            this.ticketService = ticketService;
         }
 
         public IActionResult CreateReceipt()
@@ -24,7 +28,7 @@
         }
 
         [HttpPost]
-        public IActionResult CreateReceipt(CreateTicketModel input)
+        public async Task<IActionResult> CreateReceipt(CreateTicketModel input)
         {
             if (!this.ModelState.IsValid)
             {
@@ -34,7 +38,10 @@
                 return this.View(input);
             }
 
-            // TODO: Redirect ListTickets
+            await this.ticketService.Create(input);
+           
+            //// return this.Json(input);
+            //// TODO: Redirect ListTickets
             return this.Redirect("/");
         }
     }

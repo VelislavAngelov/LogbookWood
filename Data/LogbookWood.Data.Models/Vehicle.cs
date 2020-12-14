@@ -1,9 +1,16 @@
 ﻿namespace LogbookWood.Data.Models
 {
+    using System;
+
     using LogbookWood.Data.Common.Models;
 
-    public class Vehicle : BaseModel<int>
+    public class Vehicle : BaseModel<string>
     {
+        public Vehicle()
+        {
+            this.Id = Guid.NewGuid().ToString();
+        }
+
         public string RegistrationNumber { get; set; }
 
         public string Brand { get; set; }

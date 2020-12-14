@@ -9,6 +9,5 @@
     public interface IWoodService
     {
         IEnumerable<SelectListItem> GetAllWoodsItem();
-
     }
 }

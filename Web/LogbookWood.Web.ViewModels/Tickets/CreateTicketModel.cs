@@ -39,7 +39,9 @@
         public int WoodId { get; set; }
 
         [Display(Name = "Aсортимент")]
-        public int AssortmentId { get; set; }
+        public string AssortmentId { get; set; }
+
+        public string WoodWarehouseId { get; set; }
 
         public IEnumerable<SelectListItem> WoodItems { get; set; }
 

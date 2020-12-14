@@ -1,14 +1,21 @@
 ﻿namespace LogbookWood.Data.Models
 {
-    public class TicketWood
-    {
-        public int Id { get; set; }
+    using System;
 
-        public int TicketId { get; set; }
+    using LogbookWood.Data.Common.Models;
+
+    public class TicketWood : BaseModel<string>
+    {
+        public TicketWood()
+        {
+            this.Id = Guid.NewGuid().ToString();
+        }
+
+        public string TicketId { get; set; }
 
         public Ticket Ticket { get; set; }
 
-        public int WoodId { get; set; }
+        public string WoodId { get; set; }
 
         public Wood Wood { get; set; }
     }

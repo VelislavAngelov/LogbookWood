@@ -22,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\LogbookWood.Data.Common\LogbookWood.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\LogbookWood.Data.Models\LogbookWood.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Web\LogbookWood.Web.ViewModels\LogbookWood.Web.ViewModels.csproj" />
     <ProjectReference Include="..\LogbookWood.Services.Mapping\LogbookWood.Services.Mapping.csproj" />
   </ItemGroup>
 

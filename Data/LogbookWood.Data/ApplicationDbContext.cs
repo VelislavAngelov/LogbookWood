@@ -62,6 +62,15 @@
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<ApplicationUser>()
+                  .HasOne<WoodWarehouse>(ap => ap.WoodWarehouse)
+                  .WithOne(w => w.User)
+                  .HasForeignKey<ApplicationUser>(ap => ap.WoodWarehouseId);
+
+            builder.Entity<WoodWarehouse>()
+                   .HasOne<Ticket>(w => w.Tickets)
+                   .WithOne(t => t.WoodWarehouse)
+                   .HasForeignKey<WoodWarehouse>(w => w.TicketId);
             // Needed for Identity models configuration
             base.OnModelCreating(builder);
 
