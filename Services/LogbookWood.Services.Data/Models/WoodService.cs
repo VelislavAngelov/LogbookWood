@@ -24,7 +24,7 @@
             return this.woodRepository.All()
                 .Select(x => new SelectListItem
                 {
-                    Value = x.Id.ToString(),
+                    Value = x.Name,
                     Text = x.Name,
                 })
                 .OrderBy(x => x.Text)

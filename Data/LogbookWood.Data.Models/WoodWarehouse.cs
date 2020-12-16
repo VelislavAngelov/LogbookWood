@@ -15,13 +15,17 @@
             this.Vehicles = new HashSet<Vehicle>();
         }
 
+        public string Name { get; set; }
+
+        public string Address { get; set; }
+
+        public string BULSTST { get; set; }
+
+        public string Phone { get; set; }
+
         public string Wood { get; set; }
 
         public string Category { get; set; }
-
-        public double Unit { get; set; }
-
-        public double Coefficient { get; set; }
 
         public double TotalVolume { get; set; }
 

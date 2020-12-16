@@ -132,10 +132,12 @@ namespace LogbookWood.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BULSTST = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Wood = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Category = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Unit = table.Column<double>(type: "float", nullable: false),
-                    Coefficient = table.Column<double>(type: "float", nullable: false),
                     TotalVolume = table.Column<double>(type: "float", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TicketId = table.Column<string>(type: "nvarchar(450)", nullable: true),

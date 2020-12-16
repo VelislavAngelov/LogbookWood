@@ -11,19 +11,21 @@
 
     public class AssortmentService : IAssortmentService
     {
-        public readonly IRepository<Assortment> assortmentRepository;
+        private readonly IRepository<Assortment> assortmentRepository;
 
         public AssortmentService(IRepository<Assortment> assortmentRepository)
         {
             this.assortmentRepository = assortmentRepository;
         }
 
+        public IRepository<Assortment> AssortmentRepository => assortmentRepository;
+
         public IEnumerable<SelectListItem> GetAllAssortmentsItem()
         {
-            return this.assortmentRepository.All()
+            return this.AssortmentRepository.All()
                 .Select(x => new SelectListItem
                 {
-                    Value = x.Id.ToString(),
+                    Value = x.Name,
                     Text = x.Name,
                 }).OrderBy(x => x.Text).ToList();
         }

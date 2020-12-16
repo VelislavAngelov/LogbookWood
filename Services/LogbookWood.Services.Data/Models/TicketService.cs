@@ -26,12 +26,12 @@
             this.userRepository = userRepository;
         }
 
-        public async Task Create(CreateTicketModel input)
+        public async Task Create(CreateTicketModel input, string userId, string woodWarehouseId)
         {
             var ticket = new Ticket
             {
                 WoodWarehouseId = input.WoodWarehouseId,
-                Wood = input.WoodId.ToString(),
+                Wood = input.Wood,
                 Category = input.Category,
                 Coefficient = input.Coefficient,
                 Width = input.Width,
@@ -43,12 +43,10 @@
             };
             var ticketReceipt = new WoodWarehouse
             {
-                Wood = input.WoodId.ToString(),
+                UserId = userId,
+                Wood = input.Wood,
                 Category = input.Category,
-                Unit = input.Unit,
-                Coefficient = input.Coefficient,
                 TotalVolume = input.TotalVolume,
-                TicketId = input.WoodWarehouseId,
             };
 
             await this.ticketRepository.AddAsync(ticket);

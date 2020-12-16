@@ -68,6 +68,7 @@
             services.AddTransient<IWoodService, WoodService>();
             services.AddTransient<IAssortmentService, AssortmentService>();
             services.AddTransient<ITicketService, TicketService>();
+            services.AddTransient<IWoodWarehouseService,WoodWarehouseService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -404,11 +404,14 @@ namespace LogbookWood.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Category")
+                    b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Coefficient")
-                        .HasColumnType("float");
+                    b.Property<string>("BULSTST")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Category")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -416,13 +419,16 @@ namespace LogbookWood.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("TicketId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<double>("TotalVolume")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Unit")
                         .HasColumnType("float");
 
                     b.Property<string>("UserId")

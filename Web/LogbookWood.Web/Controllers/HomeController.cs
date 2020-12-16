@@ -5,7 +5,7 @@
 
     using LogbookWood.Data;
     using LogbookWood.Web.ViewModels;
-    using LogbookWood.Web.ViewModels.Home;
+    using LogbookWood.Web.ViewModels.Administration.Dashboard;
     using Microsoft.AspNetCore.Mvc;
 
     public class HomeController : BaseController
@@ -19,13 +19,6 @@
 
         public IActionResult Index()
         {
-            var viewModel = new IndexViewModel
-            {
-                AssortmmentCount = this.dbContext.Woods.Count(),
-                WoodCount = 0,
-                TicketCount = 0,
-            };
-
             return this.View();
         }
 

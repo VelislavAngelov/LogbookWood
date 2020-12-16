@@ -6,6 +6,6 @@
 
     public interface ITicketService
     {
-        Task Create(CreateTicketModel input);
+        Task Create(CreateTicketModel input, string userId, string woodWarehouseId);
     }
 }

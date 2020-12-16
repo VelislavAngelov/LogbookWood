@@ -1,7 +1,9 @@
 ﻿namespace LogbookWood.Web.Controllers
 {
+    using System.Linq;
+    using System.Security.Claims;
     using System.Threading.Tasks;
-
+    using LogbookWood.Data;
     using LogbookWood.Services.Data.Models;
     using LogbookWood.Web.ViewModels.Tickets;
     using Microsoft.AspNetCore.Mvc;
@@ -11,12 +13,14 @@
         private readonly IWoodService woodService;
         private readonly IAssortmentService assortmentService;
         private readonly ITicketService ticketService;
+        private readonly ApplicationDbContext dbContext;
 
-        public TicketsController(IWoodService woodService, IAssortmentService assortmentService, ITicketService ticketService)
+        public TicketsController(IWoodService woodService, IAssortmentService assortmentService, ITicketService ticketService, ApplicationDbContext dbContext)
         {
             this.woodService = woodService;
             this.assortmentService = assortmentService;
             this.ticketService = ticketService;
+            this.dbContext = dbContext;
         }
 
         public IActionResult CreateReceipt()
@@ -38,7 +42,15 @@
                 return this.View(input);
             }
 
-            await this.ticketService.Create(input);
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var woodWarehouseId = this.dbContext.WoodWarehouses
+                .Where(x => x.UserId == userId)
+                .ToList()
+                .Select(x => x.Id)
+                .FirstOrDefault()
+                .ToString();
+
+            await this.ticketService.Create(input, userId, woodWarehouseId);
            
             //// return this.Json(input);
             //// TODO: Redirect ListTickets
