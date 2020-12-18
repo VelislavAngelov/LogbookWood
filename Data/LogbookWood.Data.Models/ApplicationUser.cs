@@ -35,6 +35,6 @@ namespace LogbookWood.Data.Models
 
         public string WoodWarehouseId { get; set; }
 
-        public WoodWarehouse WoodWarehouse { get; set; }
+        public virtual WoodWarehouse WoodWarehouse { get; set; }
     }
 }

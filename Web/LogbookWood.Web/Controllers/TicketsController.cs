@@ -51,10 +51,10 @@
                 .ToString();
 
             await this.ticketService.Create(input, userId, woodWarehouseId);
-           
+  
             //// return this.Json(input);
             //// TODO: Redirect ListTickets
-            return this.Redirect("/");
+            return this.Redirect("/WoodWarehouse/IndexWoodWarehouse");
         }
     }
 }

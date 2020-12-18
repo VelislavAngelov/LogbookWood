@@ -13,10 +13,12 @@
 
         public string TicketId { get; set; }
 
-        public Ticket Ticket { get; set; }
+        public virtual Ticket Ticket { get; set; }
 
         public string WoodId { get; set; }
 
-        public Wood Wood { get; set; }
+        public virtual Wood Wood { get; set; }
+
+        public int TotalVolume { get; set; }
     }
 }

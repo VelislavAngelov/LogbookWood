@@ -30,7 +30,7 @@
         {
             var ticket = new Ticket
             {
-                WoodWarehouseId = input.WoodWarehouseId,
+                WoodWarehouseId = woodWarehouseId,
                 Wood = input.Wood,
                 Category = input.Category,
                 Coefficient = input.Coefficient,
@@ -41,18 +41,10 @@
                 TotalVolume = input.TotalVolume,
                 Count = input.Count,
             };
-            var ticketReceipt = new WoodWarehouse
-            {
-                UserId = userId,
-                Wood = input.Wood,
-                Category = input.Category,
-                TotalVolume = input.TotalVolume,
-            };
 
             await this.ticketRepository.AddAsync(ticket);
-            await this.woodWarehouseRepository.AddAsync(ticketReceipt);
             await this.ticketRepository.SaveChangesAsync();
-            await this.woodWarehouseRepository.SaveChangesAsync();
+
         }
     }
 }

@@ -26,7 +26,7 @@
         }
 
         [Authorize]
-        public IActionResult CreateW()
+        public IActionResult CreateWoodWarehouse()
         {
             var view = new CreateWoodWarehouseViewModel();
 
@@ -35,7 +35,7 @@
 
         [Authorize]
         [HttpPost]
-        public IActionResult CreateW(CreateWoodWarehouseViewModel viewModel)
+        public IActionResult CreateWoodWarehouse(CreateWoodWarehouseViewModel viewModel)
         {
             if (!this.ModelState.IsValid)
             {

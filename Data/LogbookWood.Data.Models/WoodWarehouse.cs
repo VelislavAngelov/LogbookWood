@@ -23,19 +23,13 @@
 
         public string Phone { get; set; }
 
-        public string Wood { get; set; }
-
-        public string Category { get; set; }
-
-        public double TotalVolume { get; set; }
-
         public string UserId { get; set; }
 
-        public ApplicationUser User { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
         public string TicketId { get; set; }
 
-        public Ticket Tickets { get; set; }
+        public virtual Ticket Tickets { get; set; }
 
         public ICollection<Counterparties> Counterparties { get; set; }
 

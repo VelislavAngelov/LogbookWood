@@ -136,9 +136,6 @@ namespace LogbookWood.Data.Migrations
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BULSTST = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Wood = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Category = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TotalVolume = table.Column<double>(type: "float", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TicketId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -162,6 +159,7 @@ namespace LogbookWood.Data.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     TicketId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     WoodId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    TotalVolume = table.Column<int>(type: "int", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -227,8 +225,7 @@ namespace LogbookWood.Data.Migrations
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BUSTAT = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    WoodWarehouseId = table.Column<int>(type: "int", nullable: false),
-                    WoodWarehouseId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    WoodWarehouseId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -236,8 +233,8 @@ namespace LogbookWood.Data.Migrations
                 {
                     table.PrimaryKey("PK_Counterparties", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Counterparties_WoodWarehouses_WoodWarehouseId1",
-                        column: x => x.WoodWarehouseId1,
+                        name: "FK_Counterparties_WoodWarehouses_WoodWarehouseId",
+                        column: x => x.WoodWarehouseId,
                         principalTable: "WoodWarehouses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -253,8 +250,7 @@ namespace LogbookWood.Data.Migrations
                     Surname = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Position = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    WoodWarehouseId = table.Column<int>(type: "int", nullable: false),
-                    WoodWarehouseId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    WoodWarehouseId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -262,8 +258,8 @@ namespace LogbookWood.Data.Migrations
                 {
                     table.PrimaryKey("PK_Employees", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Employees_WoodWarehouses_WoodWarehouseId1",
-                        column: x => x.WoodWarehouseId1,
+                        name: "FK_Employees_WoodWarehouses_WoodWarehouseId",
+                        column: x => x.WoodWarehouseId,
                         principalTable: "WoodWarehouses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -277,8 +273,7 @@ namespace LogbookWood.Data.Migrations
                     RegistrationNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Brand = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Model = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    WoodWarehouseId = table.Column<int>(type: "int", nullable: false),
-                    WoodWarehouseId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    WoodWarehouseId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -286,8 +281,8 @@ namespace LogbookWood.Data.Migrations
                 {
                     table.PrimaryKey("PK_Vehicles", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Vehicles_WoodWarehouses_WoodWarehouseId1",
-                        column: x => x.WoodWarehouseId1,
+                        name: "FK_Vehicles_WoodWarehouses_WoodWarehouseId",
+                        column: x => x.WoodWarehouseId,
                         principalTable: "WoodWarehouses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -435,14 +430,14 @@ namespace LogbookWood.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Counterparties_WoodWarehouseId1",
+                name: "IX_Counterparties_WoodWarehouseId",
                 table: "Counterparties",
-                column: "WoodWarehouseId1");
+                column: "WoodWarehouseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Employees_WoodWarehouseId1",
+                name: "IX_Employees_WoodWarehouseId",
                 table: "Employees",
-                column: "WoodWarehouseId1");
+                column: "WoodWarehouseId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TicketAssorments_AssortmentId",
@@ -465,9 +460,9 @@ namespace LogbookWood.Data.Migrations
                 column: "WoodId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Vehicles_WoodWarehouseId1",
+                name: "IX_Vehicles_WoodWarehouseId",
                 table: "Vehicles",
-                column: "WoodWarehouseId1");
+                column: "WoodWarehouseId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_WoodWarehouses_TicketId",

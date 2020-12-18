@@ -28,9 +28,6 @@
                 Name = input.Name,
                 Address = input.Address,
                 Phone = input.Phone,
-                Wood = input.Wood,
-                Category = input.Category,
-                TotalVolume = input.TotalVolume,
             };
 
             this.dbContext.WoodWarehouses.Add(inputModel);

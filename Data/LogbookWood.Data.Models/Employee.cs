@@ -21,8 +21,8 @@
 
         public string Phone { get; set; }
 
-        public int WoodWarehouseId { get; set; }
+        public string WoodWarehouseId { get; set; }
 
-        public WoodWarehouse WoodWarehouse { get; set; }
+        public virtual WoodWarehouse WoodWarehouse { get; set; }
     }
 }

@@ -18,7 +18,7 @@
             this.assortmentRepository = assortmentRepository;
         }
 
-        public IRepository<Assortment> AssortmentRepository => assortmentRepository;
+        public IRepository<Assortment> AssortmentRepository => this.assortmentRepository;
 
         public IEnumerable<SelectListItem> GetAllAssortmentsItem()
         {

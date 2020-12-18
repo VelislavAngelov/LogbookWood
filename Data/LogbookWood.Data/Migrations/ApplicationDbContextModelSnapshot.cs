@@ -191,15 +191,12 @@ namespace LogbookWood.Data.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("WoodWarehouseId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("WoodWarehouseId1")
+                    b.Property<string>("WoodWarehouseId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("WoodWarehouseId1");
+                    b.HasIndex("WoodWarehouseId");
 
                     b.ToTable("Counterparties");
                 });
@@ -230,15 +227,12 @@ namespace LogbookWood.Data.Migrations
                     b.Property<string>("Surname")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("WoodWarehouseId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("WoodWarehouseId1")
+                    b.Property<string>("WoodWarehouseId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("WoodWarehouseId1");
+                    b.HasIndex("WoodWarehouseId");
 
                     b.ToTable("Employees");
                 });
@@ -332,6 +326,9 @@ namespace LogbookWood.Data.Migrations
                     b.Property<string>("TicketId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("TotalVolume")
+                        .HasColumnType("int");
+
                     b.Property<string>("WoodId")
                         .HasColumnType("nvarchar(450)");
 
@@ -364,15 +361,12 @@ namespace LogbookWood.Data.Migrations
                     b.Property<string>("RegistrationNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("WoodWarehouseId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("WoodWarehouseId1")
+                    b.Property<string>("WoodWarehouseId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("WoodWarehouseId1");
+                    b.HasIndex("WoodWarehouseId");
 
                     b.ToTable("Vehicles");
                 });
@@ -410,9 +404,6 @@ namespace LogbookWood.Data.Migrations
                     b.Property<string>("BULSTST")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Category")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
@@ -428,13 +419,7 @@ namespace LogbookWood.Data.Migrations
                     b.Property<string>("TicketId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<double>("TotalVolume")
-                        .HasColumnType("float");
-
                     b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Wood")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -563,7 +548,7 @@ namespace LogbookWood.Data.Migrations
                 {
                     b.HasOne("LogbookWood.Data.Models.WoodWarehouse", "WoodWarehouse")
                         .WithMany("Counterparties")
-                        .HasForeignKey("WoodWarehouseId1");
+                        .HasForeignKey("WoodWarehouseId");
 
                     b.Navigation("WoodWarehouse");
                 });
@@ -572,7 +557,7 @@ namespace LogbookWood.Data.Migrations
                 {
                     b.HasOne("LogbookWood.Data.Models.WoodWarehouse", "WoodWarehouse")
                         .WithMany("Employees")
-                        .HasForeignKey("WoodWarehouseId1");
+                        .HasForeignKey("WoodWarehouseId");
 
                     b.Navigation("WoodWarehouse");
                 });
@@ -611,7 +596,7 @@ namespace LogbookWood.Data.Migrations
                 {
                     b.HasOne("LogbookWood.Data.Models.WoodWarehouse", "WoodWarehouse")
                         .WithMany("Vehicles")
-                        .HasForeignKey("WoodWarehouseId1");
+                        .HasForeignKey("WoodWarehouseId");
 
                     b.Navigation("WoodWarehouse");
                 });

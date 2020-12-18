@@ -13,10 +13,10 @@
 
         public string TicketId { get; set; }
 
-        public Ticket Ticket { get; set; }
+        public virtual Ticket Ticket { get; set; }
 
         public string AssortmentId { get; set; }
 
-        public Assortment Assortment { get; set; }
+        public virtual Assortment Assortment { get; set; }
     }
 }
