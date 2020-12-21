@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LogbookWood.Data.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class DbContexChange : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -47,7 +47,7 @@ namespace LogbookWood.Data.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Wood = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Category = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Unit = table.Column<double>(type: "float", nullable: false),
+                    Unit = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Length = table.Column<double>(type: "float", nullable: false),
                     Width = table.Column<double>(type: "float", nullable: false),
                     Thickness = table.Column<double>(type: "float", nullable: false),
@@ -62,6 +62,21 @@ namespace LogbookWood.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tickets", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Units",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Coefficient = table.Column<double>(type: "float", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Units", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -148,6 +163,32 @@ namespace LogbookWood.Data.Migrations
                         name: "FK_WoodWarehouses_Tickets_TicketId",
                         column: x => x.TicketId,
                         principalTable: "Tickets",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UnitTickets",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TicketId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    UnitId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UnitTickets", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UnitTickets_Tickets_TicketId",
+                        column: x => x.TicketId,
+                        principalTable: "Tickets",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_UnitTickets_Units_UnitId",
+                        column: x => x.UnitId,
+                        principalTable: "Units",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -460,6 +501,16 @@ namespace LogbookWood.Data.Migrations
                 column: "WoodId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_UnitTickets_TicketId",
+                table: "UnitTickets",
+                column: "TicketId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UnitTickets_UnitId",
+                table: "UnitTickets",
+                column: "UnitId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Vehicles_WoodWarehouseId",
                 table: "Vehicles",
                 column: "WoodWarehouseId");
@@ -502,6 +553,9 @@ namespace LogbookWood.Data.Migrations
                 name: "TicketWoods");
 
             migrationBuilder.DropTable(
+                name: "UnitTickets");
+
+            migrationBuilder.DropTable(
                 name: "Vehicles");
 
             migrationBuilder.DropTable(
@@ -515,6 +569,9 @@ namespace LogbookWood.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Woods");
+
+            migrationBuilder.DropTable(
+                name: "Units");
 
             migrationBuilder.DropTable(
                 name: "WoodWarehouses");

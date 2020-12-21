@@ -12,13 +12,14 @@
             this.Id = Guid.NewGuid().ToString();
             this.Woods = new HashSet<TicketWood>();
             this.Assortments = new HashSet<TicketAssortment>();
+            this.Units = new HashSet<UnitTicket>();
         }
 
         public string Wood { get; set; }
 
         public string Category { get; set; }
 
-        public double Unit { get; set; }
+        public string Unit { get; set; }
 
         public double Length { get; set; }
 
@@ -41,5 +42,7 @@
         public virtual ICollection<TicketWood> Woods { get; set; }
 
         public virtual ICollection<TicketAssortment> Assortments { get; set; }
+
+        public virtual ICollection<UnitTicket> Units { get; set; }
     }
 }

@@ -22,7 +22,7 @@
 
         public IEnumerable<SelectListItem> GetAllAssortmentsItem()
         {
-            return this.AssortmentRepository.All()
+            return this.AssortmentRepository.AllAsNoTracking()
                 .Select(x => new SelectListItem
                 {
                     Value = x.Name,

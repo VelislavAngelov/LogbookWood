@@ -21,7 +21,7 @@
 
         public IEnumerable<SelectListItem> GetAllWoodsItem()
         {
-            return this.woodRepository.All()
+            return this.woodRepository.AllAsNoTracking()
                 .Select(x => new SelectListItem
                 {
                     Value = x.Name,

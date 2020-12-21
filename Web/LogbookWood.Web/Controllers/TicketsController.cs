@@ -6,6 +6,7 @@
     using LogbookWood.Data;
     using LogbookWood.Services.Data.Models;
     using LogbookWood.Web.ViewModels.Tickets;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     public class TicketsController : BaseController
@@ -14,30 +15,41 @@
         private readonly IAssortmentService assortmentService;
         private readonly ITicketService ticketService;
         private readonly ApplicationDbContext dbContext;
+        private readonly IUnitService unitService;
 
-        public TicketsController(IWoodService woodService, IAssortmentService assortmentService, ITicketService ticketService, ApplicationDbContext dbContext)
+        public TicketsController(
+            IWoodService woodService,
+            IAssortmentService assortmentService,
+            ITicketService ticketService,
+            ApplicationDbContext dbContext,
+            IUnitService unitService)
         {
             this.woodService = woodService;
             this.assortmentService = assortmentService;
             this.ticketService = ticketService;
             this.dbContext = dbContext;
+            this.unitService = unitService;
         }
 
+        [Authorize]
         public IActionResult CreateReceipt()
         {
             var viewModel = new CreateTicketModel();
             viewModel.WoodItems = this.woodService.GetAllWoodsItem();
             viewModel.AssortmentItems = this.assortmentService.GetAllAssortmentsItem();
+            viewModel.UnitItems = this.unitService.GetAllUnitItem();
             return this.View(viewModel);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateReceipt(CreateTicketModel input)
+        [Authorize]
+        public IActionResult CreateReceipt(CreateTicketModel input)
         {
             if (!this.ModelState.IsValid)
             {
                 input.WoodItems = this.woodService.GetAllWoodsItem();
                 input.AssortmentItems = this.assortmentService.GetAllAssortmentsItem();
+                input.UnitItems = this.unitService.GetAllUnitItem();
 
                 return this.View(input);
             }
@@ -50,11 +62,22 @@
                 .FirstOrDefault()
                 .ToString();
 
-            await this.ticketService.Create(input, userId, woodWarehouseId);
-  
+            this.ticketService.Create(input, userId, woodWarehouseId);
             //// return this.Json(input);
             //// TODO: Redirect ListTickets
             return this.Redirect("/WoodWarehouse/IndexWoodWarehouse");
+        }
+
+        public IActionResult ListReceipt(string woodWarehouseId)
+        {
+            
+           
+            var viewModel = new ListReceiptViewModel
+            {
+                WoodWarehouseId = woodWarehouseId,
+                Tickets = this.ticketService.GetAll(woodWarehouseId),
+            };
+            return this.View(viewModel);
         }
     }
 }

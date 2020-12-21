@@ -4,60 +4,398 @@
     this.ViewData["Title"] = "Постъпление";
 
 }
-<h2 class="text-center">Превозен билет</h2>
-<h4 class="text-center"> Постъпление</h4>
-<h5 class="text-center">Нов</h5>
-<div class="form-group row">
-    <label for="example-date-input" class="col-2 col-form-label">Date</label>
-    <div class="col-4">
-        <input class="form-control" type="date" value="2020-06-22" id="example-date-input">
-    </div>
-</div>
-<form method="post" class="form-inline">
+<form method="post" class="">
+    <div class="row">
+        <div class="col">
+            <h4 class="text-center"> Изпращач</h4>
+            <input class="form-control" type="text" name="" value="" />
+        </div>
 
-    <div class="from-group">
-        <label asp-for="Wood"></label>
-        <select asp-for="Wood" class="form-control" asp-items="Model.WoodItems"> </select>
-        <span asp-validation-for="Wood" class="text-danger"></span>
+        <div class="col">
+            <h2 class="text-center">Превозен билет</h2>
+            <h4 class="text-center"> Постъпление</h4>
+            <h5 class="text-center">Нов</h5>
+            <div class="form-group">
+                <label for="example-date-input" class="col col-form-label">Date</label>
+                <div class="">
+                    <input class="form-control" type="date" value="22-06-2020" id="example-date-input">
+                </div>
+            </div>
+            <input type="text" class="form-control ng-pristine ng-valid ng-touched" style="margin-top:10px;" ng-model="" placeholder="Въведете номер на документа">
+        </div>
+
+        <div class="col">
+            <h4 class="text-center"> Получател</h4>
+        </div>
     </div>
-    <div class="from-group">
-        <label asp-for="Category"></label>
-        <select asp-for="Category" class="form-control" asp-items="Model.AssortmentItems"></select>
-        <span asp-validation-for="Category" class="text-danger"></span>
-    </div>
-    <div class="from-group">
-        <label asp-for="Unit"></label>
-        <input asp-for="Unit" class="form-control" />
-    </div>
-    <div class="from-group">
-        <label asp-for="Length"></label>
-        <input asp-for="Length" class="form-control" />
-    </div>
-    <div class="from-group">
-        <label asp-for="Width"></label>
-        <input asp-for="Width" class="form-control" />
-    </div>
-    <div class="from-group">
-        <label asp-for="Thickness"></label>
-        <input asp-for="Thickness" class="form-control" />
-    </div>
-    <div class="from-group">
-        <label asp-for="Coefficient"></label>
-        <input asp-for="Coefficient" class="form-control" />
-    </div>
-    <div class="from-group">
-        <label asp-for="TotalVolume"></label>
-        <input asp-for="TotalVolume" class="form-control" />
-        <span asp-validation-for="TotalVolume" class="text-danger"></span>
-    </div>
-    <div class="from-group">
-        <label asp-for="Count"></label>
-        <input asp-for="Count" class="form-control" />
-    </div>
-    <div class="from-group">
-        <label asp-for="Comment"></label>
-        <textarea asp-for="Comment" class=" form-control">  </textarea>
+    <hr />
+    <div class="table-responsive">
+        <table class="table table-hover text-centered">
+            <thead class="thead-dark">
+                <tr class="text-dark">
+                    <th scope="col">Дървесина</th>
+                    <th scope="col">Aсортимент</th>
+                    <th scope="col">Мерна единица.</th>
+                    <th scope="col">Дължина</th>
+                    <th scope="col">Ширина</th>
+                    <th scope="col">Дебелина</th>
+                    <th scope="col">Коефициент</th>
+                    <th scope="col">Общо обем</th>
+                    <th scope="col">Брой</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="input-group-append">
+                            <label></label>
+                            <div class="col-20">
+                                <select asp-for="Wood" class="form-control" asp-items="Model.WoodItems"> </select>
+                            </div>
+                            <span asp-validation-for="Wood" class="text-danger"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group-append">
+                            <label></label>
+                            <select asp-for="Category" class="form-control" asp-items="Model.AssortmentItems"></select>
+                            <span asp-validation-for="Category" class="text-danger"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group-append">
+                            <label></label>
+                            <select asp-for="Unit" class="form-control" asp-items="Model.UnitItems"></select>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group-append">
+                            <label></label>
+                            <input asp-for="Length" class="form-control" />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group-append">
+                            <label></label>
+                            <input asp-for="Width" class="form-control" />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group-append">
+                            <label></label>
+                            <input asp-for="Thickness" class="form-control" />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group-append">
+                            <label></label>
+                            <input asp-for="Coefficient" class="form-control" />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group-append">
+                            <label></label>
+                            <input asp-for="TotalVolume" class="form-control" />
+                            <span asp-validation-for="TotalVolume" class="text-danger"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group-append">
+                            <label></label>
+                            <input asp-for="Count" class="form-control" />
+                        </div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
     </div>
     <button type="submit" class="btn btn-success">Регистрирай</button>
 </form>
+    <!--<h2 class="text-center">Превозен билет</h2>
+    <h4 class="text-center"> Постъпление</h4>
+    <h5 class="text-center">Нов</h5>
 
+    <input type="text" class="form-control ng-pristine ng-untouched ng-valid" ng-disabled="true" asp-for="@DateTime.UtcNow" disabled="disabled">-->
+    @*<div class="form-group">
+            <label for="example-date-input" class="col-2 col-form-label">Date</label>
+            <div class="col-3">
+                <input class="form-control" type="date" value="2020-06-22" id="example-date-input">
+            </div>
+        </div>*@
+    <!--<div class="row">
+    </div>
+    <form method="post" class="">-->
+    @*<div class="table-responsive">
+            <table class="table table-hover text-centered">
+                <thead class="thead-dark">
+                    <tr class="text-dark">
+                        <th scope="col">Дървесина</th>
+                        <th scope="col">Aсортимент</th>
+                        <th scope="col">Мерна единица.</th>
+                        <th scope="col">Дължина</th>
+                        <th scope="col">Ширина</th>
+                        <th scope="col">Дебелина</th>
+                        <th scope="col">Коефициент</th>
+                        <th scope="col">Общо обем</th>
+                        <th scope="col">Брой</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="input-group-append">
+                                <label></label>
+                                <div class="col-20">
+                                    <select asp-for="Wood" class="form-control" asp-items="Model.WoodItems"> </select>
+                                </div>
+                                <span asp-validation-for="Wood" class="text-danger"></span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="input-group-append">
+                                <label></label>
+                                <select asp-for="Category" class="form-control" asp-items="Model.AssortmentItems"></select>
+                                <span asp-validation-for="Category" class="text-danger"></span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="input-group-append">
+                                <label></label>
+                                <select asp-for="Unit" class="form-control" asp-items="Model.UnitItems"></select>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="input-group-append">
+                                <label></label>
+                                <input asp-for="Length" class="form-control" />
+                            </div>
+                        </td>
+                        <td>
+                            <div class="input-group-append">
+                                <label></label>
+                                <input asp-for="Width" class="form-control" />
+                            </div>
+                        </td>
+                        <td>
+                            <div class="input-group-append">
+                                <label></label>
+                                <input asp-for="Thickness" class="form-control" />
+                            </div>
+                        </td>
+                        <td>
+                            <div class="input-group-append">
+                                <label></label>
+                                <input asp-for="Coefficient" class="form-control" />
+                            </div>
+                        </td>
+                        <td>
+                            <div class="input-group-append">
+                                <label></label>
+                                <input asp-for="TotalVolume" class="form-control" />
+                                <span asp-validation-for="TotalVolume" class="text-danger"></span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="input-group-append">
+                                <label></label>
+                                <input asp-for="Count" class="form-control" />
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-success">Регистрирай</button>
+        </div>*@
+    <!--</form>-->
+    @*<div id="AddRowContainer">
+            <label asp-for="Wood"></label>
+            <button class="btn-success" onclick="AddRow()">Добави</button>
+        </div>
+
+        @section Scripts{
+            <script>
+                function AddRow() {
+                    var index = 0;
+                    $("#AddRowContainer").append("Дървесина <input type ='text' name = 'Wood[0].Wood' />");
+                    index++;
+                }
+            </script>
+        }*@
+
+    <!--<form action="/Tickets/CreateReceipt" method="post">
+        <input name="__RequestVerificationToken" type="hidden" value="biDmc06zidV6YHKnxOoOhuSMdQ_ITQImfHJ3pFHCvU57c-dqP269DttgUi4VYaLQTMkBdBa2XKB75CT0Xz9KMAOL-dN2PsxRm6tnHYpEtzywkCR9eGBxryxn82xIwA_c0" />    <div ng-app="myApp" ng-controller="docCtrl" style="margin-top:40px;" id="headerCtrl" ng-cloak>
+            <div class=" table table-bordered" ng-controller="headerCtrl">
+                <div class="col-md-4 ">
+                    <h4 class="text-center">Изпращач</h4>
+                    <div ng-controller="clientCtrl">
+
+                        <span>Наименование:</span>
+                        <span class="input-group">
+                            <input type="text" class="form-control" ng-model="document.Client.Description" ng-disabled="document.Client.Guid!=undefined" />
+                            <span class="input-group-btn">
+                                <a ng-click="chooseClient()" class="btn btn-default">...</a>
+                                <a ng-click="clearClient()" class="btn btn-default">X</a>
+                            </span>
+                        </span>
+                        <div>
+                            <span>ЕИК:</span><input type="text" class="form-control" ng-model="document.Client.BULSTAT" ng-disabled="document.Client.Guid!=undefined" />
+                        </div>
+                        <div>
+                            <span style="display:block;">Склад:</span>
+                            <span class="input-group">
+                                <input type="text" class="form-control" ng-model="document.WarehouseForeign.Description" ng-disabled="document.WarehouseForeign.Guid!=undefined" />
+                                <span class="input-group-btn">
+                                    <a ng-click="chooseStore()" class="btn btn-default">...</a>
+                                    <a ng-click="clearStore()" class="btn btn-default">X</a>
+                                </span>
+                            </span>
+                        </div>
+                        <div style="margin-bottom:10px;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 text-center" ng-controller="DatePickerCtrl">
+                    <h2 class="text-center"> Превозен билет</h2>
+                    <h4>
+                        Постъпление
+                    </h4>
+                    <h5>{{state}}</h5>-->
+    <!-- <span class="input-group"> -->
+    <!--<input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="document.Date" show-weeks="false" show-button-bar="false" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" readonly />-->
+    <!-- </span> -->
+    <!--<input type="text" class="form-control" style="margin-top:10px;" ng-model="document.Number" placeholder="Въведете номер на документа" />
+                    <div style="margin-top: 15px;" cg-busy="{promise:savingIcon,message:'Записване на документа...', backdrop:true, templateUrl:'/Helper/Busy', minDuration:700}"></div>
+                    <div style="margin-top: 15px;" cg-busy="{promise:loadingTable,message:'Зареждане на данни...', backdrop:true, templateUrl:'/Helper/Busy', minDuration:700}"></div>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="text-center">Получател</h4>
+                    <div ng-controller="orgCtrl">
+
+                        <h4>{{document.Contragent.Description}}</h4>
+                        <p>АДРЕС: {{document.Contragent.Address}}</p>
+                        <p>СКЛАД: {{document.Warehouse206.Description}}</p>
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <span>Превозно средство:</span>
+                            </div>
+                            <div class="col-xs-4">
+                                <span>Ремарке:</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <span class="input-group">
+                                    <input type="text" class="form-control" ng-model=document.Vehicle.Description ng-disabled="! isEmpty(document.Vehicle.Guid)" />
+                                    <span class="input-group-btn">
+                                        <a ng-click="chooseVehicle()" class="btn btn-default">...</a>
+                                        <a ng-click="clearVehicle()" class="btn btn-default">X</a>
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="col-xs-4">
+                                <input type="text" class="form-control" ng-model=document.TrailerPlates />
+                            </div>
+                        </div>
+                        <span>Водач на превозното средство:</span>
+                        <span class="input-group">
+                            <input type="text" class="form-control" ng-model=document.Driver.Description ng-disabled="! isEmpty(document.Driver.Guid)" />
+                            <span class="input-group-btn">
+                                <a ng-click="chooseDriver()" class="btn btn-default">...</a>
+                                <a ng-click="clearDriver()" class="btn btn-default">X</a>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="" ng-controller="tblCtrl">
+
+                <div class="row">
+                </div>
+                <tabset>
+                    <tab>
+                        <tab-heading><i class="fa fa-bars"></i>&nbsp; Дървесина</tab-heading>
+                        <div class="col-xs-12" style="margin-top:10px;">
+                            <button type="button" class="btn btn-xs btn-success" ng-click="addRow()" value="Добави" ng-hide="document.AutoFiled"><span class="glyphicon glyphicon-plus-sign"></span>Добави ред</button>
+
+                            <button type="button" class="btn btn-xs btn-warning" ng-click="searchTickets()" value="Попълни" ng-hide="document.AutoFiled || document.Registered "><span class="glyphicon glyphicon-menu-down"></span>Попълни</button>
+                        </div>
+                        <div class="col-xs-12">
+                            <table class="table table-bordered table-responsive dispatch-table" style="padding:5px; margin-bottom:10px;">
+                                <tr class="row text-center">
+                                    <th>Дървесина</th>
+                                    <th>Aсортимент</th>
+                                    <th>Мерна единица.</th>
+                                    <th>Дъл.</th>
+                                    <th>Шир.</th>
+                                    <th>Дебел.</th>
+                                    <th>Обем</th>
+                                    <th>Коеф.</th>
+                                    <th>Общо обем</th>
+                                    <th>Бр.</th>
+                                    <th></th>
+                                </tr>
+                                <tr class="row" ng-repeat="row in document.List">
+                                    <td>
+                                        <span class="input-group">
+                                            <input type="text" class="" ng-model="row.Wood.Description" ng-disabled="true" />
+                                            <span class="input-group-btn" ng-hide="document.AutoFiled">
+                                                <a ng-click="chooseItem(row)" class=" btn btn-default" style="height:26px;">...</a>
+                                            </span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="input-group">
+                                            <input type="text" class="" ng-model="row.Assortment.Description" ng-disabled="true" />
+                                            <span class="input-group-btn" ng-hide="document.AutoFiled">
+                                                <a ng-click="chooseSort(row)" class=" btn btn-default" style="height:26px;">...</a>
+                                            </span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <select ng-model="row.MeasurementUnit" ng-change="onChangeMeasureUnit(row)" ng-disabled="document.AutoFiled">
+                                            <option value="1">м3</option>
+                                            <option value="2">простр. м3</option>
+                                        </select>
+                                    </td>
+                                    <td><input type="number" class="table-input" ng-model="row.Length" ng-disabled="document.AutoFiled"></td>
+                                    <td><input type="number" class="table-input" ng-model="row.DimensionWidth" ng-disabled="document.AutoFiled"></td>
+                                    <td><input type="number" class="table-input" ng-model="row.DimensionHeight" ng-disabled="document.AutoFiled"></td>
+                                    <td>
+                                        <table>
+                                            <tr>
+                                                <td><input type="number" class="table-input" ng-change="calculateTotal(row)" min="0.000" ng-model="row.Volume1" ng-disabled="document.AutoFiled"></td>
+                                                <td><input type="number" class="table-input" ng-change="calculateTotal(row)" min="0.000" ng-model="row.Volume2" ng-disabled="document.AutoFiled"></td>
+                                                <td><input type="number" class="table-input" ng-change="calculateTotal(row)" min="0.000" ng-model="row.Volume3" ng-disabled="document.AutoFiled"></td>
+                                                <td><input type="number" class="table-input" ng-change="calculateTotal(row)" min="0.000" ng-model="row.Volume4" ng-disabled="document.AutoFiled"></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <input type="number" class="table-input" ng-model="row.Ratio" ng-disabled="row.MeasurementUnit==1 || document.AutoFiled" ng-change="onChangeRatio(row)">
+                                    </td>
+                                    <td>
+                                        <input type="number" class="table-input" min="0.000" ng-model="row.VolumeTotal" ng-disabled="document.AutoFiled">
+                                    </td>
+                                    <td><input type="number" class="table-input" ng-model="row.Quantity" ng-disabled="document.AutoFiled"></td>
+                                    <td>
+                                        <a ng-click="deleteRow($index)" class=" btn btn-xs btn-danger" ng-hide="document.AutoFiled"><span class="glyphicon glyphicon-minus-sign"></span></a>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </tab>
+
+                </tabset>
+            </div>
+            <div class="pull-right" style="margin-bottom:10px;">
+                <a ng-click="registerDocument()" class="btn btn-success" ng-show="!document.Registered && !document.Annulled" id="btnRegister"><i class="fa fa-check-square-o"></i>&nbsp;Регистрирай</a>
+                <a ng-click="saveDocument()" class="btn btn-success" ng-show="!document.Registered && !document.Annulled" id="btnSave"><span class="fa fa-floppy-o"></span>&nbsp;Запиши</a>
+                <a href="/Tickets/ListReceipt" class="btn btn-default"><i class="fa fa-times"></i>&nbsp;Затвори</a>
+            </div>
+
+        </div>
+    </form>-->

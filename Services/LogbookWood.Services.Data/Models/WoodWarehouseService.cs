@@ -8,6 +8,7 @@
     using LogbookWood.Data;
     using LogbookWood.Data.Common.Repositories;
     using LogbookWood.Data.Models;
+    using LogbookWood.Data.Seeding;
     using LogbookWood.Web.ViewModels.WoodWarehouse;
 
     public class WoodWarehouseService : IWoodWarehouseService

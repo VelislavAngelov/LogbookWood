@@ -41,6 +41,10 @@
 
         public DbSet<WoodWarehouse> WoodWarehouses { get; set; }
 
+        public DbSet<Unit> Units { get; set; }
+
+        public DbSet<UnitTicket> UnitTickets { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)

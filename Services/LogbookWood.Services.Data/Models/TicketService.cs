@@ -2,10 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-
+    using LogbookWood.Data;
     using LogbookWood.Data.Common.Repositories;
     using LogbookWood.Data.Models;
     using LogbookWood.Web.ViewModels.Tickets;
@@ -15,18 +16,21 @@
         private readonly IRepository<Ticket> ticketRepository;
         private readonly IRepository<WoodWarehouse> woodWarehouseRepository;
         private readonly IDeletableEntityRepository<ApplicationUser> userRepository;
+        private readonly ApplicationDbContext dbContext;
 
         public TicketService(
             IRepository<Ticket> ticketRepository,
             IRepository<WoodWarehouse> woodWarehouseRepository,
-            IDeletableEntityRepository<ApplicationUser> userRepository)
+            IDeletableEntityRepository<ApplicationUser> userRepository,
+            ApplicationDbContext dbContex)
         {
             this.ticketRepository = ticketRepository;
             this.woodWarehouseRepository = woodWarehouseRepository;
             this.userRepository = userRepository;
+            this.dbContext = dbContex;
         }
 
-        public async Task Create(CreateTicketModel input, string userId, string woodWarehouseId)
+        public void Create(CreateTicketModel input, string userId, string woodWarehouseId)
         {
             var ticket = new Ticket
             {
@@ -38,13 +42,24 @@
                 Length = input.Length,
                 Thickness = input.Thickness,
                 Unit = input.Unit,
-                TotalVolume = input.TotalVolume,
+                TotalVolume = input.TotalVolume * input.Coefficient,
                 Count = input.Count,
             };
 
-            await this.ticketRepository.AddAsync(ticket);
-            await this.ticketRepository.SaveChangesAsync();
+            this.dbContext.Add(ticket);
+            this.dbContext.SaveChanges();
+        }
 
+        public IEnumerable<ListReceiptInViewModel> GetAll(string woodWarehouseId)
+        {
+           return this.ticketRepository.All()
+                .OrderByDescending(x => x.Id)
+                .Select(x => new ListReceiptInViewModel
+                {
+                    WoodWarehouseId = x.WoodWarehouseId,
+                    Wood = x.Wood,
+                    Category = x.Category,
+                }).ToList();
         }
     }
 }

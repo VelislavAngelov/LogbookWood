@@ -28,6 +28,7 @@
                               new RolesSeeder(),
                               new WoodSeeder(),
                               new AssortmentSeeder(),
+                              new UnitSeeder(),
                           };
 
             foreach (var seeder in seeders)
