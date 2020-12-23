@@ -21,17 +21,7 @@
         {
             if (this.User.Identity.IsAuthenticated)
             {
-                var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-                var userIdWoodWarehouses = this.dbContext.WoodWarehouses
-                    .Select(x => x.UserId)
-                    .ToList().Contains(userId);
-
-                if (userIdWoodWarehouses)
-                {
-                    return this.Redirect("/WoodWarehouse/IndexWoodWarehouse");
-                }
-
-                return this.Redirect("/WoodWarehouse/CreateWoodWarehouse");
+                return this.Redirect("/User/IndexUser");
             }
 
             return this.View();

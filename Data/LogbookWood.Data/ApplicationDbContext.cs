@@ -39,8 +39,6 @@
 
         public DbSet<Wood> Woods { get; set; }
 
-        public DbSet<WoodWarehouse> WoodWarehouses { get; set; }
-
         public DbSet<Unit> Units { get; set; }
 
         public DbSet<UnitTicket> UnitTickets { get; set; }
@@ -67,14 +65,10 @@
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<ApplicationUser>()
-                  .HasOne<WoodWarehouse>(ap => ap.WoodWarehouse)
+                  .HasOne<Ticket>(ap => ap.Tickets)
                   .WithOne(w => w.User)
-                  .HasForeignKey<ApplicationUser>(ap => ap.WoodWarehouseId);
+                  .HasForeignKey<ApplicationUser>(ap => ap.TicketId);
 
-            builder.Entity<WoodWarehouse>()
-                   .HasOne<Ticket>(w => w.Tickets)
-                   .WithOne(t => t.WoodWarehouse)
-                   .HasForeignKey<WoodWarehouse>(w => w.TicketId);
             // Needed for Identity models configuration
             base.OnModelCreating(builder);
 

@@ -19,8 +19,8 @@
 
         public string BUSTAT { get; set; }
 
-        public string WoodWarehouseId { get; set; }
+        public string UserId { get; set; }
 
-        public virtual WoodWarehouse WoodWarehouse { get; set; }
+        public virtual ApplicationUser User { get; set; }
     }
 }

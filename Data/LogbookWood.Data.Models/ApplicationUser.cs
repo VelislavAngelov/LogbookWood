@@ -15,9 +15,20 @@ namespace LogbookWood.Data.Models
             this.Roles = new HashSet<IdentityUserRole<string>>();
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
+            this.Counterparties = new HashSet<Counterparties>();
+            this.Employees = new HashSet<Employee>();
+            this.Vehicles = new HashSet<Vehicle>();
         }
 
-        // Audit info
+        public string CompanyName { get; set; }
+
+        public string Address { get; set; }
+
+        public string BULSTST { get; set; }
+
+        public string Phone { get; set; }
+
+        //// Audit info
         public DateTime CreatedOn { get; set; }
 
         public DateTime? ModifiedOn { get; set; }
@@ -33,8 +44,14 @@ namespace LogbookWood.Data.Models
 
         public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }
 
-        public string WoodWarehouseId { get; set; }
+        public string TicketId { get; set; }
 
-        public virtual WoodWarehouse WoodWarehouse { get; set; }
+        public virtual Ticket Tickets { get; set; }
+
+        public ICollection<Counterparties> Counterparties { get; set; }
+
+        public ICollection<Employee> Employees { get; set; }
+
+        public ICollection<Vehicle> Vehicles { get; set; }
     }
 }

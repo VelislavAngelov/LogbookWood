@@ -7,8 +7,14 @@
 
     public interface ITicketService
     {
-        void Create(CreateTicketModel input, string userId, string woodWarehouseId);
+        void Create(CreateTicketModel input, string userId);
 
-        IEnumerable<ListReceiptInViewModel> GetAll(string woodWarehouseId);
+        IEnumerable<ListReceiptInViewModel> GetAll(string userId);
+
+        string GetUserCompanyName();
+
+        public string GetAdress();
+
+        public string GetPhone();
     }
 }

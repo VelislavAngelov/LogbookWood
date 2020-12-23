@@ -1,0 +1,61 @@
+﻿@using LogbookWood.Common
+@using LogbookWood.Data.Models
+@using Microsoft.AspNetCore.Identity
+@using LogbookWood.Web
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+
+@if (SignInManager.IsSignedIn(this.User))
+{
+    <div class="text-center">
+        <h1 class="display-4">Начало</h1>
+    </div>
+    <div class="panel-body">  
+        <br>
+        <div class="row">
+            <div class="col-md-4">
+                <a role="button" class="btn btn-block btn-success" href="/Tickets/CreateReceipt">
+                    <h4>Превзен билет</h4>
+                    <h5>за постъпление</h5>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a role="button" class="btn btn-block btn-success" href="/Tickets/ListDispatch">
+                    <h4>Превзен билет</h4>
+                    <h5>за експедиция</h5>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a role="button" class="btn btn-block btn-success" href="/Reports/Index">
+                    <h4>Справки</h4>
+                    <h5>за наличност</h5>
+                </a>
+            </div>
+
+        </div>
+        <div class="row mt-4"></div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <a role="button" class="btn btn-block btn-success" href="/Tickets/ListImports">
+                    <h4>Внос</h4>
+                    <h5>на дървесина</h5>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a role="button" class="btn btn-block btn-success" href="/Tickets/ListProcessing">
+                    <h4>Преработка</h4>
+                    <h5>на дървесина</h5>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a role="button" class="btn btn-block btn-success" href="/Tickets/ListShipment">
+                    <h4>Изписване</h4>
+                    <h5>на дървесина</h5>
+                </a>
+            </div>
+
+        </div>
+        <br>
+    </div>
+}

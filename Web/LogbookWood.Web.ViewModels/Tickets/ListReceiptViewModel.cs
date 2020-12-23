@@ -8,6 +8,6 @@ namespace LogbookWood.Web.ViewModels.Tickets
     {
        public virtual IEnumerable<ListReceiptInViewModel> Tickets { get; set; }
 
-       public string WoodWarehouseId { get; set; }
+       public string UserId { get; set; }
     }
 }

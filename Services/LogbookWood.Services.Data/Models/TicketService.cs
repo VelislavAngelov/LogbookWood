@@ -14,27 +14,31 @@
     public class TicketService : ITicketService
     {
         private readonly IRepository<Ticket> ticketRepository;
-        private readonly IRepository<WoodWarehouse> woodWarehouseRepository;
         private readonly IDeletableEntityRepository<ApplicationUser> userRepository;
         private readonly ApplicationDbContext dbContext;
 
         public TicketService(
             IRepository<Ticket> ticketRepository,
-            IRepository<WoodWarehouse> woodWarehouseRepository,
             IDeletableEntityRepository<ApplicationUser> userRepository,
             ApplicationDbContext dbContex)
         {
             this.ticketRepository = ticketRepository;
-            this.woodWarehouseRepository = woodWarehouseRepository;
             this.userRepository = userRepository;
             this.dbContext = dbContex;
         }
 
-        public void Create(CreateTicketModel input, string userId, string woodWarehouseId)
+        public void Create(CreateTicketModel input, string userId)
         {
             var ticket = new Ticket
             {
-                WoodWarehouseId = woodWarehouseId,
+                NumberTicket=input.NumberTicket,
+                Date=DateTime.UtcNow,
+                SenderName=input.SenderName,
+                SenderBULSTAT=input.SenderBULSTAT,
+                SenderWoodWarehouse=input.SenderWoodWarehouse,
+                Vehicle=input.Vehicle,
+                TrailerPlates=input.TrailerPlates,
+                UserId = userId,
                 Wood = input.Wood,
                 Category = input.Category,
                 Coefficient = input.Coefficient,
@@ -50,16 +54,32 @@
             this.dbContext.SaveChanges();
         }
 
-        public IEnumerable<ListReceiptInViewModel> GetAll(string woodWarehouseId)
+        public IEnumerable<ListReceiptInViewModel> GetAll(string userId)
         {
            return this.ticketRepository.All()
                 .OrderByDescending(x => x.Id)
                 .Select(x => new ListReceiptInViewModel
                 {
-                    WoodWarehouseId = x.WoodWarehouseId,
+                    UserId = x.UserId,
                     Wood = x.Wood,
                     Category = x.Category,
                 }).ToList();
+        }
+
+        public string GetUserCompanyName()
+        {
+
+            return this.dbContext.Users.Select(x => x.CompanyName).FirstOrDefault();
+        }
+
+        public string GetAdress()
+        {
+            return this.dbContext.Users.Select(x => x.Address).FirstOrDefault();
+        }
+
+        public string GetPhone()
+        {
+            return this.dbContext.Users.Select(x => x.Phone).FirstOrDefault();
         }
     }
 }

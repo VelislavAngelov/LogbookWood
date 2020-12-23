@@ -15,6 +15,22 @@
             this.Units = new HashSet<UnitTicket>();
         }
 
+        public string NumberTicket { get; set; }
+
+        public DateTime Date { get; set; }
+
+        public string SenderName { get; set; }
+
+        public string SenderBULSTAT { get; set; }
+
+        public string SenderWoodWarehouse { get; set; }
+
+        public string Vehicle { get; set; }
+
+        public string TrailerPlates { get; set; }
+
+        public string Driver { get; set; }
+
         public string Wood { get; set; }
 
         public string Category { get; set; }
@@ -35,9 +51,9 @@
 
         public string Comment { get; set; }
 
-        public string WoodWarehouseId { get; set; }
+        public string UserId { get; set; }
 
-        public virtual WoodWarehouse WoodWarehouse { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
         public virtual ICollection<TicketWood> Woods { get; set; }
 

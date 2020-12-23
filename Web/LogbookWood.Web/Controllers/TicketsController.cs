@@ -45,6 +45,8 @@
         [Authorize]
         public IActionResult CreateReceipt(CreateTicketModel input)
         {
+
+            //return this.Json(input);
             if (!this.ModelState.IsValid)
             {
                 input.WoodItems = this.woodService.GetAllWoodsItem();
@@ -55,27 +57,18 @@
             }
 
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var woodWarehouseId = this.dbContext.WoodWarehouses
-                .Where(x => x.UserId == userId)
-                .ToList()
-                .Select(x => x.Id)
-                .FirstOrDefault()
-                .ToString();
-
-            this.ticketService.Create(input, userId, woodWarehouseId);
-            //// return this.Json(input);
+            this.ticketService.Create(input, userId);
+            return this.Json(input);
             //// TODO: Redirect ListTickets
-            return this.Redirect("/WoodWarehouse/IndexWoodWarehouse");
+            return this.Redirect("/IndexUser");
         }
 
-        public IActionResult ListReceipt(string woodWarehouseId)
+        public IActionResult ListReceipt(string userId)
         {
-            
-           
             var viewModel = new ListReceiptViewModel
             {
-                WoodWarehouseId = woodWarehouseId,
-                Tickets = this.ticketService.GetAll(woodWarehouseId),
+                UserId = userId,
+                Tickets = this.ticketService.GetAll(userId),
             };
             return this.View(viewModel);
         }

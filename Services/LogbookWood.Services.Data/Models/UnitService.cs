@@ -24,7 +24,7 @@ namespace LogbookWood.Services.Data.Models
             return this.unitRepository.All().Select(x => new SelectListItem
             {
                 Text = x.Name,
-                Value = x.Id,
+                Value = x.Name,
             }).OrderBy(x => x.Text).ToList();
             throw new NotImplementedException();
         }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LogbookWood.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201221164635_DbContexChange")]
-    partial class DbContexChange
+    [Migration("20201223223625_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -70,6 +70,15 @@ namespace LogbookWood.Data.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BULSTST")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -110,6 +119,9 @@ namespace LogbookWood.Data.Migrations
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
@@ -119,15 +131,15 @@ namespace LogbookWood.Data.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("TicketId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("WoodWarehouseId")
-                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
@@ -141,9 +153,9 @@ namespace LogbookWood.Data.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.HasIndex("WoodWarehouseId")
+                    b.HasIndex("TicketId")
                         .IsUnique()
-                        .HasFilter("[WoodWarehouseId] IS NOT NULL");
+                        .HasFilter("[TicketId] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -193,12 +205,12 @@ namespace LogbookWood.Data.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("WoodWarehouseId")
+                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("WoodWarehouseId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Counterparties");
                 });
@@ -229,12 +241,12 @@ namespace LogbookWood.Data.Migrations
                     b.Property<string>("Surname")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("WoodWarehouseId")
+                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("WoodWarehouseId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Employees");
                 });
@@ -259,11 +271,29 @@ namespace LogbookWood.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Driver")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<double>("Length")
                         .HasColumnType("float");
 
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("NumberTicket")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SenderBULSTAT")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SenderName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SenderWoodWarehouse")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("Thickness")
                         .HasColumnType("float");
@@ -271,16 +301,22 @@ namespace LogbookWood.Data.Migrations
                     b.Property<double>("TotalVolume")
                         .HasColumnType("float");
 
+                    b.Property<string>("TrailerPlates")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Unit")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Vehicle")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("Width")
                         .HasColumnType("float");
 
                     b.Property<string>("Wood")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WoodWarehouseId")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -407,12 +443,12 @@ namespace LogbookWood.Data.Migrations
                     b.Property<string>("RegistrationNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("WoodWarehouseId")
+                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("WoodWarehouseId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Vehicles");
                 });
@@ -437,44 +473,6 @@ namespace LogbookWood.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Woods");
-                });
-
-            modelBuilder.Entity("LogbookWood.Data.Models.WoodWarehouse", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BULSTST")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TicketId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TicketId")
-                        .IsUnique()
-                        .HasFilter("[TicketId] IS NOT NULL");
-
-                    b.ToTable("WoodWarehouses");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -583,29 +581,29 @@ namespace LogbookWood.Data.Migrations
 
             modelBuilder.Entity("LogbookWood.Data.Models.ApplicationUser", b =>
                 {
-                    b.HasOne("LogbookWood.Data.Models.WoodWarehouse", "WoodWarehouse")
+                    b.HasOne("LogbookWood.Data.Models.Ticket", "Tickets")
                         .WithOne("User")
-                        .HasForeignKey("LogbookWood.Data.Models.ApplicationUser", "WoodWarehouseId");
+                        .HasForeignKey("LogbookWood.Data.Models.ApplicationUser", "TicketId");
 
-                    b.Navigation("WoodWarehouse");
+                    b.Navigation("Tickets");
                 });
 
             modelBuilder.Entity("LogbookWood.Data.Models.Counterparties", b =>
                 {
-                    b.HasOne("LogbookWood.Data.Models.WoodWarehouse", "WoodWarehouse")
+                    b.HasOne("LogbookWood.Data.Models.ApplicationUser", "User")
                         .WithMany("Counterparties")
-                        .HasForeignKey("WoodWarehouseId");
+                        .HasForeignKey("UserId");
 
-                    b.Navigation("WoodWarehouse");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("LogbookWood.Data.Models.Employee", b =>
                 {
-                    b.HasOne("LogbookWood.Data.Models.WoodWarehouse", "WoodWarehouse")
+                    b.HasOne("LogbookWood.Data.Models.ApplicationUser", "User")
                         .WithMany("Employees")
-                        .HasForeignKey("WoodWarehouseId");
+                        .HasForeignKey("UserId");
 
-                    b.Navigation("WoodWarehouse");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("LogbookWood.Data.Models.TicketAssortment", b =>
@@ -655,20 +653,11 @@ namespace LogbookWood.Data.Migrations
 
             modelBuilder.Entity("LogbookWood.Data.Models.Vehicle", b =>
                 {
-                    b.HasOne("LogbookWood.Data.Models.WoodWarehouse", "WoodWarehouse")
+                    b.HasOne("LogbookWood.Data.Models.ApplicationUser", "User")
                         .WithMany("Vehicles")
-                        .HasForeignKey("WoodWarehouseId");
+                        .HasForeignKey("UserId");
 
-                    b.Navigation("WoodWarehouse");
-                });
-
-            modelBuilder.Entity("LogbookWood.Data.Models.WoodWarehouse", b =>
-                {
-                    b.HasOne("LogbookWood.Data.Models.Ticket", "Tickets")
-                        .WithOne("WoodWarehouse")
-                        .HasForeignKey("LogbookWood.Data.Models.WoodWarehouse", "TicketId");
-
-                    b.Navigation("Tickets");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -726,9 +715,15 @@ namespace LogbookWood.Data.Migrations
                 {
                     b.Navigation("Claims");
 
+                    b.Navigation("Counterparties");
+
+                    b.Navigation("Employees");
+
                     b.Navigation("Logins");
 
                     b.Navigation("Roles");
+
+                    b.Navigation("Vehicles");
                 });
 
             modelBuilder.Entity("LogbookWood.Data.Models.Assortment", b =>
@@ -742,9 +737,9 @@ namespace LogbookWood.Data.Migrations
 
                     b.Navigation("Units");
 
-                    b.Navigation("Woods");
+                    b.Navigation("User");
 
-                    b.Navigation("WoodWarehouse");
+                    b.Navigation("Woods");
                 });
 
             modelBuilder.Entity("LogbookWood.Data.Models.Unit", b =>
@@ -755,17 +750,6 @@ namespace LogbookWood.Data.Migrations
             modelBuilder.Entity("LogbookWood.Data.Models.Wood", b =>
                 {
                     b.Navigation("Ticket");
-                });
-
-            modelBuilder.Entity("LogbookWood.Data.Models.WoodWarehouse", b =>
-                {
-                    b.Navigation("Counterparties");
-
-                    b.Navigation("Employees");
-
-                    b.Navigation("User");
-
-                    b.Navigation("Vehicles");
                 });
 #pragma warning restore 612, 618
         }

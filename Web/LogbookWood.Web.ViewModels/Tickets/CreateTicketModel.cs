@@ -8,6 +8,23 @@
 
     public class CreateTicketModel
     {
+        public string NumberTicket { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime Date { get; set; }
+
+        public string SenderName { get; set; }
+
+        public string SenderBULSTAT { get; set; }
+
+        public string SenderWoodWarehouse { get; set; }
+
+        public string Vehicle { get; set; }
+
+        public string TrailerPlates { get; set; }
+
+        public string Driver { get; set; }
+
         public string Wood { get; set; }
 
         public string Category { get; set; }
@@ -28,11 +45,11 @@
 
         public string Comment { get; set; }
 
-        public int WoodId { get; set; }
+        public string WoodId { get; set; }
 
         public string AssortmentId { get; set; }
 
-        public string WoodWarehouseId { get; set; }
+        public string UserId { get; set; }
 
         public IEnumerable<SelectListItem> WoodItems { get; set; }
 
