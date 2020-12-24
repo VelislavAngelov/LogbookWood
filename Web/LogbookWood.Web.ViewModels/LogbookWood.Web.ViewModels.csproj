@@ -24,8 +24,4 @@
     <ProjectReference Include="..\..\Services\LogbookWood.Services.Mapping\LogbookWood.Services.Mapping.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Home\" />
-  </ItemGroup>
-
 </Project>

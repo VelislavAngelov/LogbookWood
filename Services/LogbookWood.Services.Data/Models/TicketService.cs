@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
+    using System.Security.Claims;
     using System.Text;
     using System.Threading.Tasks;
     using LogbookWood.Data;
@@ -32,12 +33,13 @@
             var ticket = new Ticket
             {
                 NumberTicket=input.NumberTicket,
-                Date=DateTime.UtcNow,
-                SenderName=input.SenderName,
-                SenderBULSTAT=input.SenderBULSTAT,
-                SenderWoodWarehouse=input.SenderWoodWarehouse,
-                Vehicle=input.Vehicle,
-                TrailerPlates=input.TrailerPlates,
+                Date = DateTime.UtcNow,
+                SenderName = input.SenderName,
+                SenderBULSTAT = input.SenderBULSTAT,
+                SenderWoodWarehouse = input.SenderWoodWarehouse,
+                Vehicle = input.Vehicle,
+                TrailerPlates = input.TrailerPlates,
+                Driver = input.Driver,
                 UserId = userId,
                 Wood = input.Wood,
                 Category = input.Category,
@@ -56,30 +58,30 @@
 
         public IEnumerable<ListReceiptInViewModel> GetAll(string userId)
         {
-           return this.ticketRepository.All()
+           return this.ticketRepository.All().Where(x => x.UserId == userId)
                 .OrderByDescending(x => x.Id)
                 .Select(x => new ListReceiptInViewModel
                 {
-                    UserId = x.UserId,
-                    Wood = x.Wood,
-                    Category = x.Category,
+                    NumberTicket = x.NumberTicket,
+                    SenderName = x.SenderName,
+                    Date = x.Date,
+                    Comment = x.Comment,
                 }).ToList();
         }
 
-        public string GetUserCompanyName()
+        public string GetUserCompanyName(string userId)
         {
-
-            return this.dbContext.Users.Select(x => x.CompanyName).FirstOrDefault();
+            return this.dbContext.Users.Where(x => x.Id == userId).Select(x => x.CompanyName).ToList().FirstOrDefault().ToString();
         }
 
-        public string GetAdress()
+        public string GetAdress(string userId)
         {
-            return this.dbContext.Users.Select(x => x.Address).FirstOrDefault();
+            return this.dbContext.Users.Where(x => x.Id == userId).Select(x => x.Address).ToList().FirstOrDefault().ToString();
         }
 
-        public string GetPhone()
+        public string GetPhone(string userId)
         {
-            return this.dbContext.Users.Select(x => x.Phone).FirstOrDefault();
+            return this.dbContext.Users.Where(x => x.Id == userId).Select(x => x.Phone).ToList().FirstOrDefault().ToString();
         }
     }
 }

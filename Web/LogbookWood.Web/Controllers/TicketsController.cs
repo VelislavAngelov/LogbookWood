@@ -45,31 +45,34 @@
         [Authorize]
         public IActionResult CreateReceipt(CreateTicketModel input)
         {
-
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             //return this.Json(input);
             if (!this.ModelState.IsValid)
             {
                 input.WoodItems = this.woodService.GetAllWoodsItem();
                 input.AssortmentItems = this.assortmentService.GetAllAssortmentsItem();
                 input.UnitItems = this.unitService.GetAllUnitItem();
+                this.ticketService.GetUserCompanyName(userId);
+                this.ticketService.GetAdress(userId);
+                this.ticketService.GetAdress(userId);
 
                 return this.View(input);
             }
 
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             this.ticketService.Create(input, userId);
-            return this.Json(input);
-            //// TODO: Redirect ListTickets
-            return this.Redirect("/IndexUser");
+            //// TODO: Redirect ListReceipt
+            return this.Redirect("/Tickets/ListReceipt");
         }
 
-        public IActionResult ListReceipt(string userId)
+        public IActionResult ListReceipt()
         {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
             var viewModel = new ListReceiptViewModel
             {
-                UserId = userId,
                 Tickets = this.ticketService.GetAll(userId),
             };
+           // return this.Json(viewModel);
             return this.View(viewModel);
         }
     }

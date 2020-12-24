@@ -1,0 +1,30 @@
+﻿@using LogbookWood.Data.Models
+@using LogbookWood.Data
+@using Microsoft.AspNetCore.Identity
+@inject LogbookWood.Services.Data.Models.ITicketService ticketService
+@inject UserManager<ApplicationUser> UserManager
+
+<h2>Справка за налчност @ticketService.GetUserCompanyName(UserManager.GetUserId(User))</h2>
+<br />
+<br />
+<div class="table-responsive">
+    <table class="table table-hover text-centered">
+        <thead class="thead-dark">
+            <tr class="text-dark">
+                <th scope="col">Дървесина</th>
+                <th scope="col">Категория</th>
+                <th scope="col">Остатък</th>
+ 
+            </tr>
+        </thead>
+  
+            <tbody>
+                <tr>
+                    <td>Wood</td>
+                    <td>Category</td>                   
+                    <td>Toal</td>
+                </tr>
+            </tbody>
+        
+    </table>
+</div>

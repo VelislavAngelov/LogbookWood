@@ -11,10 +11,10 @@
 
         IEnumerable<ListReceiptInViewModel> GetAll(string userId);
 
-        string GetUserCompanyName();
+        string GetUserCompanyName(string userId);
 
-        public string GetAdress();
+        string GetAdress(string userId);
 
-        public string GetPhone();
+        string GetPhone(string userId);
     }
 }

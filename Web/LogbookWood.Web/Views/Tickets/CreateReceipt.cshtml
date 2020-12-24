@@ -43,9 +43,9 @@
 
         <div class="col-md-4">
             <h4 class="text-center"> Получател</h4>
-            <h4>"@ticketService.GetUserCompanyName()"</h4>
-            <h6>Адрес: @ticketService.GetAdress()</h6>
-            <h6>Телефон: @ticketService.GetPhone()</h6>
+            <h4>"@ticketService.GetUserCompanyName(UserManager.GetUserId(User))"</h4>
+            <h6>Адрес: @ticketService.GetAdress(UserManager.GetUserId(User))</h6>
+            <h6>Телефон: @ticketService.GetPhone(UserManager.GetUserId(User))</h6>
             <div class="row">
                 <div class="col-xl-8">
                     <span>Превозно средство:</span>
