@@ -1,14 +1,12 @@
-﻿@model LogbookWood.Web.ViewModels.Tickets.ListReceiptViewModel
-@inject LogbookWood.Services.Data.Models.ITicketService ticketService
-@using LogbookWood.Data.Models
+﻿@using LogbookWood.Data.Models
 @using Microsoft.AspNetCore.Identity
 @inject UserManager<ApplicationUser> UserManager
 @{
-    this.ViewData["Title"] = "Постъпления";
+    this.ViewData["Title"] = "Експедиция";
     ;}
 <h2>Превозни билети: Постъпление</h2>
 <div class=" col-xs-3 text-left">
-    <a class="btn btn-success" href="/Tickets/CreateReceipt">Създай нов</a>
+    <a class="btn btn-success" href="/Tickets/CreateDispatch">Създай нов</a>
 </div>
 <br />
 <th></th>
@@ -23,18 +21,17 @@
                 <th scope="col">Коментар</th>
             </tr>
         </thead>
-        @foreach (var item in this.Model.Tickets)
-        {
+       
+        
             <tbody>
                 <tr>
-                    <td>@item.NumberTicket</td>
-                    <td>@item.Date</td>
-                    <td>@ticketService.GetUserCompanyName(UserManager.GetUserId(User))</td>
-                    <td>@item.SenderName</td>
-                    <td>@item.Comment</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
             </tbody>
-        }
+        
     </table>
 
 
@@ -59,5 +56,3 @@
         </ul>
     </nav>
 </div>
-
-

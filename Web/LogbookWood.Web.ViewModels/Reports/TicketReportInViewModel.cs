@@ -13,6 +13,5 @@ namespace LogbookWood.Web.ViewModels.Reports
 
         public double TotalVolume { get; set; }
 
-        public double Total { get; set; }
     }
 }

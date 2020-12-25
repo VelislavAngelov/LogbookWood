@@ -3,6 +3,7 @@
     using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
+
     using LogbookWood.Data;
     using LogbookWood.Services.Data.Models;
     using LogbookWood.Web.ViewModels.Tickets;
@@ -46,7 +47,7 @@
         public IActionResult CreateReceipt(CreateTicketModel input)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            //return this.Json(input);
+           ////return this.Json(input);
             if (!this.ModelState.IsValid)
             {
                 input.WoodItems = this.woodService.GetAllWoodsItem();
@@ -64,6 +65,15 @@
             return this.Redirect("/Tickets/ListReceipt");
         }
 
+       // [HttpPost]
+        [Authorize]
+        public IActionResult CreateDispatch()
+        {
+            return this.View();
+        }
+
+        // [HttpPost]
+        [Authorize]
         public IActionResult ListReceipt()
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -72,8 +82,13 @@
             {
                 Tickets = this.ticketService.GetAll(userId),
             };
-           // return this.Json(viewModel);
+           //// return this.Json(viewModel);
             return this.View(viewModel);
+        }
+
+        public IActionResult ListDispatch()
+        {
+            return this.View();
         }
     }
 }

@@ -69,6 +69,7 @@
             services.AddTransient<IAssortmentService, AssortmentService>();
             services.AddTransient<ITicketService, TicketService>();
             services.AddTransient<IUnitService, UnitService>();
+            services.AddTransient<IReportsService, ReportsService>();
             services.AddTransient<ApplicationUser>();
         }
 

@@ -1,8 +1,12 @@
-﻿@using LogbookWood.Data.Models
+﻿@model LogbookWood.Web.ViewModels.Reports.TicketReportViewModel
+@using LogbookWood.Data.Models
 @using LogbookWood.Data
 @using Microsoft.AspNetCore.Identity
 @inject LogbookWood.Services.Data.Models.ITicketService ticketService
 @inject UserManager<ApplicationUser> UserManager
+@{
+    this.ViewData["Title"] = "Справки";
+    ;}
 
 <h2>Справка за налчност @ticketService.GetUserCompanyName(UserManager.GetUserId(User))</h2>
 <br />
@@ -13,18 +17,33 @@
             <tr class="text-dark">
                 <th scope="col">Дървесина</th>
                 <th scope="col">Категория</th>
-                <th scope="col">Остатък</th>
- 
+                <th scope="col">куб.м3</th>
+
             </tr>
         </thead>
-  
-            <tbody>
-                <tr>
-                    <td>Wood</td>
-                    <td>Category</td>                   
-                    <td>Toal</td>
+        @{double Totals = 0;
+            foreach (var item in Model.TicketReports)
+            {
+
+                Totals += item.TotalVolume;
+                <tbody>
+                    <tr>
+                        <td>@item.Wood</td>
+                        <td>@item.Category</td>
+                        <td>@item.TotalVolume.ToString("F3") м3</td>
+                    </tr>
+                </tbody>
+            }
+            <thead class="thead-dark">
+                <tr class="text-dark">
+                    <th scope="col">Резултат</th>
+                    <th scope="col"></th>
+                    <th scope="col">Остатък: @Totals.ToString("F3")</th>
+
                 </tr>
-            </tbody>
-        
+
+            </thead>
+        }
+
     </table>
 </div>

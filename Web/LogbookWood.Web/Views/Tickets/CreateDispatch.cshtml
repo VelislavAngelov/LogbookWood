@@ -1,0 +1,156 @@
+﻿
+@using LogbookWood.Data.Models
+@using LogbookWood.Data
+@inject LogbookWood.Services.Data.Models.ITicketService ticketService
+@using Microsoft.AspNetCore.Identity
+@using LogbookWood.Web
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+    this.ViewData["Title"] = "Експедиция";
+
+}
+<form method="post" class="">
+    <div class="row">
+        <div class="col-md-4">
+            <h4 class="text-center"> Изпращач</h4>
+            <div class="col-xl-12">
+                <label>Наименование:</label>
+                <input  class="form-control" />
+            </div>
+            <div class="col-xl-12">
+                <label>ЕИК:</label>
+                <input  class="form-control" />
+            </div>
+            <div class="col-xl-12">
+                <label>Склад:</label>
+                <input  class="form-control" />
+            </div>
+        </div>
+        <div class="col">
+            <h2 class="text-center">Превозен билет</h2>
+            <h4 class="text-center">Експедиция</h4>
+            <h5 class="text-center">Нов</h5>
+            <div class="form-group">
+                <label for="example-date-input" class="col col-form-label"></label>
+                <div class="">
+                    <input  class="form-control" type="date" value="22-06-2020" id="example-date-input">
+                </div>
+            </div>
+            <input type="text" class="form-control ng-pristine ng-valid ng-touched" style="margin-top:10px;" placeholder="Въведете номер на документа">
+        </div>
+
+        <div class="col-md-4">
+            <h4 class="text-center"> Получател</h4>
+            <h4>"@ticketService.GetUserCompanyName(UserManager.GetUserId(User))"</h4>
+            <h6>Адрес: @ticketService.GetAdress(UserManager.GetUserId(User))</h6>
+            <h6>Телефон: @ticketService.GetPhone(UserManager.GetUserId(User))</h6>
+            <div class="row">
+                <div class="col-xl-8">
+                    <span>Превозно средство:</span>
+                </div>
+                <div class="col-xl-4">
+                    <span>Ремарке:</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-8">
+                    <input  class="form-control" />
+                </div>
+                <div class="col-xl-4">
+                    <input class="form-control" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12">
+                    <label>Водач на превозното средство:</label>
+                    <input class="form-control" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="table-responsive">
+        <table class="table table-hover text-centered">
+            <thead class="thead-dark">
+                <tr class="text-dark">
+                    <th scope="col">Дървесина</th>
+                    <th scope="col">Aсортимент</th>
+                    <th scope="col">Мерна единица.</th>
+                    <th scope="col">Дължина</th>
+                    <th scope="col">Ширина</th>
+                    <th scope="col">Дебелина</th>
+                    <th scope="col">Коефициент</th>
+                    <th scope="col">Общо обем</th>
+                    <th scope="col">Брой</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="input-group-append">
+                            <label></label>
+                            <div class="col-20">
+                                <select @*asp-for="Wood"*@ class="form-control" asp-items="Model.WoodItems"> </select>
+                            </div>
+                            <span @*asp-validation-for="Wood"*@ class="text-danger"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group-append">
+                            <label></label>
+                            <select @*asp-for="Category"*@ class="form-control" asp-items="Model.AssortmentItems"></select>
+                            <span @*asp-validation-for="Category"*@ class="text-danger"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group-append">
+                            <label></label>
+                            <select @*asp-for="Unit"*@ class="form-control" asp-items="Model.UnitItems"></select>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group-append">
+                            <label></label>
+                            <input @*asp-for="Length"*@ class="form-control" />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group-append">
+                            <label></label>
+                            <input @*asp-for="Width"*@ class="form-control" />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group-append">
+                            <label></label>
+                            <input @*asp-for="Thickness"*@ class="form-control" />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group-append">
+                            <label></label>
+                            <input @*asp-for="Coefficient"*@ class="form-control" />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group-append">
+                            <label></label>
+                            <input @*asp-for="TotalVolume"*@ class="form-control" />
+                            <span @*asp-validation-for="TotalVolume"*@ class="text-danger"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group-append">
+                            <label></label>
+                            <input @*asp-for="Count"*@ class="form-control" />
+                        </div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <button type="submit" class="btn btn-success">Регистрирай</button>
+</form>

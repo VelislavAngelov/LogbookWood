@@ -32,7 +32,7 @@
         {
             var ticket = new Ticket
             {
-                NumberTicket=input.NumberTicket,
+                NumberTicket = input.NumberTicket,
                 Date = DateTime.UtcNow,
                 SenderName = input.SenderName,
                 SenderBULSTAT = input.SenderBULSTAT,
@@ -59,7 +59,7 @@
         public IEnumerable<ListReceiptInViewModel> GetAll(string userId)
         {
            return this.ticketRepository.All().Where(x => x.UserId == userId)
-                .OrderByDescending(x => x.Id)
+                .OrderByDescending(x => x.Date)
                 .Select(x => new ListReceiptInViewModel
                 {
                     NumberTicket = x.NumberTicket,
@@ -71,7 +71,12 @@
 
         public string GetUserCompanyName(string userId)
         {
-            return this.dbContext.Users.Where(x => x.Id == userId).Select(x => x.CompanyName).ToList().FirstOrDefault().ToString();
+            return this.dbContext.Users
+                .Where(x => x.Id == userId)
+                .Select(x => x.CompanyName)
+                .ToList()
+                .FirstOrDefault()
+                .ToString();
         }
 
         public string GetAdress(string userId)
