@@ -1,9 +1,7 @@
 ﻿namespace LogbookWood.Services.Data.Models
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
 
     using LogbookWood.Data.Common.Repositories;
     using LogbookWood.Data.Models;

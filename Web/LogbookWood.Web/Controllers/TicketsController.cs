@@ -1,8 +1,6 @@
 ﻿namespace LogbookWood.Web.Controllers
 {
-    using System.Linq;
     using System.Security.Claims;
-    using System.Threading.Tasks;
 
     using LogbookWood.Data;
     using LogbookWood.Services.Data.Models;
@@ -35,7 +33,7 @@
         [Authorize]
         public IActionResult CreateReceipt()
         {
-            var viewModel = new CreateTicketModel();
+            CreateTicketModel viewModel = new CreateTicketModel();
             viewModel.WoodItems = this.woodService.GetAllWoodsItem();
             viewModel.AssortmentItems = this.assortmentService.GetAllAssortmentsItem();
             viewModel.UnitItems = this.unitService.GetAllUnitItem();
@@ -46,7 +44,7 @@
         [Authorize]
         public IActionResult CreateReceipt(CreateTicketModel input)
         {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            string userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
            ////return this.Json(input);
             if (!this.ModelState.IsValid)
             {
@@ -76,9 +74,9 @@
         [Authorize]
         public IActionResult ListReceipt()
         {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            string userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            var viewModel = new ListReceiptViewModel
+            ListReceiptViewModel viewModel = new ListReceiptViewModel
             {
                 Tickets = this.ticketService.GetAll(userId),
             };

@@ -76,21 +76,21 @@
 
             EntityIndexesConfiguration.Configure(builder);
 
-            var entityTypes = builder.Model.GetEntityTypes().ToList();
+            System.Collections.Generic.List<Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType> entityTypes = builder.Model.GetEntityTypes().ToList();
 
             // Set global query filter for not deleted entities only
-            var deletableEntityTypes = entityTypes
+            System.Collections.Generic.IEnumerable<Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType> deletableEntityTypes = entityTypes
                 .Where(et => et.ClrType != null && typeof(IDeletableEntity).IsAssignableFrom(et.ClrType));
-            foreach (var deletableEntityType in deletableEntityTypes)
+            foreach (Microsoft.EntityFrameworkCore.Metadata.IMutableEntityType deletableEntityType in deletableEntityTypes)
             {
-                var method = SetIsDeletedQueryFilterMethod.MakeGenericMethod(deletableEntityType.ClrType);
+                MethodInfo method = SetIsDeletedQueryFilterMethod.MakeGenericMethod(deletableEntityType.ClrType);
                 method.Invoke(null, new object[] { builder });
             }
 
             // Disable cascade delete
-            var foreignKeys = entityTypes
+            System.Collections.Generic.IEnumerable<Microsoft.EntityFrameworkCore.Metadata.IMutableForeignKey> foreignKeys = entityTypes
                 .SelectMany(e => e.GetForeignKeys().Where(f => f.DeleteBehavior == DeleteBehavior.Cascade));
-            foreach (var foreignKey in foreignKeys)
+            foreach (Microsoft.EntityFrameworkCore.Metadata.IMutableForeignKey foreignKey in foreignKeys)
             {
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
@@ -108,15 +108,15 @@
 
         private void ApplyAuditInfoRules()
         {
-            var changedEntries = this.ChangeTracker
+            System.Collections.Generic.IEnumerable<Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry> changedEntries = this.ChangeTracker
                 .Entries()
                 .Where(e =>
                     e.Entity is IAuditInfo &&
                     (e.State == EntityState.Added || e.State == EntityState.Modified));
 
-            foreach (var entry in changedEntries)
+            foreach (Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry entry in changedEntries)
             {
-                var entity = (IAuditInfo)entry.Entity;
+                IAuditInfo entity = (IAuditInfo)entry.Entity;
                 if (entry.State == EntityState.Added && entity.CreatedOn == default)
                 {
                     entity.CreatedOn = DateTime.UtcNow;

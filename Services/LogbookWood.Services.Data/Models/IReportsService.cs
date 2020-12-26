@@ -1,14 +1,11 @@
-﻿using LogbookWood.Web.ViewModels.Reports;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LogbookWood.Services.Data.Models
+﻿namespace LogbookWood.Services.Data.Models
 {
+    using System.Collections.Generic;
+
+    using LogbookWood.Web.ViewModels.Reports;
+
     public interface IReportsService
     {
-        public IEnumerable<TicketReportInViewModel> CreateReport(string userId);
+         IEnumerable<TicketReportInViewModel> CreateReport(string userId);
     }
 }

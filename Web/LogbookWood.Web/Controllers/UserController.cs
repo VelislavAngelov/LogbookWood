@@ -1,11 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace LogbookWood.Web.Controllers
+﻿namespace LogbookWood.Web.Controllers
 {
+
+    using Microsoft.AspNetCore.Mvc;
+
     public class UserController : Controller
     {
         public IActionResult IndexUser()

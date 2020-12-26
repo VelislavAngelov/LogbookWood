@@ -16,7 +16,7 @@
         {
             this.server = server;
             server.CreateClient();
-            var opts = new ChromeOptions();
+            ChromeOptions opts = new ChromeOptions();
             opts.AddArguments("--headless");
             opts.AcceptInsecureCertificates = true;
             this.browser = new ChromeDriver(opts);

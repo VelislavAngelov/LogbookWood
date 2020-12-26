@@ -2,11 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.Linq;
-    using System.Security.Claims;
-    using System.Text;
-    using System.Threading.Tasks;
+
     using LogbookWood.Data;
     using LogbookWood.Data.Common.Repositories;
     using LogbookWood.Data.Models;
@@ -30,7 +27,7 @@
 
         public void Create(CreateTicketModel input, string userId)
         {
-            var ticket = new Ticket
+            Ticket ticket = new Ticket
             {
                 NumberTicket = input.NumberTicket,
                 Date = DateTime.UtcNow,
@@ -81,12 +78,20 @@
 
         public string GetAdress(string userId)
         {
-            return this.dbContext.Users.Where(x => x.Id == userId).Select(x => x.Address).ToList().FirstOrDefault().ToString();
+            return this.dbContext.Users
+                .Where(x => x.Id == userId)
+                .Select(x => x.Address)
+                .ToList().FirstOrDefault()
+                .ToString();
         }
 
         public string GetPhone(string userId)
         {
-            return this.dbContext.Users.Where(x => x.Id == userId).Select(x => x.Phone).ToList().FirstOrDefault().ToString();
+            return this.dbContext.Users
+                .Where(x => x.Id == userId)
+                .Select(x => x.Phone)
+                .ToList().FirstOrDefault()
+                .ToString();
         }
     }
 }

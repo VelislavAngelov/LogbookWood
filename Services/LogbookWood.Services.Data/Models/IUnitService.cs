@@ -1,12 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LogbookWood.Services.Data.Models
+﻿namespace LogbookWood.Services.Data.Models
 {
+    using System.Collections.Generic;
+
+    using Microsoft.AspNetCore.Mvc.Rendering;
+
     public interface IUnitService
     {
         IEnumerable<SelectListItem> GetAllUnitItem();

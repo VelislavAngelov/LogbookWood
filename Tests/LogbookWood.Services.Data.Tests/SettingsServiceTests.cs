@@ -6,7 +6,6 @@
 
     using LogbookWood.Data;
     using LogbookWood.Data.Common.Repositories;
-    using LogbookWood.Data.Models;
     using LogbookWood.Data.Repositories;
     using Microsoft.EntityFrameworkCore;
     using Moq;
@@ -17,7 +16,7 @@
         [Fact]
         public void GetCountShouldReturnCorrectNumber()
         {
-            var repository = new Mock<IDeletableEntityRepository<Setting>>();
+            Mock<IDeletableEntityRepository<Setting>> repository = new Mock<IDeletableEntityRepository<Setting>>();
             repository.Setup(r => r.All()).Returns(new List<Setting>
                                                         {
                                                             new Setting(),
@@ -32,15 +31,15 @@
         [Fact]
         public async Task GetCountShouldReturnCorrectNumberUsingDbContext()
         {
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+            DbContextOptions<ApplicationDbContext> options = new DbContextOptionsBuilder<ApplicationDbContext>()
                 .UseInMemoryDatabase(databaseName: "SettingsTestDb").Options;
-            using var dbContext = new ApplicationDbContext(options);
+            using ApplicationDbContext dbContext = new ApplicationDbContext(options);
             dbContext.Settings.Add(new Setting());
             dbContext.Settings.Add(new Setting());
             dbContext.Settings.Add(new Setting());
             await dbContext.SaveChangesAsync();
 
-            using var repository = new EfDeletableEntityRepository<Setting>(dbContext);
+            using EfDeletableEntityRepository<Setting> repository = new EfDeletableEntityRepository<Setting>(dbContext);
             var service = new SettingsService(repository);
             Assert.Equal(3, service.GetCount());
         }

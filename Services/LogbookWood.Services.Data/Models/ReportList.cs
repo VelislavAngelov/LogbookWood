@@ -1,6 +1,6 @@
-﻿namespace LogbookWood.Web.ViewModels.Reports
+﻿namespace LogbookWood.Data.Models
 {
-    public class TicketReportInViewModel
+    public class ReportList
     {
         public string Wood { get; set; }
 

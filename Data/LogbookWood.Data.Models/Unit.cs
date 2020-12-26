@@ -1,10 +1,10 @@
-﻿using LogbookWood.Data.Common.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LogbookWood.Data.Models
+﻿namespace LogbookWood.Data.Models
 {
+    using System;
+    using System.Collections.Generic;
+
+    using LogbookWood.Data.Common.Models;
+
     public class Unit : BaseModel<string>
     {
         public Unit()

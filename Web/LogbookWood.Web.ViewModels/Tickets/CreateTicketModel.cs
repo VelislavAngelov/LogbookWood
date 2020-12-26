@@ -8,10 +8,10 @@
 
     public class CreateTicketModel
     {
+        [Required]
         public string NumberTicket { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
 
         public string SenderName { get; set; }

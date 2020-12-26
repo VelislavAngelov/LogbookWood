@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LogbookWood.Web.ViewModels.Reports
+﻿namespace LogbookWood.Web.ViewModels.Reports
 {
+    using System.Collections.Generic;
+
     public class TicketReportViewModel
     {
-        public virtual IEnumerable<TicketReportInViewModel> TicketReports { get; set; }
+        public IEnumerable<TicketReportInViewModel> TicketReports { get; set; }
     }
 }

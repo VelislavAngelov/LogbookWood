@@ -1,11 +1,9 @@
 ﻿namespace LogbookWood.Web.Controllers
 {
     using System.Diagnostics;
-    using System.Linq;
-    using System.Security.Claims;
+
     using LogbookWood.Data;
     using LogbookWood.Web.ViewModels;
-    using LogbookWood.Web.ViewModels.Administration.Dashboard;
     using Microsoft.AspNetCore.Mvc;
 
     public class HomeController : BaseController

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LogbookWood.Data.Models
+﻿namespace LogbookWood.Data.Models
 {
     public class UnitTicket
     {
