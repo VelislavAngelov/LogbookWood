@@ -8,7 +8,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-    public class TicketsController : BaseController
+    public class TicketsController : Controller
     {
         private readonly IWoodService woodService;
         private readonly IAssortmentService assortmentService;
@@ -45,7 +45,7 @@
         public IActionResult CreateReceipt(CreateTicketModel input)
         {
             string userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-           ////return this.Json(input);
+            ////return this.Json(input);
             if (!this.ModelState.IsValid)
             {
                 input.WoodItems = this.woodService.GetAllWoodsItem();
@@ -63,14 +63,6 @@
             return this.Redirect("/Tickets/ListReceipt");
         }
 
-       // [HttpPost]
-        [Authorize]
-        public IActionResult CreateDispatch()
-        {
-            return this.View();
-        }
-
-        // [HttpPost]
         [Authorize]
         public IActionResult ListReceipt()
         {
@@ -80,8 +72,39 @@
             {
                 Tickets = this.ticketService.GetAll(userId),
             };
-           //// return this.Json(viewModel);
+            //// return this.Json(viewModel);
             return this.View(viewModel);
+        }
+
+        [Authorize]
+        public IActionResult CreateDispatch()
+        {
+            CreateTicketOutModel viewModel = new CreateTicketOutModel();
+            viewModel.WoodItems = this.woodService.GetAllWoodsItem();
+            viewModel.AssortmentItems = this.assortmentService.GetAllAssortmentsItem();
+            viewModel.UnitItems = this.unitService.GetAllUnitItem();
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult CreateDispatch(CreateTicketOutModel input)
+        {
+            string userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            if (!this.ModelState.IsValid)
+            {
+                input.WoodItems = this.woodService.GetAllWoodsItem();
+                input.AssortmentItems = this.assortmentService.GetAllAssortmentsItem();
+                input.UnitItems = this.unitService.GetAllUnitItem();
+                this.ticketService.GetUserCompanyName(userId);
+                this.ticketService.GetAdress(userId);
+                this.ticketService.GetAdress(userId);
+
+                return this.View(input);
+            }
+          ////  return this.Json(input);
+            this.ticketService.CreateOut(input, userId);
+            return this.Redirect("/Tickets/ListDispatch");
         }
 
         public IActionResult ListDispatch()

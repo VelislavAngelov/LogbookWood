@@ -5,6 +5,5 @@
     public class ListReceiptViewModel
     {
        public virtual IEnumerable<ListReceiptInViewModel> Tickets { get; set; }
-
     }
 }

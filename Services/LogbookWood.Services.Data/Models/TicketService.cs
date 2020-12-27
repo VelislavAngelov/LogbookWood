@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-
+    using System.Threading.Tasks;
     using LogbookWood.Data;
     using LogbookWood.Data.Common.Repositories;
     using LogbookWood.Data.Models;
@@ -31,9 +31,9 @@
             {
                 NumberTicket = input.NumberTicket,
                 Date = DateTime.UtcNow,
-                SenderName = input.SenderName,
-                SenderBULSTAT = input.SenderBULSTAT,
-                SenderWoodWarehouse = input.SenderWoodWarehouse,
+                ClientDescription = input.ClientDescription,
+                ClientBULSTAT = input.ClientBULSTAT,
+                WoodWarehouseOutside = input.WoodWarehouseOutside,
                 Vehicle = input.Vehicle,
                 TrailerPlates = input.TrailerPlates,
                 Driver = input.Driver,
@@ -47,6 +47,37 @@
                 Unit = input.Unit,
                 TotalVolume = input.TotalVolume * input.Coefficient,
                 Count = input.Count,
+                In = true,
+            };
+
+            this.dbContext.Add(ticket);
+            this.dbContext.SaveChanges();
+        }
+
+        public void CreateOut(CreateTicketOutModel input, string userId)
+        {
+            Ticket ticket = new Ticket
+            {
+                NumberTicket = input.NumberTicket,
+                Date = DateTime.Now,
+                ClientDescription = input.ClientDescription,
+                ClientAddress = input.ClientAddress,
+                ClientBULSTAT = input.ClientBULSTAT,
+                WoodWarehouseOutside = input.WoodWarehouseOutside,
+                Vehicle = input.Vehicle,
+                TrailerPlates = input.TrailerPlates,
+                Driver = input.Driver,
+                UserId = userId,
+                Wood = input.Wood,
+                Category = input.Category,
+                Coefficient = input.Coefficient,
+                Width = input.Width,
+                Length = input.Length,
+                Thickness = input.Thickness,
+                Unit = input.Unit,
+                TotalVolume = input.TotalVolume * input.Coefficient,
+                Count = input.Count,
+                In = false,
             };
 
             this.dbContext.Add(ticket);
@@ -60,7 +91,7 @@
                 .Select(x => new ListReceiptInViewModel
                 {
                     NumberTicket = x.NumberTicket,
-                    SenderName = x.SenderName,
+                    ClientDescription = x.ClientDescription,
                     Date = x.Date,
                     Comment = x.Comment,
                 }).ToList();

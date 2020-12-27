@@ -19,14 +19,22 @@
         public virtual IEnumerable<TicketReportInViewModel> CreateReport(string userId)
         {
             List<TicketReportInViewModel> woodAndCategory = this.AddWoodAndCategory();
+           // var tickets = new Dictionary<string, Dictionary<string, double>>();
 
-            List<TicketReportInViewModel> ticketIn = this.ticketRepository.All().Where(x => x.UserId == userId)
+            List<TicketReportInViewModel> ticketIn = this.ticketRepository.All().Where(x => x.UserId == userId && x.In == true)
                 .Select(x => new TicketReportInViewModel
                 {
                     Wood = x.Wood,
                     Category = x.Category,
                     TotalVolume = x.TotalVolume,
                 }).ToList();
+            List<TicketReportInViewModel> ticketOut = this.ticketRepository.All().Where(x => x.UserId == userId && x.In == false)
+              .Select(x => new TicketReportInViewModel
+              {
+                  Wood = x.Wood,
+                  Category = x.Category,
+                  TotalVolume = x.TotalVolume,
+              }).ToList();
 
             foreach (TicketReportInViewModel ticket in ticketIn)
             {
@@ -35,6 +43,17 @@
                     if (ticket.Wood == list.Wood && ticket.Category == list.Category)
                     {
                         list.TotalVolume += ticket.TotalVolume;
+                    }
+                }
+            }
+
+            foreach (TicketReportInViewModel ticket in ticketOut)
+            {
+                foreach (TicketReportInViewModel list in woodAndCategory)
+                {
+                    if (ticket.Wood == list.Wood && ticket.Category == list.Category)
+                    {
+                        list.TotalVolume -= ticket.TotalVolume;
                     }
                 }
             }

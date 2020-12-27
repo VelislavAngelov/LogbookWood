@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LogbookWood.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201223223625_InitialCreate")]
+    [Migration("20201226165330_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -259,6 +259,15 @@ namespace LogbookWood.Data.Migrations
                     b.Property<string>("Category")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ClientAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClientBULSTAT")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClientDescription")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<double>("Coefficient")
                         .HasColumnType("float");
 
@@ -277,6 +286,9 @@ namespace LogbookWood.Data.Migrations
                     b.Property<string>("Driver")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("In")
+                        .HasColumnType("bit");
+
                     b.Property<double>("Length")
                         .HasColumnType("float");
 
@@ -286,13 +298,7 @@ namespace LogbookWood.Data.Migrations
                     b.Property<string>("NumberTicket")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SenderBULSTAT")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SenderName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SenderWoodWarehouse")
+                    b.Property<string>("Place")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("Thickness")
@@ -317,6 +323,9 @@ namespace LogbookWood.Data.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("Wood")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WoodWarehouseOutside")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

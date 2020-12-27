@@ -14,11 +14,11 @@
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
-        public string SenderName { get; set; }
+        public string ClientDescription { get; set; }
 
-        public string SenderBULSTAT { get; set; }
+        public string ClientBULSTAT { get; set; }
 
-        public string SenderWoodWarehouse { get; set; }
+        public string WoodWarehouseOutside { get; set; }
 
         public string Vehicle { get; set; }
 
@@ -47,6 +47,8 @@
         public string Comment { get; set; }
 
         public string WoodId { get; set; }
+
+        public bool In { get; set; }
 
         public string AssortmentId { get; set; }
 

@@ -1,9 +1,8 @@
-﻿namespace LogbookWood.Data.Migrations
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
+
+namespace LogbookWood.Data.Migrations
 {
-    using System;
-
-    using Microsoft.EntityFrameworkCore.Migrations;
-
     public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -48,9 +47,11 @@
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     NumberTicket = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    SenderName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SenderBULSTAT = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SenderWoodWarehouse = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClientDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClientBULSTAT = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    WoodWarehouseOutside = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClientAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Place = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Vehicle = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TrailerPlates = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Driver = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -64,6 +65,7 @@
                     TotalVolume = table.Column<double>(type: "float", nullable: false),
                     Count = table.Column<double>(type: "float", nullable: false),
                     Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    In = table.Column<bool>(type: "bit", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)

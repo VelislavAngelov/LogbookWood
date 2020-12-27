@@ -1,33 +1,27 @@
-﻿namespace LogbookWood.Data.Models
+﻿namespace LogbookWood.Web.ViewModels.Tickets
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Text;
 
-    using LogbookWood.Data.Common.Models;
+    using Microsoft.AspNetCore.Mvc.Rendering;
 
-    public class Ticket : BaseModel<string>
+    public class CreateTicketOutModel
     {
-        public Ticket()
-        {
-            this.Id = Guid.NewGuid().ToString();
-            this.Woods = new HashSet<TicketWood>();
-            this.Assortments = new HashSet<TicketAssortment>();
-            this.Units = new HashSet<UnitTicket>();
-        }
-
+        [Required]
         public string NumberTicket { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
         public string ClientDescription { get; set; }
 
+        public string ClientAddress { get; set; }
+
         public string ClientBULSTAT { get; set; }
 
         public string WoodWarehouseOutside { get; set; }
-
-        public string ClientAddress { get; set; }
-
-        public string Place { get; set; }
 
         public string Vehicle { get; set; }
 
@@ -55,16 +49,18 @@
 
         public string Comment { get; set; }
 
+        public string WoodId { get; set; }
+
         public bool In { get; set; }
+
+        public string AssortmentId { get; set; }
 
         public string UserId { get; set; }
 
-        public virtual ApplicationUser User { get; set; }
+        public IEnumerable<SelectListItem> WoodItems { get; set; }
 
-        public virtual ICollection<TicketWood> Woods { get; set; }
+        public IEnumerable<SelectListItem> AssortmentItems { get; set; }
 
-        public virtual ICollection<TicketAssortment> Assortments { get; set; }
-
-        public virtual ICollection<UnitTicket> Units { get; set; }
+        public IEnumerable<SelectListItem> UnitItems { get; set; }
     }
 }
