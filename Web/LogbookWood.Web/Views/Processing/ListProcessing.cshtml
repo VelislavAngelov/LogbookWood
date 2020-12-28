@@ -1,0 +1,15 @@
+﻿@model LogbookWood.Web.ViewModels.Processing.ProcessingViewModel
+@inject LogbookWood.Services.Data.Models.ITicketService ticketService
+@using LogbookWood.Data.Models
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+@{
+    this.ViewData["Title"] = "Преработка";
+    ;}
+<h2>Преработка на дървесина</h2>
+<th></th>
+<div class=" col-xs-3 text-left">
+    <a class="btn btn-success" href="/Processing/CreateProcessing">Създай нов</a>
+</div>
+<br />
+<th></th>

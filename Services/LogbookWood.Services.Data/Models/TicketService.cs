@@ -50,7 +50,7 @@
                 In = true,
             };
 
-            this.dbContext.Add(ticket);
+            this.dbContext.Tickets.Add(ticket);
             this.dbContext.SaveChanges();
         }
 
@@ -80,13 +80,13 @@
                 In = false,
             };
 
-            this.dbContext.Add(ticket);
+            this.dbContext.Tickets.Add(ticket);
             this.dbContext.SaveChanges();
         }
 
         public IEnumerable<ListReceiptInViewModel> GetAll(string userId)
         {
-           return this.ticketRepository.All().Where(x => x.UserId == userId)
+           return this.ticketRepository.All().Where(x => x.UserId == userId && x.In == true)
                 .OrderByDescending(x => x.Date)
                 .Select(x => new ListReceiptInViewModel
                 {
@@ -95,6 +95,19 @@
                     Date = x.Date,
                     Comment = x.Comment,
                 }).ToList();
+        }
+
+        public IEnumerable<ListDispatchInViewModel> GetAllOut(string userId)
+        {
+            return this.ticketRepository.All().Where(x => x.UserId == userId && x.In == false)
+                 .OrderByDescending(x => x.Date)
+                 .Select(x => new ListDispatchInViewModel
+                 {
+                     NumberTicket = x.NumberTicket,
+                     ClientDescription = x.ClientDescription,
+                     Date = x.Date,
+                     Comment = x.Comment,
+                 }).ToList();
         }
 
         public string GetUserCompanyName(string userId)

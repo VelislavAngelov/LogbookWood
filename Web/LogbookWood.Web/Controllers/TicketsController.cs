@@ -45,7 +45,7 @@
         public IActionResult CreateReceipt(CreateTicketModel input)
         {
             string userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            ////return this.Json(input);
+           /// /return this.Json(input);
             if (!this.ModelState.IsValid)
             {
                 input.WoodItems = this.woodService.GetAllWoodsItem();
@@ -109,7 +109,14 @@
 
         public IActionResult ListDispatch()
         {
-            return this.View();
+            string userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            ListDispatchViewModel viewModel = new ListDispatchViewModel
+            {
+                Tickets = this.ticketService.GetAllOut(userId),
+            };
+            //// return this.Json(viewModel);
+            return this.View(viewModel);
         }
     }
 }

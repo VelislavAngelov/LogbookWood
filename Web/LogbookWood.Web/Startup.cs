@@ -12,6 +12,7 @@
     using LogbookWood.Services.Mapping;
     using LogbookWood.Services.Messaging;
     using LogbookWood.Web.ViewModels;
+    using LogbookWood.Web.ViewModels.Processing;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -68,7 +69,9 @@
             services.AddTransient<ITicketService, TicketService>();
             services.AddTransient<IUnitService, UnitService>();
             services.AddTransient<IReportsService, ReportsService>();
+            services.AddTransient<IProcessingService, ProcessingService>();
             services.AddTransient<ApplicationUser>();
+            services.AddTransient<ProcessingOutViewModel>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

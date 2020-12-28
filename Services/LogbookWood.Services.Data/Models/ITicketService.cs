@@ -13,6 +13,8 @@
 
         IEnumerable<ListReceiptInViewModel> GetAll(string userId);
 
+        IEnumerable<ListDispatchInViewModel> GetAllOut(string userId);
+
         string GetUserCompanyName(string userId);
 
         string GetAdress(string userId);

@@ -1,4 +1,6 @@
-﻿@using LogbookWood.Data.Models
+﻿@model LogbookWood.Web.ViewModels.Tickets.ListDispatchViewModel
+@inject LogbookWood.Services.Data.Models.ITicketService ticketService
+@using LogbookWood.Data.Models
 @using Microsoft.AspNetCore.Identity
 @inject UserManager<ApplicationUser> UserManager
 @{
@@ -21,17 +23,19 @@
                 <th scope="col">Коментар</th>
             </tr>
         </thead>
-       
-        
+        @foreach (var itemOut in this.Model.Tickets)
+        {
             <tbody>
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>@itemOut.NumberTicket</td>
+                    <td>@itemOut.Date</td>
+                    <td>@itemOut.ClientDescription</td>
+                    <td>@ticketService.GetUserCompanyName(UserManager.GetUserId(User))</td>
+                    <td>@itemOut.Comment</td>
                 </tr>
             </tbody>
-        
+        }
+
     </table>
 
 

@@ -1,0 +1,153 @@
+﻿@model LogbookWood.Web.ViewModels.Processing.ProcessingViewModel
+@inject LogbookWood.Web.ViewModels.Processing.ProcessingOutViewModel outWiew
+@using LogbookWood.Data.Models
+@using LogbookWood.Data
+@inject LogbookWood.Services.Data.Models.ITicketService ticketService
+@using Microsoft.AspNetCore.Identity
+@using LogbookWood.Web
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+    this.ViewData["Title"] = "Преработка";
+
+}
+<form method="post" class="">
+
+    <div class="row">
+        <div class="col-md-4">
+            <h4 class="text-center">Собственик</h4>
+            <hr>
+            <h4>"@ticketService.GetUserCompanyName(UserManager.GetUserId(User))"</h4>
+            <hr>
+            <h6>Адрес: @ticketService.GetAdress(UserManager.GetUserId(User))</h6>
+            <hr>
+            <h6>Телефон: @ticketService.GetPhone(UserManager.GetUserId(User))</h6>
+        </div>
+        <div class="col">
+            <h2 class="text-center">Преработка на дървесина</h2>
+
+            <h5 class="text-center">Регистриран</h5>
+            <div class="form-group">
+                <label for="example-date-input" class="col col-form-label"></label>
+                <div class="">
+                    <input class="form-control" type="date" value="22-06-2020" id="example-date-input">
+                </div>
+            </div>
+            <input type="text" class="form-control ng-pristine ng-valid ng-touched" style="margin-top:10px;" asp-for="ProcessingInViewModel.NumberProcessing" placeholder="Въведете номер на документа">
+        </div>
+        <div class="col-md-4">
+        </div>
+    </div>
+    <hr />
+    <div class="table-responsive">
+
+        <table class="table table-hover text-centered">
+            <thead class="thead-dark">
+                <tr class="text-dark">
+                    <th scope="col">Дървесина</th>
+                    <th scope="col">Aсортимент</th>
+                    <th scope="col">Мерна единица.</th>
+                    <th scope="col">Коефициент</th>
+                    <th scope="col">Общо обем</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="input-group-append">
+                            <label></label>
+                            <div class="col-20">
+                                <select asp-for="ProcessingOutViewModel.Wood" class="form-control" asp-items="Model.ProcessingOutViewModel.WoodItems"> </select>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group-append">
+                            <label></label>
+                            <select asp-for="ProcessingOutViewModel.Category" class="form-control" asp-items="Model.ProcessingOutViewModel.AssortmentItems"></select>
+                            <span asp-validation-for="ProcessingOutViewModel.Category" class="text-danger"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group-append">
+                            <label></label>
+                            <select asp-for="ProcessingOutViewModel.Unit" class="form-control" asp-items="Model.ProcessingOutViewModel.UnitItems"></select>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group-append">
+                            <label></label>
+                            <input asp-for="ProcessingOutViewModel.Coefficient" class="form-control" />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group-append">
+                            <label></label>
+                            <input asp-for="ProcessingOutViewModel.TotalVolume" class="form-control" />
+                            <span asp-validation-for="ProcessingOutViewModel.TotalVolume" class="text-danger"></span>
+                        </div>
+                    </td>
+
+                </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+    <hr>
+    <div class="table-responsive">
+        <table class="table table-hover text-centered">
+            <thead class="thead-dark">
+                <tr class="text-dark">
+                    <th scope="col">Дървесина</th>
+                    <th scope="col">Aсортимент</th>
+                    <th scope="col">Мерна единица.</th>
+                    <th scope="col">Коефициент</th>
+                    <th scope="col">Общо обем</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="input-group-append">
+                            <label></label>
+                            <div class="col-20">
+                                <select asp-for="ProcessingInViewModel.Wood" class="form-control" asp-items="Model.ProcessingInViewModel.WoodItems"> </select>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group-append">
+                            <label></label>
+                            <select asp-for="ProcessingInViewModel.Category" class="form-control" asp-items="Model.ProcessingInViewModel.AssortmentItems"></select>
+                            <span asp-validation-for="ProcessingInViewModel.Category" class="text-danger"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group-append">
+                            <label></label>
+                            <select asp-for="ProcessingInViewModel.Unit" class="form-control" asp-items="Model.ProcessingInViewModel.UnitItems"></select>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group-append">
+                            <label></label>
+                            <input asp-for="ProcessingInViewModel.Coefficient" class="form-control" />
+                            <span asp-validation-for="ProcessingInViewModel.Coefficient" class="text-danger"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group-append">
+                            <label></label>
+                            <input asp-for="ProcessingInViewModel.TotalVolume" class="form-control" />
+                            <span asp-validation-for="ProcessingInViewModel.TotalVolume" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <button type="submit" class="btn btn-success">Регистрирай</button>
+</form>
