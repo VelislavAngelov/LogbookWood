@@ -13,17 +13,18 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="stylesheet"type="text/css"href="/lib/bootstrap/dist/css/" />
     <link rel="manifest" href="/site.webmanifest">
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-light bg-success border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
+                @*<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>
+                </button>*@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
@@ -35,11 +36,17 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Начало</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Tickets" asp-action="ListReceipt">Постъпление</a>
+                            <li class="nav-item dropdown text-black-50">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Превозни билети
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item text-dark" asp-controller="Tickets" asp-action="ListReceipt">Постъпление</a>
+                                    <a class="dropdown-item" asp-controller="Tickets" asp-action="ListDispatch">Експедиция</a>
+                                </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Tickets" asp-action="ListDispatch">Експедиция</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Processing" asp-action="ListProcessing">Преработка</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Reports" asp-action="Index">Справка</a>
@@ -60,7 +67,7 @@
 
     <footer class="border-top bg-success footer text-dark">
         <div class="container">
-            &copy; @DateTime.Now.Year - @GlobalConstants.SystemName
+            &copy; @DateTime.Now.Year - @GlobalConstants.SystemName 
         </div>
     </footer>
 

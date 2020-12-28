@@ -31,7 +31,7 @@
             <div class="form-group">
                 <label for="example-date-input" class="col col-form-label"></label>
                 <div class="">
-                    <input class="form-control" type="date" value="22-06-2020" id="example-date-input">
+                    <input asp-for="ProcessingOutViewModel.Date" class="form-control" type="date" value="22-06-2020" id="example-date-input">
                 </div>
             </div>
             <input type="text" class="form-control ng-pristine ng-valid ng-touched" style="margin-top:10px;" asp-for="ProcessingInViewModel.NumberProcessing" placeholder="Въведете номер на документа">
@@ -41,8 +41,9 @@
     </div>
     <hr />
     <div class="table-responsive">
-
+        <h5 class="sub-header">Използвана дървесина</h5>
         <table class="table table-hover text-centered">
+
             <thead class="thead-dark">
                 <tr class="text-dark">
                     <th scope="col">Дървесина</th>
@@ -97,6 +98,7 @@
     </div>
     <hr>
     <div class="table-responsive">
+        <h5 class="sub-header">Получена дървесина</h5>
         <table class="table table-hover text-centered">
             <thead class="thead-dark">
                 <tr class="text-dark">

@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
     using LogbookWood.Data;
     using LogbookWood.Data.Common.Repositories;
     using LogbookWood.Data.Models;
@@ -84,17 +85,40 @@
             this.dbContext.SaveChanges();
         }
 
+        public void CreateImp(CreateImportViewModel input, string userId)
+        {
+            Ticket ticket = new Ticket
+            {
+                NumberTicket = input.NumberTicket,
+                Date = DateTime.Now,
+                ClientDescription = input.ClientDescription,
+                Place = "Import",
+                Vehicle = input.Vehicle,
+                Driver = input.Driver,
+                Wood = input.Wood,
+                Category = input.Category,
+                Coefficient = input.Coefficient,
+                Unit = input.Unit,
+                TotalVolume = input.TotalVolume,
+                In = true,
+                UserId = userId,
+            };
+
+            this.dbContext.Add(ticket);
+            this.dbContext.SaveChanges();
+        }
+
         public IEnumerable<ListReceiptInViewModel> GetAll(string userId)
         {
-           return this.ticketRepository.All().Where(x => x.UserId == userId && x.In == true && x.Place == null)
-                .OrderByDescending(x => x.Date)
-                .Select(x => new ListReceiptInViewModel
-                {
-                    NumberTicket = x.NumberTicket,
-                    ClientDescription = x.ClientDescription,
-                    Date = x.Date,
-                    Comment = x.Comment,
-                }).ToList();
+            return this.ticketRepository.All().Where(x => x.UserId == userId && x.In == true && x.Place == null && x.Place != "Import")
+                 .OrderByDescending(x => x.Date)
+                 .Select(x => new ListReceiptInViewModel
+                 {
+                     NumberTicket = x.NumberTicket,
+                     ClientDescription = x.ClientDescription,
+                     Date = x.Date,
+                     Comment = x.Comment,
+                 }).ToList();
         }
 
         public IEnumerable<ListDispatchInViewModel> GetAllOut(string userId)
@@ -108,6 +132,19 @@
                      Date = x.Date,
                      Comment = x.Comment,
                  }).ToList();
+        }
+
+        public IEnumerable<ListImportViewInModel> GetAllImp(string userId)
+        {
+            return this.ticketRepository.All().Where(x => x.UserId == userId && x.Place == "Import").
+                OrderBy(x => x.Date)
+                .Select(x => new ListImportViewInModel
+                {
+                    NumberTicket = x.NumberTicket,
+                    ClientDescription = x.ClientDescription,
+                    Date = x.Date,
+                    Comment = x.Comment,
+                }).ToList();
         }
 
         public string GetUserCompanyName(string userId)
@@ -137,5 +174,6 @@
                 .ToList().FirstOrDefault()
                 .ToString();
         }
+
     }
 }

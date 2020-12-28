@@ -118,5 +118,45 @@
             //// return this.Json(viewModel);
             return this.View(viewModel);
         }
+
+        public IActionResult CreateImport()
+        {
+            CreateImportViewModel viewModel = new CreateImportViewModel();
+            viewModel.WoodItems = this.woodService.GetAllWoodsItem();
+            viewModel.AssortmentItems = this.assortmentService.GetAllAssortmentsItem();
+            viewModel.UnitItems = this.unitService.GetAllUnitItem();
+            return this.View(viewModel);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult CreateImport(CreateImportViewModel input)
+        {
+            string userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            if (!this.ModelState.IsValid)
+            {
+                input.WoodItems = this.woodService.GetAllWoodsItem();
+                input.AssortmentItems = this.assortmentService.GetAllAssortmentsItem();
+                input.UnitItems = this.unitService.GetAllUnitCategoryItem();
+
+                return this.View(input);
+            }
+
+            this.ticketService.CreateImp(input, userId);
+
+            return this.Redirect("/Tickets/ListImports");
+        }
+
+        public IActionResult ListImports()
+        {
+            string userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            ListImportViewModel viewModel = new ListImportViewModel
+            {
+                Tickets = this.ticketService.GetAllImp(userId),
+            };
+            //// return this.Json(viewModel);
+            return this.View(viewModel);
+        }
     }
 }

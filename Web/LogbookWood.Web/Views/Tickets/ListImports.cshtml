@@ -1,0 +1,40 @@
+﻿@model LogbookWood.Web.ViewModels.Tickets.ListImportViewModel
+@inject LogbookWood.Services.Data.Models.ITicketService ticketService
+@using LogbookWood.Data.Models
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+@{
+    this.ViewData["Title"] = "Внос на дървесина";
+    ;}
+
+<h2>Внос на дървесина</h2>
+<div class=" col-xs-3 text-left">
+    <a class="btn btn-success" href="/Tickets/CreateImport">Създай нов</a>
+</div>
+<br />
+<th></th>
+<div class="table-responsive">
+    <table class="table table-hover text-centered">
+        <thead class="thead-dark">
+            <tr class="text-dark">
+                <th scope="col">Номер</th>
+                <th scope="col">Дата</th>
+                <th scope="col">Получател</th>
+                <th scope="col">Изпращач</th>
+                <th scope="col">Коментар</th>
+            </tr>
+        </thead>
+        @foreach (var item in this.Model.Tickets)
+        {
+            <tbody>
+                <tr>
+                    <td>@item.NumberTicket</td>
+                    <td>@item.Date</td>
+                    <td>@ticketService.GetUserCompanyName(UserManager.GetUserId(User))</td>
+                    <td>@item.ClientDescription</td>
+                    <td>@item.Comment</td>
+                </tr>
+            </tbody>
+        }
+    </table>
+</div>

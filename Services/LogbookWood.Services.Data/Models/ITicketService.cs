@@ -11,9 +11,13 @@
 
         void CreateOut(CreateTicketOutModel input, string userId);
 
+        void CreateImp(CreateImportViewModel input, string userId);
+
         IEnumerable<ListReceiptInViewModel> GetAll(string userId);
 
         IEnumerable<ListDispatchInViewModel> GetAllOut(string userId);
+
+        IEnumerable<ListImportViewInModel> GetAllImp(string userId);
 
         string GetUserCompanyName(string userId);
 

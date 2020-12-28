@@ -30,6 +30,7 @@
             {
                 NumberTicket = input.ProcessingInViewModel.NumberProcessing,
                 Wood = input.ProcessingOutViewModel.Wood,
+                Date=  input.ProcessingOutViewModel.Date,
                 Category = input.ProcessingOutViewModel.Category,
                 Unit = input.ProcessingOutViewModel.Unit,
                 Coefficient = input.ProcessingOutViewModel.Coefficient,
