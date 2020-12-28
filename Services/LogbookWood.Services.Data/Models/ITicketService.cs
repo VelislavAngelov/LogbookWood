@@ -13,11 +13,15 @@
 
         void CreateImp(CreateImportViewModel input, string userId);
 
+        void CreateShipm(CreateShipmentViewModel input, string userId);
+
         IEnumerable<ListReceiptInViewModel> GetAll(string userId);
 
         IEnumerable<ListDispatchInViewModel> GetAllOut(string userId);
 
         IEnumerable<ListImportViewInModel> GetAllImp(string userId);
+
+        IEnumerable<ListShipmmentInViewModel> GetAllShipm(string userId);
 
         string GetUserCompanyName(string userId);
 

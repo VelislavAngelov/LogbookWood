@@ -20,22 +20,16 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-light bg-success border-bottom box-shadow mb-3">
             <div class="container">
-                @*<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
+                <a class="navbar-brand text-dark" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>*@
+                </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
                         @if (this.User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Начало</a>
-                            </li>
                             <li class="nav-item dropdown text-black-50">
                                 <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Превозни билети
@@ -45,9 +39,28 @@
                                     <a class="dropdown-item" asp-controller="Tickets" asp-action="ListDispatch">Експедиция</a>
                                 </div>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Processing" asp-action="ListProcessing">Преработка</a>
+                            <li class="nav-item dropdown text-black-50">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Други документи
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item " asp-controller="Tickets" asp-action="ListShipment">Изписване на дървесина</a>
+                                    <a class="dropdown-item" asp-controller="Processing" asp-action="ListProcessing">Преработка</a>
+                                    <a class="dropdown-item" asp-controller="Tickets" asp-action="ListImports">Внос на дървесина</a>
+                                </div>
                             </li>
+
+                            <li class="nav-item dropdown text-black-50">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Каталози
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item " asp-controller="Vehicle" asp-action="ListVehicle">Превозни средства</a>
+                                    <a class="dropdown-item" asp-controller="Correspondent" asp-action="ListCorrespondent">Контрагенти</a>
+                                    <a class="dropdown-item" asp-controller="Employee" asp-action="ListEmployee">Служители</a>
+                                </div>
+                            </li>
+
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Reports" asp-action="Index">Справка</a>
                             </li>
@@ -67,7 +80,8 @@
 
     <footer class="border-top bg-success footer text-dark">
         <div class="container">
-            &copy; @DateTime.Now.Year - @GlobalConstants.SystemName 
+            &copy; @DateTime.Now.Year - @GlobalConstants.SystemName - <a class="text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+ 
         </div>
     </footer>
 

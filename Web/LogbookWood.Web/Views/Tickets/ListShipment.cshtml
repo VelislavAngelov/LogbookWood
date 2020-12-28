@@ -1,0 +1,42 @@
+﻿@model LogbookWood.Web.ViewModels.Tickets.ListShipmmentViewModel
+@inject LogbookWood.Services.Data.Models.ITicketService ticketService
+@using LogbookWood.Data.Models
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+@{
+    this.ViewData["Title"] = "Изписване на дървесина";
+    ;}
+
+<h2>Внос на дървесина</h2>
+<div class=" col-xs-3 text-left">
+    <a class="btn btn-success" href="/Tickets/CreateShipment">Създай нов</a>
+</div>
+<br />
+<th></th>
+<div class="table-responsive">
+    <table class="table table-hover text-centered">
+        <thead class="thead-dark">
+            <tr class="text-dark">
+                <th scope="col">Номер</th>
+                <th scope="col">Дата</th>
+                <th scope="col">Дървесина</th>
+                <th scope="col">Категория</th>
+                <th scope="col">Обем</th>
+                <th scope="col">Коментар</th>
+            </tr>
+        </thead>
+        @foreach (var item in this.Model.ListShipmments)
+        {
+            <tbody>
+                <tr>
+                    <td>@item.NumberTicket</td>
+                    <td>@item.Date</td>
+                    <td>@item.Wood</td>
+                    <td>@item.Category</td>
+                    <td>@item.TotalVolume</td>
+                    <td>@item.Comment</td>
+                </tr>
+            </tbody>
+        }
+    </table>
+</div>

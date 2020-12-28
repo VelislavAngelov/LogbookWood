@@ -108,6 +108,27 @@
             this.dbContext.SaveChanges();
         }
 
+        public void CreateShipm(CreateShipmentViewModel input, string userId)
+        {
+            Ticket ticket = new Ticket
+            {
+                NumberTicket = input.NumberTicket,
+                Date = DateTime.Now,
+                Place = "Shipment",
+                Wood = input.Wood,
+                Category = input.Category,
+                Coefficient = input.Coefficient,
+                Unit = input.Unit,
+                TotalVolume = input.TotalVolume,
+                Comment = input.Comment,
+                In = false,
+                UserId = userId,
+            };
+
+            this.dbContext.Add(ticket);
+            this.dbContext.SaveChanges();
+        }
+
         public IEnumerable<ListReceiptInViewModel> GetAll(string userId)
         {
             return this.ticketRepository.All().Where(x => x.UserId == userId && x.In == true && x.Place == null && x.Place != "Import")
@@ -123,7 +144,7 @@
 
         public IEnumerable<ListDispatchInViewModel> GetAllOut(string userId)
         {
-            return this.ticketRepository.All().Where(x => x.UserId == userId && x.In == false && x.Place == null)
+            return this.ticketRepository.All().Where(x => x.UserId == userId && x.In == false && x.Place == null && x.Place != "Shipment")
                  .OrderByDescending(x => x.Date)
                  .Select(x => new ListDispatchInViewModel
                  {
@@ -146,6 +167,22 @@
                     Comment = x.Comment,
                 }).ToList();
         }
+
+        public IEnumerable<ListShipmmentInViewModel> GetAllShipm(string userId)
+        {
+            return this.ticketRepository.All().Where(x => x.UserId == userId && x.Place == "Shipment").
+                OrderBy(x => x.Date)
+                .Select(x => new ListShipmmentInViewModel
+                {
+                    NumberTicket = x.NumberTicket,
+                    Date = x.Date,
+                    Wood = x.Wood,
+                    Category = x.Category,
+                    TotalVolume = x.TotalVolume,
+                    Comment = x.Comment,
+                }).ToList();
+        }
+
 
         public string GetUserCompanyName(string userId)
         {
