@@ -1,4 +1,4 @@
-﻿@model LogbookWood.Web.ViewModels.Processing.ProcessingViewModel
+﻿@model LogbookWood.Web.ViewModels.Processing.ListProcessignViewModel
 @inject LogbookWood.Services.Data.Models.ITicketService ticketService
 @using LogbookWood.Data.Models
 @using Microsoft.AspNetCore.Identity
@@ -13,3 +13,116 @@
 </div>
 <br />
 <th></th>
+<div class="row">
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+        <h5 class="sub-header">Използвана дървесина</h5>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Номер </th>
+                    <th>Дата</th>
+                    <th>Дървесина</th>
+                    <th>Категория</th>
+                    <th>Обем</th>
+                </tr>
+            </thead>
+            @foreach (var itemOut in this.Model.ListProcessingOutViews)
+            {
+                <tbody>
+                    <tr>
+                        <td class="col-md-1">@itemOut.NumberProcessing</td>
+                        <td>@itemOut.Date</td>
+                        <td class="col-md-3">@itemOut.Wood</td>
+                        <td class="col-md-4">@itemOut.Category</td>
+                        <td class="col-md-5">@itemOut.TotalVolume</td>
+                    </tr>
+                </tbody>
+            }
+        </table>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+        <h5 class="sub-header">Получена дървесина</h5>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Дървесина</th>
+                    <th>Категория</th>
+                    <th>Обем</th>
+                </tr>
+            </thead>
+            @foreach (var itemIn in this.Model.ListProcessingInViews)
+            {
+                <tbody>
+                    <tr>
+                        <td class="col-md-3">@itemIn.Wood</td>
+                        <td class="col-md-4">@itemIn.Category</td>
+                        <td class="col-md-5">@itemIn.TotalVolume</td>
+                    </tr>
+                </tbody>
+
+            }
+        </table>
+    </div>
+</div>
+@*<div class="col-xs-6">
+<h2 class="sub-header">Subtitle</h2>
+  <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th class="col-md-1">#</th>
+                  <th class="col-md-2">Header</th>
+                  <th class="col-md-3">Header</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="col-md-1">1,001</td>
+                  <td class="col-md-2">1,001</td>
+                  <td class="col-md-3">1,001</td>
+                </tr>
+                <tr>
+                  <td class="col-md-1">1,001</td>
+                  <td class="col-md-2">1,001</td>
+                  <td class="col-md-3">1,001</td>
+                </tr>
+                 <tr>
+                  <td class="col-md-1">1,001</td>
+                  <td class="col-md-2">1,001</td>
+                  <td class="col-md-3">1,001</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+</div>
+ <div class="col-xs-6">
+          <h2 class="sub-header">Latest Incidents</h2>
+         <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th class="col-md-1">#</th>
+                  <th class="col-md-2">Header</th>
+                  <th class="col-md-3">Header</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="col-md-1">1,001</td>
+                  <td class="col-md-2">1,001</td>
+                  <td class="col-md-3">1,001</td>
+                </tr>
+                <tr>
+                  <td class="col-md-1">1,001</td>
+                  <td class="col-md-2">1,001</td>
+                  <td class="col-md-3">1,001</td>
+                </tr>
+                 <tr>
+                  <td class="col-md-1">1,001</td>
+                  <td class="col-md-2">1,001</td>
+                  <td class="col-md-3">1,001</td>
+                </tr>
+              </tbody>
+            </table>
+         <div/>
+</div>*@

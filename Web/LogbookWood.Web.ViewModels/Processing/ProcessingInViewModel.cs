@@ -10,6 +10,8 @@
     {
         public string NumberProcessing { get; set; }
 
+        public DateTime Date { get; set; }
+
         public string Wood { get; set; }
 
         public string Category { get; set; }
@@ -19,6 +21,8 @@
         public double Coefficient { get; set; }
 
         public double TotalVolume { get; set; }
+
+        public string Place { get; set; }
 
         public bool In { get; set; }
 

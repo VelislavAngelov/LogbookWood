@@ -86,7 +86,7 @@
 
         public IEnumerable<ListReceiptInViewModel> GetAll(string userId)
         {
-           return this.ticketRepository.All().Where(x => x.UserId == userId && x.In == true)
+           return this.ticketRepository.All().Where(x => x.UserId == userId && x.In == true && x.Place == null)
                 .OrderByDescending(x => x.Date)
                 .Select(x => new ListReceiptInViewModel
                 {
@@ -99,7 +99,7 @@
 
         public IEnumerable<ListDispatchInViewModel> GetAllOut(string userId)
         {
-            return this.ticketRepository.All().Where(x => x.UserId == userId && x.In == false)
+            return this.ticketRepository.All().Where(x => x.UserId == userId && x.In == false && x.Place == null)
                  .OrderByDescending(x => x.Date)
                  .Select(x => new ListDispatchInViewModel
                  {

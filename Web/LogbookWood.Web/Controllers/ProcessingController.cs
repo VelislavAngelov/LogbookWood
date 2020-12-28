@@ -3,6 +3,7 @@
     using System.Security.Claims;
 
     using LogbookWood.Data;
+    using LogbookWood.Data.Models;
     using LogbookWood.Services.Data.Models;
     using LogbookWood.Web.ViewModels.Processing;
     using LogbookWood.Web.ViewModels.Tickets;
@@ -49,7 +50,6 @@
         }
 
         [Authorize]
-
         [HttpPost]
         public IActionResult CreateProcessing(ProcessingViewModel input)
         {
@@ -74,7 +74,15 @@
 
         public IActionResult ListProcessing()
         {
-            return this.View();
+            string userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var viewModel = new ListProcessignViewModel()
+            {
+                ListProcessingInViews = this.processingService.GetAllIn(userId),
+                ListProcessingOutViews = this.processingService.GetAllOut(userId),
+
+            };
+           //// return this.Json(viewModel);
+            return this.View(viewModel);
         }
 
     }

@@ -7,5 +7,6 @@
     public interface IReportsService
     {
          IEnumerable<TicketReportInViewModel> CreateReport(string userId);
+
     }
 }
