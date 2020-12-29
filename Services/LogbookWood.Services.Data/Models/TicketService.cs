@@ -104,7 +104,7 @@
                 UserId = userId,
             };
 
-            this.dbContext.Add(ticket);
+            this.dbContext.Tickets.Add(ticket);
             this.dbContext.SaveChanges();
         }
 
@@ -125,7 +125,7 @@
                 UserId = userId,
             };
 
-            this.dbContext.Add(ticket);
+            this.dbContext.Tickets.Add(ticket);
             this.dbContext.SaveChanges();
         }
 

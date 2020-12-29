@@ -31,7 +31,6 @@
         [Required]
         public string Driver { get; set; }
 
-
         public string Wood { get; set; }
 
         public string Category { get; set; }

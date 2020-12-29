@@ -1,0 +1,73 @@
+﻿@model LogbookWood.Web.ViewModels.Vehicle.CreateVehicleViewModel
+@using LogbookWood.Data.Models
+@using LogbookWood.Data
+@inject LogbookWood.Services.Data.Models.ITicketService ticketService
+@using Microsoft.AspNetCore.Identity
+@using LogbookWood.Web
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+    this.ViewData["Title"] = "Превозни средства";
+
+}
+@*<div class="form-horizontal">
+    <h2>Ново превозно средство</h2>
+    <hr>
+    <div class="form-group">
+        <label class="control-label col" for="">Регистрационен номер</label>
+        <div class="col-md-10">
+            <input asp-for="RegistrationNumber" class="form-control" />
+            <span class="field-validation-valid text-danger" data-valmsg-for="Description" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="">Марка</label>
+        <div class="col-md-10">
+            <input asp-for="Brand" class="form-control" />
+            <span class="field-validation-valid text-danger" data-valmsg-for="Brand" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="">Модел</label>
+        <div class="col-md-10">
+            <input asp-for="Model" class="form-control" />
+            <span class="field-validation-valid text-danger" data-valmsg-for="Model" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Създай" class="btn btn-success">
+        </div>
+    </div>
+</div>*@
+<form method="post" class="">
+    <div class="row">
+        <div class="col">
+            <h2 class="text-center"> Ново превозно средство</h2>
+            <div class="row">
+                <div class="col-xl-8">
+                    <label>Марка</label>
+                    <input asp-for="RegistrationNumber" class="form-control" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-8">
+                    <label>Превозното средство</label>
+                    <input asp-for="Brand" class="form-control" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-8">
+                    <label>Модел</label>
+                    <input asp-for="Model" class="form-control" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-success">Регистрирай</button>
+</form>

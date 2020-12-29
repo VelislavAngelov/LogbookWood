@@ -1,0 +1,35 @@
+﻿@model LogbookWood.Web.ViewModels.Vehicle.ListVehicleViewModel
+@using LogbookWood.Data.Models
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+@{
+    this.ViewData["Title"] = "Превозни средства";
+    ;}
+
+<h2>Превозни средства</h2>
+<div class=" col-xs-3 text-left">
+    <a class="btn btn-success" href="/Vehicle/CreateVehicle">Създай нов</a>
+</div>
+<br />
+<th></th>
+<div class="table-responsive">
+    <table class="table table-hover text-centered">
+        <thead class="thead-dark">
+            <tr class="text-dark">
+                <th scope="col">Регистрационен номер </th>
+                <th scope="col">Марка</th>
+                <th scope="col">Модел</th>
+            </tr>
+        </thead>
+        @foreach (var item in this.Model.ListVehicles)
+        {
+            <tbody>
+                <tr>
+                    <td>@item.RegistrationNumber</td>
+                    <td>@item.Brand</td>
+                    <td>@item.Model</td>
+                </tr>
+            </tbody>
+        }
+    </table>
+</div>

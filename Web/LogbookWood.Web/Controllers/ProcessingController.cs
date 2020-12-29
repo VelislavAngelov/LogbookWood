@@ -3,10 +3,8 @@
     using System.Security.Claims;
 
     using LogbookWood.Data;
-    using LogbookWood.Data.Models;
     using LogbookWood.Services.Data.Models;
     using LogbookWood.Web.ViewModels.Processing;
-    using LogbookWood.Web.ViewModels.Tickets;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 

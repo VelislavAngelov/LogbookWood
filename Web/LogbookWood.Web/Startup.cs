@@ -72,6 +72,7 @@
             services.AddTransient<IProcessingService, ProcessingService>();
             services.AddTransient<ApplicationUser>();
             services.AddTransient<ProcessingOutViewModel>();
+            services.AddTransient<IVehicleService, VehicleService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

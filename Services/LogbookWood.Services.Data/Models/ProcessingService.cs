@@ -30,7 +30,7 @@
             {
                 NumberTicket = input.ProcessingInViewModel.NumberProcessing,
                 Wood = input.ProcessingOutViewModel.Wood,
-                Date=  input.ProcessingOutViewModel.Date,
+                Date = input.ProcessingOutViewModel.Date,
                 Category = input.ProcessingOutViewModel.Category,
                 Unit = input.ProcessingOutViewModel.Unit,
                 Coefficient = input.ProcessingOutViewModel.Coefficient,
@@ -72,7 +72,6 @@
                    Date = x.Date.Date,
                    TotalVolume = x.TotalVolume,
                 }).ToList();
-
         }
 
         public IEnumerable<ListProcessingOutViewModel> GetAllOut(string userId)

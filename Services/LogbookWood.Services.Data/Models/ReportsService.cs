@@ -19,7 +19,6 @@
         public virtual IEnumerable<TicketReportInViewModel> CreateReport(string userId)
         {
             List<TicketReportInViewModel> woodAndCategory = this.AddWoodAndCategory();
-           // var tickets = new Dictionary<string, Dictionary<string, double>>();
 
             List<TicketReportInViewModel> ticketIn = this.ticketRepository.All().Where(x => x.UserId == userId && x.In == true)
                 .Select(x => new TicketReportInViewModel
