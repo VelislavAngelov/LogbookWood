@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LogbookWood.Web.ViewModels.Vehicle
+﻿namespace LogbookWood.Web.ViewModels.Vehicle
 {
+    using System.Collections.Generic;
+
     public class ListVehicleViewModel
     {
         public virtual IEnumerable<ListVehicleInViewModel> ListVehicles { get; set; }

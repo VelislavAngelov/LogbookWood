@@ -9,6 +9,7 @@
 
     public class CreateImportViewModel
     {
+        [Required]
         public string NumberTicket { get; set; }
 
         [Required]
@@ -32,6 +33,8 @@
 
         public double Coefficient { get; set; }
 
+        [Required]
+        [Range(0.01, 1000)]
         public double TotalVolume { get; set; }
 
         public bool In { get; set; }

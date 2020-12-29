@@ -53,6 +53,5 @@ namespace LogbookWood.Data.Models
         public ICollection<Employee> Employees { get; set; }
 
         public ICollection<Vehicle> Vehicles { get; set; }
-
     }
 }

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-
-namespace LogbookWood.Web.ViewModels.Tickets
+﻿namespace LogbookWood.Web.ViewModels.Tickets
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
     public class ListImportViewInModel
     {
         public string NumberTicket { get; set; }

@@ -1,15 +1,13 @@
-﻿using LogbookWood.Data;
-using LogbookWood.Data.Common.Repositories;
-using LogbookWood.Data.Models;
-using LogbookWood.Web.ViewModels.Vehicle;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LogbookWood.Services.Data.Models
+﻿namespace LogbookWood.Services.Data.Models
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using LogbookWood.Data;
+    using LogbookWood.Data.Common.Repositories;
+    using LogbookWood.Data.Models;
+    using LogbookWood.Web.ViewModels.Vehicle;
+
     public class VehicleService : IVehicleService
     {
         private readonly IRepository<Vehicle> vechicleRepository;

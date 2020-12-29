@@ -1,10 +1,8 @@
 ﻿@model LogbookWood.Web.ViewModels.Processing.ProcessingViewModel
 @inject LogbookWood.Web.ViewModels.Processing.ProcessingOutViewModel outWiew
 @using LogbookWood.Data.Models
-@using LogbookWood.Data
 @inject LogbookWood.Services.Data.Models.ITicketService ticketService
 @using Microsoft.AspNetCore.Identity
-@using LogbookWood.Web
 @inject UserManager<ApplicationUser> UserManager
 @inject SignInManager<ApplicationUser> SignInManager
 
@@ -18,7 +16,7 @@
         <div class="col-md-4">
             <h4 class="text-center">Собственик</h4>
             <hr>
-            <h4>"@ticketService.GetUserCompanyName(UserManager.GetUserId(User))"</h4>
+            <h4>@ticketService.GetUserCompanyName(UserManager.GetUserId(User))</h4>
             <hr>
             <h6>Адрес: @ticketService.GetAdress(UserManager.GetUserId(User))</h6>
             <hr>

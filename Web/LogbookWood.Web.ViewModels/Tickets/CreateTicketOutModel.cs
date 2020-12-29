@@ -15,9 +15,12 @@
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
+        [Required]
         public string ClientDescription { get; set; }
 
+        [Required]
         public string ClientAddress { get; set; }
+
 
         public string ClientBULSTAT { get; set; }
 

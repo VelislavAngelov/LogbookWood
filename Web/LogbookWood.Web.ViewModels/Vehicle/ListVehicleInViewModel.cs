@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LogbookWood.Web.ViewModels.Vehicle
+﻿namespace LogbookWood.Web.ViewModels.Vehicle
 {
     public class ListVehicleInViewModel
     {

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LogbookWood.Web.ViewModels.Tickets
+﻿namespace LogbookWood.Web.ViewModels.Tickets
 {
+    using System.Collections.Generic;
+
     public class ListImportViewModel
     {
         public virtual IEnumerable<ListImportViewInModel> Tickets { get; set; }

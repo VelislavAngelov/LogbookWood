@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
 
     using LogbookWood.Data;
     using LogbookWood.Data.Common.Repositories;
@@ -183,7 +182,6 @@
                 }).ToList();
         }
 
-
         public string GetUserCompanyName(string userId)
         {
             return this.dbContext.Users
@@ -211,6 +209,5 @@
                 .ToList().FirstOrDefault()
                 .ToString();
         }
-
     }
 }

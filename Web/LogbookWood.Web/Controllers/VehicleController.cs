@@ -1,15 +1,12 @@
-﻿using LogbookWood.Services.Data.Models;
-using LogbookWood.Web.ViewModels.Vehicle;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-
-namespace LogbookWood.Web.Controllers
+﻿namespace LogbookWood.Web.Controllers
 {
+    using System.Security.Claims;
+
+    using LogbookWood.Services.Data.Models;
+    using LogbookWood.Web.ViewModels.Vehicle;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+
     public class VehicleController : Controller
     {
         private readonly IVehicleService vechicleService;

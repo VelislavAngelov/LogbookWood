@@ -2,16 +2,19 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Text;
 
     using Microsoft.AspNetCore.Mvc.Rendering;
 
     public class CreateShipmentViewModel
     {
+        [Required]
         public string NumberTicket { get; set; }
 
         public DateTime Date { get; set; }
 
+        [Required]
         public string Place { get; set; }
 
         public string Wood { get; set; }
@@ -20,8 +23,10 @@
 
         public string Unit { get; set; }
 
+        [Range(0.40, 1)]
         public double Coefficient { get; set; }
 
+        [Range(0.01, 1000)]
         public double TotalVolume { get; set; }
 
         public string Comment { get; set; }

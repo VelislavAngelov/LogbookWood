@@ -10,12 +10,10 @@
 
     public class ReportsController : Controller
     {
-        private readonly IRepository<Ticket> ticketRepository;
         private readonly IReportsService reportsService;
 
-        public ReportsController(IRepository<Ticket> ticketRepository, IReportsService reportsService)
+        public ReportsController(IReportsService reportsService)
         {
-            this.ticketRepository = ticketRepository;
             this.reportsService = reportsService;
         }
 

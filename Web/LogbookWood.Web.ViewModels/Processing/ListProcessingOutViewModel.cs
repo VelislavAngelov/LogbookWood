@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LogbookWood.Web.ViewModels.Processing
+﻿namespace LogbookWood.Web.ViewModels.Processing
 {
+    using System;
+
     public class ListProcessingOutViewModel
     {
         public string NumberProcessing { get; set; }

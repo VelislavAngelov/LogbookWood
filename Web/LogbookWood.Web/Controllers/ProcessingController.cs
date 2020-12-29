@@ -12,20 +12,17 @@
     {
         private readonly IWoodService woodService;
         private readonly IAssortmentService assortmentService;
-        private readonly ApplicationDbContext dbContext;
         private readonly IUnitService unitService;
         private readonly IProcessingService processingService;
 
         public ProcessingController(
             IWoodService woodService,
             IAssortmentService assortmentService,
-            ApplicationDbContext dbContext,
-            IUnitService unitService, 
+            IUnitService unitService,
             IProcessingService processingService)
         {
             this.woodService = woodService;
             this.assortmentService = assortmentService;
-            this.dbContext = dbContext;
             this.unitService = unitService;
             this.processingService = processingService;
         }
@@ -36,6 +33,7 @@
             ProcessingViewModel viewModel = new ProcessingViewModel();
             viewModel.ProcessingOutViewModel = new ProcessingOutViewModel();
             viewModel.ProcessingInViewModel = new ProcessingInViewModel();
+
             viewModel.ProcessingOutViewModel.WoodItems = this.woodService.GetAllWoodsItem();
             viewModel.ProcessingOutViewModel.AssortmentItems = this.assortmentService.GetAllAssortmentsItem();
             viewModel.ProcessingOutViewModel.UnitItems = this.unitService.GetAllUnitItem();
@@ -77,11 +75,9 @@
             {
                 ListProcessingInViews = this.processingService.GetAllIn(userId),
                 ListProcessingOutViews = this.processingService.GetAllOut(userId),
-
             };
-           //// return this.Json(viewModel);
+
             return this.View(viewModel);
         }
-
     }
 }
