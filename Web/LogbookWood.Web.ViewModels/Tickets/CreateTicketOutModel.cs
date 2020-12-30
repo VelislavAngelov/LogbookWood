@@ -21,7 +21,6 @@
         [Required]
         public string ClientAddress { get; set; }
 
-
         public string ClientBULSTAT { get; set; }
 
         public string WoodWarehouseOutside { get; set; }
@@ -44,8 +43,10 @@
 
         public double Thickness { get; set; }
 
+        [Range(0.40, 1)]
         public double Coefficient { get; set; }
 
+        [Range(0.01, 1000)]
         public double TotalVolume { get; set; }
 
         public double Count { get; set; }

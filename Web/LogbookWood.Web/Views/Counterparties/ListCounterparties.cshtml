@@ -1,0 +1,12 @@
+﻿@using LogbookWood.Data.Models
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+@{
+    this.ViewData["Title"] = "Kонтрагенти";
+    ;}
+<h2>Списък контрагенти</h2>
+<br />
+<div class=" col-xs-3 text-left">
+    <a class="btn btn-success" href="/Processing/CreateProcessing">Създай нов</a>
+</div>
+<br />
