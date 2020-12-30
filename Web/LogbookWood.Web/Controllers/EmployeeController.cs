@@ -7,14 +7,14 @@
 
     using Microsoft.AspNetCore.Mvc;
 
-    public class CounterpartiesController : Controller
+    public class EmployeeController : Controller
     {
-        public IActionResult ListCounterparties()
+        public IActionResult CreateEmployee()
         {
             return this.View();
         }
 
-        public IActionResult CreateCounterparties()
+        public IActionResult ListEmployee()
         {
             return this.View();
         }

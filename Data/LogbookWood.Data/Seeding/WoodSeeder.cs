@@ -15,11 +15,13 @@
                 return;
             }
 
-            await dbContext.Woods.AddAsync(new Wood { Name = "Бук" });
+            await dbContext.Woods.AddAsync(new Wood { Name = "Широколистни", Type = 0, });
+            await dbContext.Woods.AddAsync(new Wood { Name = "Бук", Type = 0, });
             await dbContext.Woods.AddAsync(new Wood { Name = "Дъб", Type = 0, });
             await dbContext.Woods.AddAsync(new Wood { Name = "Цер", Type = 0, });
             await dbContext.Woods.AddAsync(new Wood { Name = "Акация", Type = 0, });
             await dbContext.Woods.AddAsync(new Wood { Name = "Габър", Type = 0, });
+            await dbContext.Woods.AddAsync(new Wood { Name = "Иглолистни", Type = (TreeSpecies)1, });
             await dbContext.Woods.AddAsync(new Wood { Name = "Смърч", Type = (TreeSpecies)1, });
             await dbContext.Woods.AddAsync(new Wood { Name = "Бял бор", Type = (TreeSpecies)1, });
             await dbContext.Woods.AddAsync(new Wood { Name = "Ела", Type = (TreeSpecies)1, });

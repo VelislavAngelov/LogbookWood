@@ -20,7 +20,8 @@
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly ILogger<LoginModel> logger;
 
-        public LoginModel(SignInManager<ApplicationUser> signInManager, 
+        public LoginModel(
+            SignInManager<ApplicationUser> signInManager,
             ILogger<LoginModel> logger,
             UserManager<ApplicationUser> userManager)
         {
@@ -52,7 +53,9 @@
             public bool RememberMe { get; set; }
         }
 
+#pragma warning disable SA1201 // Elements should appear in the correct order
         public async Task OnGetAsync(string returnUrl = null)
+#pragma warning restore SA1201 // Elements should appear in the correct order
         {
             if (!string.IsNullOrEmpty(this.ErrorMessage))
             {
@@ -74,7 +77,7 @@
             returnUrl ??= this.Url.Content("~/");
 
             this.ExternalLogins = (await this.signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-        
+
             if (this.ModelState.IsValid)
             {
                 // This doesn't count login failures towards account lockout

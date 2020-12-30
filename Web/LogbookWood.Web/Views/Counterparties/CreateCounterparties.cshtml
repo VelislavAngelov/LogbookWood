@@ -1,0 +1,37 @@
+﻿@using LogbookWood.Data.Models
+@inject LogbookWood.Services.Data.Models.ITicketService ticketService
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+    this.ViewData["Title"] = "Kонтрагенти";
+
+}
+<form method="post" class="">
+    <div class="row">
+        <div class="col">
+            <h2 class="text-center"> Нов контрагент</h2>
+            @*<div class="row">
+                <div class="col-xl-8">
+                    <label>Марка</label>
+                    <input asp-for="RegistrationNumber" class="form-control" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-8">
+                    <label>Превозното средство</label>
+                    <input asp-for="Brand" class="form-control" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-8">
+                    <label>Модел</label>
+                    <input asp-for="Model" class="form-control" />
+                </div>
+            </div>*@
+        </div>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-success">Регистрирай</button>
+</form>

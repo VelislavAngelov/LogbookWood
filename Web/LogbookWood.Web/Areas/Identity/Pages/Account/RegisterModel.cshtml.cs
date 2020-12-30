@@ -130,6 +130,7 @@
                         return this.LocalRedirect(returnUrl);
                     }
                 }
+
                 foreach (IdentityError error in result.Errors)
                 {
                     this.ModelState.AddModelError(string.Empty, error.Description);

@@ -63,6 +63,14 @@
         public List<TicketReportInViewModel> AddWoodAndCategory()
         {
             List<TicketReportInViewModel> lists = new List<TicketReportInViewModel>();
+            lists.Add(new TicketReportInViewModel { TotalVolume = 0, Wood = "Широколистни", Category = "Едра" });
+            lists.Add(new TicketReportInViewModel { TotalVolume = 0, Wood = "Широколистни", Category = "Средна" });
+            lists.Add(new TicketReportInViewModel { TotalVolume = 0, Wood = "Широколистни", Category = "Дребна" });
+            lists.Add(new TicketReportInViewModel { TotalVolume = 0, Wood = "Широколистни", Category = "Дърва" });
+            lists.Add(new TicketReportInViewModel { TotalVolume = 0, Wood = "Широколистни", Category = "Вършина" });
+            lists.Add(new TicketReportInViewModel { TotalVolume = 0, Wood = "Широколистни", Category = "Готови изделия" });
+            lists.Add(new TicketReportInViewModel { TotalVolume = 0, Wood = "Широколистни", Category = "Изрезки и дърва преработени" });
+            lists.Add(new TicketReportInViewModel { TotalVolume = 0, Wood = "Широколистни", Category = "Фасонирана" });
 
             lists.Add(new TicketReportInViewModel { TotalVolume = 0, Wood = "Бук", Category = "Едра" });
             lists.Add(new TicketReportInViewModel { TotalVolume = 0, Wood = "Бук", Category = "Средна" });
@@ -108,6 +116,15 @@
             lists.Add(new TicketReportInViewModel { TotalVolume = 0, Wood = "Габър", Category = "Готови изделия" });
             lists.Add(new TicketReportInViewModel { TotalVolume = 0, Wood = "Габър", Category = "Изрезки и дърва преработени" });
             lists.Add(new TicketReportInViewModel { TotalVolume = 0, Wood = "Габър", Category = "Фасонирана" });
+
+            lists.Add(new TicketReportInViewModel { TotalVolume = 0, Wood = "Иглолистни", Category = "Едра" });
+            lists.Add(new TicketReportInViewModel { TotalVolume = 0, Wood = "Иглолистни", Category = "Средна" });
+            lists.Add(new TicketReportInViewModel { TotalVolume = 0, Wood = "Иглолистни", Category = "Дребна" });
+            lists.Add(new TicketReportInViewModel { TotalVolume = 0, Wood = "Иглолистни", Category = "Дърва" });
+            lists.Add(new TicketReportInViewModel { TotalVolume = 0, Wood = "Иглолистни", Category = "Вършина" });
+            lists.Add(new TicketReportInViewModel { TotalVolume = 0, Wood = "Иглолистни", Category = "Готови изделия" });
+            lists.Add(new TicketReportInViewModel { TotalVolume = 0, Wood = "Иглолистни", Category = "Изрезки и дърва преработени" });
+            lists.Add(new TicketReportInViewModel { TotalVolume = 0, Wood = "Иглолистни", Category = "Фасонирана" });
 
             lists.Add(new TicketReportInViewModel { TotalVolume = 0, Wood = "Смърч", Category = "Едра" });
             lists.Add(new TicketReportInViewModel { TotalVolume = 0, Wood = "Смърч", Category = "Средна" });
